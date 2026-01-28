@@ -28,6 +28,21 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: open_remote_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -49,10 +64,18 @@ jobs:
           cd docs
           npm ci
 
+      - name: Set up database
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/open_remote_test
+        run: |
+          bundle exec rails db:create || true
+          bundle exec rails db:schema:load || bundle exec rails db:migrate || true
+
       - name: Generate documentation from components and tests
         env:
-          RAILS_ENV: production
-          GENERATE_DOCS: false
+          RAILS_ENV: test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/open_remote_test
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_ACTIONS: 'true'
         run: |

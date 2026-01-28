@@ -538,9 +538,10 @@ class DocsGenerator
     end
 
     # Determine output directory: use dist for GitHub Pages, public for local
-    # GitHub Pages expects files in .vitepress/dist, local Rails serves from public/
+    # VitePress outDir is relative to the site root (docs/)
+    # GitHub Pages expects files in docs/.vitepress/dist, local Rails serves from public/
     out_dir = if ENV["GITHUB_ACTIONS"] == "true"
-      "../.vitepress/dist"
+      ".vitepress/dist"
     else
       "../public"
     end
