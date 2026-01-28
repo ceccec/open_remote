@@ -28,7 +28,7 @@ module User::Seedable
     # @param length [Integer] desired password length (default: 16, min: 12)
     # @return [String]
     def generate_secure_password(length: 16)
-      length = [length, 12].max
+      length = [ length, 12 ].max
 
       lowercase = ("a".."z").to_a
       uppercase = ("A".."Z").to_a
@@ -105,4 +105,3 @@ module User::Seedable
     end
   end
 end
-

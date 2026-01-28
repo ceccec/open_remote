@@ -11,7 +11,7 @@ class DocsController < ApplicationController
   #
   def index
     index_path = Rails.root.join("public", "index.html")
-    
+
     if File.exist?(index_path)
       # Serve the VitePress-generated index.html
       # Set proper headers for SPA routing

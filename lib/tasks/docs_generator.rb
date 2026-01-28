@@ -42,7 +42,7 @@ class DocsGenerator
     FileUtils.mkdir_p(API_DIR)
     FileUtils.mkdir_p(EXAMPLES_DIR)
     FileUtils.mkdir_p(DOCS_DIR.join(".vitepress"))
-    
+
     # Create component-specific directories
     COMPONENT_PATHS.each_key do |type|
       FileUtils.mkdir_p(API_DIR.join(type.to_s))
@@ -77,12 +77,12 @@ class DocsGenerator
 
       relative_path = Pathname.new(file_path).relative_path_from(Rails.root.join(COMPONENT_PATHS[type]))
       namespace = relative_path.dirname.to_s.split("/").reject(&:empty?)
-      
+
       content = File.read(file_path)
       class_name = extract_class_name_from_file(content, file_path, type, namespace)
 
       next unless class_name
-      
+
       # Skip if we've already seen this class name for this type
       class_key = "#{type}::#{class_name}"
       next if seen_classes.include?(class_key)
@@ -101,7 +101,7 @@ class DocsGenerator
       }
 
       @components[type] << component_info
-      
+
       # Build tree structure for sidebar
       build_component_tree(type, namespace, component_info)
     end
@@ -117,7 +117,7 @@ class DocsGenerator
     else
       # Infer from file path
       base_name = File.basename(file_path, ".rb")
-      
+
       case type
       when :controllers
         base_name.gsub("_controller", "").camelize + "Controller"
@@ -125,12 +125,12 @@ class DocsGenerator
         if namespace.empty?
           base_name.camelize
         else
-          (namespace.map(&:camelize) + [base_name.camelize]).join("::")
+          (namespace.map(&:camelize) + [ base_name.camelize ]).join("::")
         end
       when :services, :jobs
         base_name.camelize
       when :concerns
-        (namespace.map(&:camelize) + [base_name.camelize]).join("::")
+        (namespace.map(&:camelize) + [ base_name.camelize ]).join("::")
       else
         base_name.camelize
       end
@@ -191,12 +191,12 @@ class DocsGenerator
   #
   def build_component_tree(type, namespace, component_info)
     current = @component_tree[type]
-    
+
     namespace.each do |segment|
       current[segment] ||= { _components: [], _children: {} }
       current = current[segment][:_children]
     end
-    
+
     current[:_components] ||= []
     current[:_components] << component_info
   end
@@ -287,7 +287,7 @@ class DocsGenerator
 
   def generate_component_index
     sections = []
-    
+
     COMPONENT_PATHS.each_key do |type|
       components = @components[type] || []
       next if components.empty?
@@ -316,7 +316,7 @@ class DocsGenerator
       components.each do |component|
         class_name = component[:class_name]
         examples = @examples_by_class[class_name] || []
-        
+
         path = class_name.gsub("::", "/").underscore
         file_path = API_DIR.join(type.to_s, "#{path}.md")
 
@@ -329,7 +329,7 @@ class DocsGenerator
     # Also generate docs for classes that have tests but weren't discovered
     @examples_by_class.each do |class_name, examples|
       next if examples.empty?
-      
+
       # Check if already generated
       already_generated = @components.values.flatten.any? { |c| c[:class_name] == class_name }
       next if already_generated
@@ -347,7 +347,7 @@ class DocsGenerator
     class_name = component[:class_name]
     description = component[:description] || extract_class_description(class_name)
     methods = component[:methods] || []
-    
+
     # Try to load the actual class to get more method info
     begin
       klass = class_name.constantize
@@ -370,7 +370,7 @@ class DocsGenerator
 
       #{description || "API documentation for #{class_name}"}
 
-      **Type:** #{component[:type].to_s.capitalize}  
+      **Type:** #{component[:type].to_s.capitalize}#{'  '}
       **File:** `#{component[:relative_path]}`
 
       #{generate_associations_section(component) if component[:associations].any?}
@@ -593,7 +593,7 @@ class DocsGenerator
     # Generate JavaScript config file with proper formatting
     nav_config = format_nav_for_js(generate_nav_config)
     sidebar_config = format_sidebar_for_js(generate_sidebar_config_all)
-    
+
     js_content = <<~JS
       export default {
         title: 'OpenRemote Rails API',
@@ -621,7 +621,7 @@ class DocsGenerator
     COMPONENT_PATHS.each_key do |type|
       components = @components[type] || []
       next if components.empty?
-      
+
       nav << {
         text: type.to_s.capitalize,
         link: "/api/#{type}/"
@@ -651,15 +651,15 @@ class DocsGenerator
 
   def generate_sidebar_for_type(type)
     components = (@components[type] || []).sort_by { |c| c[:class_name] }
-    
+
     # Build tree structure, deduplicating by class_name
     sidebar_items = []
     seen_classes = Set.new
-    
+
     components.each do |component|
       next if seen_classes.include?(component[:class_name])
       seen_classes.add(component[:class_name])
-      
+
       path = component_path(component)
       sidebar_items << {
         text: component[:class_name],
@@ -689,11 +689,11 @@ class DocsGenerator
 
   def format_sidebar_for_js(sidebar_config)
     return "" if sidebar_config.empty?
-    
+
     items = sidebar_config.map do |path, sidebar_items|
       # Deduplicate sidebar items by link
       unique_items = sidebar_items.uniq { |item| item.is_a?(Hash) ? item[:link] : item }
-      
+
       formatted_items = unique_items.map do |item|
         if item.is_a?(Hash)
           "        { text: '#{item[:text]}', link: '#{item[:link]}' }"

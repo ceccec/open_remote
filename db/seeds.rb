@@ -12,7 +12,7 @@ require "securerandom"
 # @return [String] secure random password
 def generate_secure_password(length: 16)
   # Ensure minimum length for security
-  length = [length, 12].max
+  length = [ length, 12 ].max
 
   # Character sets
   lowercase = ("a".."z").to_a

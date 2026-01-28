@@ -4,7 +4,7 @@
 #
 namespace :doc do
   desc "Extract examples from tests and update documentation"
-  task :extract_test_examples => :environment do
+  task extract_test_examples: :environment do
     require "fileutils"
     require_relative "../test_example_extractor"
 
@@ -27,7 +27,7 @@ namespace :doc do
   end
 
   desc "Generate documentation with test examples"
-  task :generate_with_examples => [ :extract_test_examples, :generate ] do
+  task generate_with_examples: [ :extract_test_examples, :generate ] do
     puts "\n✅ Documentation generated with test examples"
   end
 end
