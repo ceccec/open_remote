@@ -31,14 +31,10 @@
 !/tmp/storage/
 !/tmp/storage/.keep
 
-/public/assets
-
 # Ignore key files for decrypting credentials and more.
 /config/*.key
 
-
 # Vite Ruby
-/public/vite*
 node_modules
 # Vite uses dotenv and suggests to ignore local-only env files. See
 # https://vitejs.dev/guide/env-and-mode.html#env-files
@@ -57,22 +53,22 @@ node_modules
 /docs/node_modules
 /docs/.vitepress/.temp
 /docs/.vitepress/.cache
+/docs/public/
 
-# VitePress build output (served from public/ for local, dist/ for GitHub Pages)
-/public/index.html
-/public/assets/
-/public/.vitepress/
-/public/.nojekyll
-
-# VitePress temporary files
+# VitePress temporary files (now stored in tmp/vitepress-cache, which is already ignored via /tmp/*)
 *.vitepress-temp
 .vitepress-temp/
 
-# VitePress temporary directories (now in tmp/vitepress, which is already ignored via /tmp/*)
-/docs/public/
-
-# Public directory - ignore generated documentation and build artifacts
-# (error pages like 404.html, 500.html should be tracked)
+# Public directory - ignore generated build artifacts and documentation
+# Note: Error pages (404.html, 422.html, 500.html, 503.html) should be tracked
+# Vite Ruby assets
+/public/vite*
+/public/assets/
+# VitePress build output (served from public/ for local, dist/ for GitHub Pages)
+/public/index.html
+/public/.vitepress/
+/public/.nojekyll
+# Generated documentation
 /public/api/
 /public/examples/
 /public/hashmap.json
