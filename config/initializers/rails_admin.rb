@@ -73,7 +73,7 @@ RailsAdmin.config do |config|
       end
 
       group :roles do
-        field :role_ids, :multiselect do
+        field :roles do
           associated_collection_scope do
             proc { |scope| scope }
           end
