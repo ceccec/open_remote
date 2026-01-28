@@ -35,7 +35,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: open_remote_test
+          POSTGRES_DB: open_remote_test # Configured in config/initializers/open_remote.rb (OpenRemote::Config::TEST_DATABASE_NAME)
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -56,7 +56,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '20' # Configured in config/initializers/open_remote.rb (OpenRemote::Config::NODE_VERSION)
 
       - name: Cache root npm dependencies
         uses: actions/cache@v5
@@ -83,7 +83,7 @@ jobs:
 
       - name: Prepare VitePress cache directory
         run: |
-          mkdir -p tmp/vitepress-cache
+          mkdir -p tmp/vitepress-cache # Configured in config/initializers/open_remote.rb (OpenRemote::Config::TMP_VITEPRESS_CACHE_DIR)
 
       - name: Set up database
         env:

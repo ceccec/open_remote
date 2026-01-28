@@ -1,4 +1,5 @@
 {
+  "_comment": "VitePress version is configured in config/initializers/open_remote.rb (OpenRemote::Config::VITEPRESS_VERSION). Update there to change version.",
   "name": "openremote-docs",
   "version": "1.0.0",
   "private": true,

@@ -6,9 +6,9 @@
 class DocsGenerator
   require "set"
 
-  DOCS_DIR = Rails.root.join("docs")
-  API_DIR = DOCS_DIR.join("api")
-  EXAMPLES_DIR = DOCS_DIR.join("examples")
+  DOCS_DIR = OpenRemote::Config::DOCS_DIR
+  API_DIR = OpenRemote::Config::DOCS_API_DIR
+  EXAMPLES_DIR = OpenRemote::Config::DOCS_EXAMPLES_DIR
   COMPONENT_PATHS = {
     models: "app/models",
     controllers: "app/controllers",
@@ -41,7 +41,7 @@ class DocsGenerator
     FileUtils.mkdir_p(DOCS_DIR)
     FileUtils.mkdir_p(API_DIR)
     FileUtils.mkdir_p(EXAMPLES_DIR)
-    FileUtils.mkdir_p(DOCS_DIR.join(".vitepress"))
+    FileUtils.mkdir_p(OpenRemote::Config::DOCS_VITEPRESS_CONFIG_DIR)
 
     # Create component-specific directories
     COMPONENT_PATHS.each_key do |type|
@@ -564,26 +564,15 @@ class DocsGenerator
   end
 
   def generate_vitepress_config
-    # Determine base path: use GitHub Pages path if GITHUB_REPOSITORY is set, otherwise root
-    base_path = if ENV["GITHUB_REPOSITORY"]
-      repo_name = ENV["GITHUB_REPOSITORY"].split("/").last
-      "/#{repo_name}/"
-    else
-      "/"
-    end
-
-    # Determine output directory: use dist for GitHub Pages, public for local
-    # VitePress outDir is relative to the site root (docs/)
-    # GitHub Pages expects files in docs/.vitepress/dist, local Rails serves from public/
-    out_dir = if ENV["GITHUB_ACTIONS"] == "true"
-      ".vitepress/dist"
-    else
-      "../public"
-    end
+    # Use centralized configuration from OpenRemote::Config
+    base_path = OpenRemote::Config::VITEPRESS_BASE_PATH
+    out_dir = OpenRemote::Config::VITEPRESS_OUT_DIR
+    app_name = OpenRemote::Config::APP_NAME
+    app_description = OpenRemote::Config::APP_DESCRIPTION
 
     config = {
-      title: "OpenRemote Rails API",
-      description: "API documentation auto-generated from Rails components and test examples",
+      title: app_name,
+      description: app_description,
       themeConfig: {
         nav: generate_nav_config,
         sidebar: generate_sidebar_config_all
@@ -598,8 +587,8 @@ class DocsGenerator
       import { defineConfig } from 'vitepress'
 
       export default defineConfig({
-        title: 'OpenRemote Rails API',
-        description: 'API documentation auto-generated from Rails components and test examples',
+        title: '#{app_name}',
+        description: '#{app_description}',
         base: '#{base_path}',
         outDir: '#{out_dir}',
         ignoreDeadLinks: false,
@@ -612,7 +601,7 @@ class DocsGenerator
       })
     JS
 
-    File.write(DOCS_DIR.join(".vitepress", "config.js"), js_content)
+    File.write(OpenRemote::Config::DOCS_VITEPRESS_CONFIG_DIR.join("config.js"), js_content)
   end
 
   def generate_nav_config

@@ -20,20 +20,22 @@ namespace :docs do
   end
 
   desc "Generate documentation and run VitePress dev server"
-  task dev: :from_tests do
+  task dev: :environment do
+    Rake::Task["docs:from_tests"].invoke
     puts "\nStarting VitePress dev server..."
-    Dir.chdir(Rails.root.join("docs")) do
+    Dir.chdir(OpenRemote::Config::DOCS_DIR) do
       system("npx vitepress dev")
     end
   end
 
   desc "Build VitePress documentation for production (outputs to public/)"
-  task build: :from_tests do
-    puts "\nBuilding VitePress documentation to public/..."
-    Dir.chdir(Rails.root.join("docs")) do
+  task build: :environment do
+    Rake::Task["docs:from_tests"].invoke
+    puts "\nBuilding VitePress documentation..."
+    Dir.chdir(OpenRemote::Config::DOCS_DIR) do
       system("npx vitepress build")
     end
-    puts "✅ Documentation built to public/ directory"
+    puts "✅ Documentation built to #{OpenRemote::Config::VITEPRESS_OUT_DIR}"
     puts "   Access at: http://localhost:3000/"
   end
 end

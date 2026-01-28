@@ -42,7 +42,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     env:
-      RUBOCOP_CACHE_ROOT: tmp/rubocop
+      RUBOCOP_CACHE_ROOT: tmp/rubocop # Configured in config/initializers/open_remote.rb (OpenRemote::Config::TMP_RUBOCOP_DIR)
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
