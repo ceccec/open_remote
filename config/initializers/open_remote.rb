@@ -57,6 +57,9 @@ module OpenRemote
     # Node.js version for CI/CD
     NODE_VERSION = "20"
 
+    # Package manager (npm only - yarn.lock is ignored)
+    PACKAGE_MANAGER = "npm"
+
     # PostgreSQL configuration for tests
     TEST_DATABASE_NAME = "open_remote_test"
   end
