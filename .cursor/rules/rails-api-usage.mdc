@@ -1,0 +1,113 @@
+---
+description: Prefer Ruby on Rails API docs as the primary framework reference
+alwaysApply: true
+---
+
+# Rails API as Primary Reference
+
+- **Rails API URL**: `https://api.rubyonrails.org`
+- **Intention**: Treat the official Rails API documentation as the primary source of truth for framework behavior, callbacks, configuration, and public APIs.
+
+## High-Level Rails API Sitemap
+
+Use this as a quick index to the main areas of the Rails API site (v8.1.2 as of this rule), derived from the API index page [`https://api.rubyonrails.org`](https://api.rubyonrails.org).
+
+- **Top-Level Entry**
+  - **Rails RDOC main**: overall introduction and high-level overview (`railties/RDOC_MAIN.md`) — [`https://api.rubyonrails.org`](https://api.rubyonrails.org)
+
+- **Core MVC-Related Frameworks**
+  - **Active Record** (`ActiveRecord`): database-backed models and persistence — [`https://api.rubyonrails.org/classes/ActiveRecord/Base.html`](https://api.rubyonrails.org/classes/ActiveRecord/Base.html)
+  - **Active Model** (`ActiveModel`): model interfaces for non-DB-backed domain objects — [`https://api.rubyonrails.org/classes/ActiveModel/Model.html`](https://api.rubyonrails.org/classes/ActiveModel/Model.html)
+  - **Action Pack**
+    - **Action Controller** (`ActionController`): controllers and request handling — [`https://api.rubyonrails.org/classes/ActionController/Base.html`](https://api.rubyonrails.org/classes/ActionController/Base.html)
+    - **Action Dispatch** (`ActionDispatch`): routing, middleware, and HTTP dispatch — [`https://api.rubyonrails.org/classes/ActionDispatch/Routing/Mapper.html`](https://api.rubyonrails.org/classes/ActionDispatch/Routing/Mapper.html)
+  - **Action View** (`ActionView`): view templates and rendering — [`https://api.rubyonrails.org/classes/ActionView/Base.html`](https://api.rubyonrails.org/classes/ActionView/Base.html)
+
+- **Additional Frameworks and Libraries**
+  - **Action Mailer**: generating and sending emails — [`https://api.rubyonrails.org/classes/ActionMailer/Base.html`](https://api.rubyonrails.org/classes/ActionMailer/Base.html)
+  - **Action Mailbox**: receiving emails into the application — [`https://api.rubyonrails.org/classes/ActionMailbox/Base.html`](https://api.rubyonrails.org/classes/ActionMailbox/Base.html)
+  - **Active Job**: declaring background jobs and running them on adapters — [`https://api.rubyonrails.org/classes/ActiveJob/Base.html`](https://api.rubyonrails.org/classes/ActiveJob/Base.html)
+  - **Action Cable**: integrating WebSockets — [`https://api.rubyonrails.org/classes/ActionCable/Channel/Base.html`](https://api.rubyonrails.org/classes/ActionCable/Channel/Base.html)
+  - **Active Storage**: attaching and managing uploaded files — [`https://api.rubyonrails.org/classes/ActiveStorage/Blob.html`](https://api.rubyonrails.org/classes/ActiveStorage/Blob.html)
+  - **Action Text**: rich text content (e.g., Trix-backed) — [`https://api.rubyonrails.org/classes/ActionText/RichText.html`](https://api.rubyonrails.org/classes/ActionText/RichText.html)
+  - **Active Support**: utility classes and Ruby core extensions used across Rails — [`https://api.rubyonrails.org/classes/ActiveSupport.html`](https://api.rubyonrails.org/classes/ActiveSupport.html)
+
+When working in any of these areas, navigate to the corresponding namespace in the Rails API site (for example, `ActiveRecord::Base`, `ActionController::Base`, `ActiveJob::Base`, `ActionMailer::Base`, `ActionCable::Channel::Base`) and rely on those docs for behavior and options.
+
+## Framework Deep-Dive Sitemaps
+
+For each major framework, these are the most important entrypoints and namespaces to consult first in the Rails API.
+
+- **Active Record**
+  - `ActiveRecord::Base`: base class for models and persistence — [`https://api.rubyonrails.org/classes/ActiveRecord/Base.html`](https://api.rubyonrails.org/classes/ActiveRecord/Base.html)
+  - `ActiveRecord::Relation`: query chains and lazy evaluation — [`https://api.rubyonrails.org/classes/ActiveRecord/Relation.html`](https://api.rubyonrails.org/classes/ActiveRecord/Relation.html)
+  - `ActiveRecord::Migration`, `ActiveRecord::Schema`: migrations and schema management — [`https://api.rubyonrails.org/classes/ActiveRecord/Migration.html`](https://api.rubyonrails.org/classes/ActiveRecord/Migration.html), [`https://api.rubyonrails.org/classes/ActiveRecord/Schema.html`](https://api.rubyonrails.org/classes/ActiveRecord/Schema.html)
+  - `ActiveRecord::Callbacks`: lifecycle callbacks — [`https://api.rubyonrails.org/classes/ActiveRecord/Callbacks.html`](https://api.rubyonrails.org/classes/ActiveRecord/Callbacks.html)
+  - `ActiveRecord::Associations`: associations (`has_many`, `belongs_to`, etc.) — [`https://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html`](https://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html)
+  - `ActiveRecord::Validations`: model validations — [`https://api.rubyonrails.org/classes/ActiveRecord/Validations.html`](https://api.rubyonrails.org/classes/ActiveRecord/Validations.html)
+
+- **Active Model**
+  - `ActiveModel::Model`: plain Ruby objects with model-like behavior — [`https://api.rubyonrails.org/classes/ActiveModel/Model.html`](https://api.rubyonrails.org/classes/ActiveModel/Model.html)
+  - `ActiveModel::Validations`: validations for non‑AR models — [`https://api.rubyonrails.org/classes/ActiveModel/Validations.html`](https://api.rubyonrails.org/classes/ActiveModel/Validations.html)
+  - `ActiveModel::Serializers`: JSON/XML serialization concerns — [`https://api.rubyonrails.org/classes/ActiveModel/Serializers.html`](https://api.rubyonrails.org/classes/ActiveModel/Serializers.html)
+
+- **Action Controller / Action Dispatch**
+  - `ActionController::Base`: full‑stack controllers (sessions, cookies, layouts) — [`https://api.rubyonrails.org/classes/ActionController/Base.html`](https://api.rubyonrails.org/classes/ActionController/Base.html)
+  - `ActionController::API`: API‑only controllers — [`https://api.rubyonrails.org/classes/ActionController/API.html`](https://api.rubyonrails.org/classes/ActionController/API.html)
+  - `ActionController::Metal`: minimal controller base — [`https://api.rubyonrails.org/classes/ActionController/Metal.html`](https://api.rubyonrails.org/classes/ActionController/Metal.html)
+  - `ActionDispatch::Routing::Mapper`: routing DSL (`config/routes.rb`) — [`https://api.rubyonrails.org/classes/ActionDispatch/Routing/Mapper.html`](https://api.rubyonrails.org/classes/ActionDispatch/Routing/Mapper.html)
+  - `ActionDispatch::Request`, `ActionDispatch::Response`: low‑level HTTP request/response — [`https://api.rubyonrails.org/classes/ActionDispatch/Request.html`](https://api.rubyonrails.org/classes/ActionDispatch/Request.html), [`https://api.rubyonrails.org/classes/ActionDispatch/Response.html`](https://api.rubyonrails.org/classes/ActionDispatch/Response.html)
+
+- **Action View**
+  - `ActionView::Base`: view rendering — [`https://api.rubyonrails.org/classes/ActionView/Base.html`](https://api.rubyonrails.org/classes/ActionView/Base.html)
+  - `ActionView::Helpers::*`: standard helpers (URL, form, tag, number, date, translation) — [`https://api.rubyonrails.org/classes/ActionView/Helpers.html`](https://api.rubyonrails.org/classes/ActionView/Helpers.html)
+  - `ActionView::Template`: template representations and handlers — [`https://api.rubyonrails.org/classes/ActionView/Template.html`](https://api.rubyonrails.org/classes/ActionView/Template.html)
+
+- **Action Mailer**
+  - `ActionMailer::Base`: mailer classes — [`https://api.rubyonrails.org/classes/ActionMailer/Base.html`](https://api.rubyonrails.org/classes/ActionMailer/Base.html)
+  - `ActionMailer::MessageDelivery`: delivery API (`deliver_later`, etc.) — [`https://api.rubyonrails.org/classes/ActionMailer/MessageDelivery.html`](https://api.rubyonrails.org/classes/ActionMailer/MessageDelivery.html)
+
+- **Action Mailbox**
+  - `ActionMailbox::Base`: mailboxes — [`https://api.rubyonrails.org/classes/ActionMailbox/Base.html`](https://api.rubyonrails.org/classes/ActionMailbox/Base.html)
+  - `ActionMailbox::InboundEmail`: stored inbound emails — [`https://api.rubyonrails.org/classes/ActionMailbox/InboundEmail.html`](https://api.rubyonrails.org/classes/ActionMailbox/InboundEmail.html)
+
+- **Active Job**
+  - `ActiveJob::Base`: job classes and callbacks — [`https://api.rubyonrails.org/classes/ActiveJob/Base.html`](https://api.rubyonrails.org/classes/ActiveJob/Base.html)
+  - `ActiveJob::QueueAdapters::*`: adapters (Sidekiq, Async, etc.) — [`https://api.rubyonrails.org/classes/ActiveJob/QueueAdapters.html`](https://api.rubyonrails.org/classes/ActiveJob/QueueAdapters.html)
+
+- **Action Cable**
+  - `ActionCable::Server::Base`: server configuration — [`https://api.rubyonrails.org/classes/ActionCable/Server/Base.html`](https://api.rubyonrails.org/classes/ActionCable/Server/Base.html)
+  - `ActionCable::Channel::Base`: channel classes — [`https://api.rubyonrails.org/classes/ActionCable/Channel/Base.html`](https://api.rubyonrails.org/classes/ActionCable/Channel/Base.html)
+  - `ActionCable::Connection::Base`: connection identification and authentication — [`https://api.rubyonrails.org/classes/ActionCable/Connection/Base.html`](https://api.rubyonrails.org/classes/ActionCable/Connection/Base.html)
+
+- **Active Storage**
+  - `ActiveStorage::Attached::One`, `ActiveStorage::Attached::Many`: attachment proxies — [`https://api.rubyonrails.org/classes/ActiveStorage/Attached/One.html`](https://api.rubyonrails.org/classes/ActiveStorage/Attached/One.html), [`https://api.rubyonrails.org/classes/ActiveStorage/Attached/Many.html`](https://api.rubyonrails.org/classes/ActiveStorage/Attached/Many.html)
+  - `ActiveStorage::Blob`: stored file metadata — [`https://api.rubyonrails.org/classes/ActiveStorage/Blob.html`](https://api.rubyonrails.org/classes/ActiveStorage/Blob.html)
+  - `ActiveStorage::Variant`: image variants and transformations — [`https://api.rubyonrails.org/classes/ActiveStorage/Variant.html`](https://api.rubyonrails.org/classes/ActiveStorage/Variant.html)
+
+- **Action Text**
+  - `ActionText::RichText`: model backing rich text associations — [`https://api.rubyonrails.org/classes/ActionText/RichText.html`](https://api.rubyonrails.org/classes/ActionText/RichText.html)
+  - `ActionText::Content`: rich text content representation — [`https://api.rubyonrails.org/classes/ActionText/Content.html`](https://api.rubyonrails.org/classes/ActionText/Content.html)
+
+- **Active Support**
+  - `ActiveSupport::Concern`: modularizing reusable behavior — [`https://api.rubyonrails.org/classes/ActiveSupport/Concern.html`](https://api.rubyonrails.org/classes/ActiveSupport/Concern.html)
+  - `ActiveSupport::Callbacks`: callback support — [`https://api.rubyonrails.org/classes/ActiveSupport/Callbacks.html`](https://api.rubyonrails.org/classes/ActiveSupport/Callbacks.html)
+  - `ActiveSupport::Notifications`: instrumentation — [`https://api.rubyonrails.org/classes/ActiveSupport/Notifications.html`](https://api.rubyonrails.org/classes/ActiveSupport/Notifications.html)
+  - `ActiveSupport::Inflector`, `ActiveSupport::TimeZone`, etc.: common utility modules/classes — [`https://api.rubyonrails.org/classes/ActiveSupport/Inflector.html`](https://api.rubyonrails.org/classes/ActiveSupport/Inflector.html), [`https://api.rubyonrails.org/classes/ActiveSupport/TimeZone.html`](https://api.rubyonrails.org/classes/ActiveSupport/TimeZone.html)
+
+## Agent Expectations
+
+- **Before changing or relying on Rails framework behavior** (controllers, models, Active Record, Active Job, mailers, routing, etc.):
+  - Identify the relevant class/module (for example `ActionController::Base`, `ActiveRecord::Base`, `ActiveJob::Base`, etc.).
+  - Consult the corresponding entry in the Rails API docs to confirm:
+    - Method signatures and options.
+    - Callbacks and lifecycle behavior.
+    - Deprecations or version-specific notes.
+- **Prefer Rails API semantics** over guesses or generic Ruby/Rails habits when there is any doubt.
+
+## Practical Guidance
+
+- **Do not try to read the entire Rails API site on every request** (it is far too large to load exhaustively).
+- Instead, **target the relevant sections** of the API docs for the classes/modules actually being used or modified.
+- When explaining behavior or proposing changes that depend on Rails internals, reference the corresponding Rails API concepts and terminology where possible.
+
