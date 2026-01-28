@@ -75,3 +75,5 @@ yarn.lock
 /vendor/*
 !/vendor/.keep
 
+# Built gem artifacts
+/open_remote-*.gem
