@@ -58,4 +58,67 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/ability_m
 
 ---
 
+### grants RailsAdmin access
+
+```ruby
+      expect(ability).to be_able_to(:access, :rails_admin)
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/ability_modules_spec.rb:71`_
+
+
+---
+
+### allows managing assets, rules, and data
+
+```ruby
+      expect(ability).to be_able_to(:manage, Asset)
+      expect(ability).to be_able_to(:manage, AssetType)
+      expect(ability).to be_able_to(:manage, Rule)
+      expect(ability).to be_able_to(:manage, RuleExecution)
+      expect(ability).to be_able_to(:manage, DataPoint)
+      expect(ability).to be_able_to(:manage, Notification)
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/ability_modules_spec.rb:76`_
+
+
+---
+
+### does not allow managing users
+
+```ruby
+      expect(ability).not_to be_able_to(:manage, User)
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/ability_modules_spec.rb:86`_
+
+
+---
+
+### denies RailsAdmin access
+
+```ruby
+      expect(ability).not_to be_able_to(:access, :rails_admin)
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/ability_modules_spec.rb:104`_
+
+
+---
+
+### denies managing anything
+
+```ruby
+      expect(ability).not_to be_able_to(:manage, :all)
+      expect(ability).not_to be_able_to(:manage, Asset)
+      expect(ability).not_to be_able_to(:manage, Rule)
+      expect(ability).not_to be_able_to(:manage, User)
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/ability_modules_spec.rb:109`_
+
+
+---
+
 [← Back to Index](/)

@@ -18,8 +18,8 @@ RSpec.describe UserMailer, type: :mailer do
 
     it "renders the headers" do
       expect(mail.subject).to eq("Confirm your account")
-      expect(mail.to).to eq([user.email])
-      expect(mail.from).to eq(["from@example.com"])
+      expect(mail.to).to eq([ user.email ])
+      expect(mail.from).to eq([ "from@example.com" ])
     end
 
     it "assigns confirmation_url" do
@@ -36,8 +36,8 @@ RSpec.describe UserMailer, type: :mailer do
 
     it "renders the headers" do
       expect(mail.subject).to eq("Reset your password")
-      expect(mail.to).to eq([user.email])
-      expect(mail.from).to eq(["from@example.com"])
+      expect(mail.to).to eq([ user.email ])
+      expect(mail.from).to eq([ "from@example.com" ])
     end
 
     it "assigns reset_password_url" do
@@ -54,8 +54,8 @@ RSpec.describe UserMailer, type: :mailer do
 
     it "renders the headers" do
       expect(mail.subject).to eq("Unlock your account")
-      expect(mail.to).to eq([user.email])
-      expect(mail.from).to eq(["from@example.com"])
+      expect(mail.to).to eq([ user.email ])
+      expect(mail.from).to eq([ "from@example.com" ])
     end
 
     it "assigns unlock_url" do

@@ -55,4 +55,63 @@ RSpec.describe "Ability Modules", type: :model do
       expect(ability).not_to be_able_to(:manage, User)
     end
   end
+
+  describe "Ability::Manager" do
+    let(:ability) { Ability.new(nil) }
+    let(:manager_user) do
+      user = User.create!(
+        email: "manager@example.com",
+        password: "password123",
+        admin: false
+      )
+      user.add_role(:manager)
+      user
+    end
+
+    it "grants RailsAdmin access" do
+      Ability::Manager.define(ability, manager_user)
+      expect(ability).to be_able_to(:access, :rails_admin)
+    end
+
+    it "allows managing assets, rules, and data" do
+      Ability::Manager.define(ability, manager_user)
+      expect(ability).to be_able_to(:manage, Asset)
+      expect(ability).to be_able_to(:manage, AssetType)
+      expect(ability).to be_able_to(:manage, Rule)
+      expect(ability).to be_able_to(:manage, RuleExecution)
+      expect(ability).to be_able_to(:manage, DataPoint)
+      expect(ability).to be_able_to(:manage, Notification)
+    end
+
+    it "does not allow managing users" do
+      Ability::Manager.define(ability, manager_user)
+      expect(ability).not_to be_able_to(:manage, User)
+    end
+  end
+
+  describe "Ability::Viewer" do
+    let(:ability) { Ability.new(nil) }
+    let(:viewer_user) do
+      user = User.create!(
+        email: "viewer@example.com",
+        password: "password123",
+        admin: false
+      )
+      user.add_role(:viewer)
+      user
+    end
+
+    it "denies RailsAdmin access" do
+      Ability::Viewer.define(ability, viewer_user)
+      expect(ability).not_to be_able_to(:access, :rails_admin)
+    end
+
+    it "denies managing anything" do
+      Ability::Viewer.define(ability, viewer_user)
+      expect(ability).not_to be_able_to(:manage, :all)
+      expect(ability).not_to be_able_to(:manage, Asset)
+      expect(ability).not_to be_able_to(:manage, Rule)
+      expect(ability).not_to be_able_to(:manage, User)
+    end
+  end
 end

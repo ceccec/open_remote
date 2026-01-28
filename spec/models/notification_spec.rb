@@ -95,4 +95,32 @@ RSpec.describe Notification, type: :model do
       expect(notification.rule).to eq(rule)
     end
   end
+
+  describe "#rails_admin_label" do
+    it "includes message and severity and associated names when present" do
+      notification = Notification.create!(
+        asset: asset,
+        rule: rule,
+        message: "A very long notification message that should be truncated after fifty characters",
+        severity: "warning",
+        sent_at: Time.current
+      )
+
+      label = notification.rails_admin_label
+      expect(label).to include("warning")
+      expect(label).to include(asset.name)
+      expect(label).to include(rule.name)
+    end
+
+    it "only includes available parts" do
+      notification = Notification.create!(
+        message: "Short message",
+        severity: "error",
+        sent_at: Time.current
+      )
+
+      label = notification.rails_admin_label
+      expect(label).to eq("Short message - (error)")
+    end
+  end
 end

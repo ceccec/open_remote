@@ -52,7 +52,7 @@ RSpec.describe Assets::Querying do
       pairs = Asset.solar_array_power_outputs
 
       expect(pairs.size).to eq(2)
-      expect(pairs.map(&:first)).to contain_exactly(@array.id, array2.id)
+      expect(pairs.map(&:first)).to contain_exactly(@array.id.to_s, array2.id.to_s)
       expect(pairs.map(&:last)).to contain_exactly(1000.0, 2000.0)
     end
 
@@ -71,8 +71,23 @@ RSpec.describe Assets::Querying do
       )
 
       pairs = Asset.solar_array_power_outputs
-      # Arrays without powerOutput should return nil or 0.0
-      expect(pairs.size).to be >= 1
+      # Arrays without powerOutput should return 0.0
+      pair = pairs.find { |p| p.first == array_no_power.id.to_s }
+      expect(pair).to be_present
+      expect(pair.last).to eq(0.0)
+    end
+
+    it "handles arrays with nil attributes_data" do
+      array_nil = Asset.create!(
+        name: "Array Nil",
+        asset_type: solar_array_type,
+        attributes_data: nil
+      )
+
+      pairs = Asset.solar_array_power_outputs
+      pair = pairs.find { |p| p.first == array_nil.id.to_s }
+      expect(pair).to be_present
+      expect(pair.last).to eq(0.0)
     end
 
     it "handles string numeric powerOutput values" do
@@ -84,6 +99,13 @@ RSpec.describe Assets::Querying do
 
       pairs = Asset.solar_array_power_outputs
       expect(pairs.map(&:last)).to include(1500.0)
+    end
+
+    it "ensures id is always a string" do
+      pairs = Asset.solar_array_power_outputs
+      pairs.each do |id_str, _power|
+        expect(id_str).to be_a(String)
+      end
     end
   end
 

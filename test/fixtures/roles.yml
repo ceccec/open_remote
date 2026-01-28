@@ -1,7 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# These fixtures include all default roles to match seeds.rb
 
-one:
+admin_role:
   name: admin
 
-two:
+manager_role:
   name: manager
+
+viewer_role:
+  name: viewer

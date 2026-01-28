@@ -90,4 +90,28 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/notificat
 
 ---
 
+### includes message and severity and associated names when present
+
+```ruby
+      expect(label).to include("warning")
+      expect(label).to include(asset.name)
+      expect(label).to include(rule.name)
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/notification_spec.rb:100`_
+
+
+---
+
+### only includes available parts
+
+```ruby
+      expect(label).to eq("Short message - (error)")
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/notification_spec.rb:115`_
+
+
+---
+
 [← Back to Index](/)

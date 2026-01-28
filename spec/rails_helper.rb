@@ -6,7 +6,7 @@ SimpleCov.start "rails" do
   add_filter "/app/jobs/application_job.rb" # Rails boilerplate base class
   add_filter "/app/mailers/application_mailer.rb" # Rails boilerplate base class
   add_filter "/app/helpers/application_helper.rb" # Rails boilerplate helper (empty)
-  # Temporarily disable coverage gate to identify actual test failures
+  # Require 100% coverage - all code must be tested
   minimum_coverage 100
 end
 

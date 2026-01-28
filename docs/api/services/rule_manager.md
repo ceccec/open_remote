@@ -11,10 +11,20 @@
 ## Methods
 
 - `cron_pattern?`
+
+  **Examples:**
+  - returns true for valid 5-part cron expressions
+  - returns false for non-cron strings
+
 - `enqueue_rule_execution`
 - `execute_due_rules`
 - `find_due_rules`
 - `interval_pattern?`
+
+  **Examples:**
+  - detects supported interval expressions
+  - rejects unsupported strings
+
 - `matches_cron_schedule`
 - `matches_field`
 - `matches_schedule?`
@@ -36,6 +46,10 @@
   - returns true for rules with wildcard schedule
 
 - `time_pattern?`
+
+  **Examples:**
+  - detects HH:MM patterns
+  - rejects invalid patterns
 
 
 ## Examples
@@ -144,6 +158,95 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/rule_ma
 ```
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/rule_manager_spec.rb:146`_
+
+
+### returns true for valid 5-part cron expressions
+
+```ruby
+        expect(RuleManager.send(:cron_pattern?, "* * * * *")).to be true
+        expect(RuleManager.send(:cron_pattern?, "0 5 * * 1-5")).to be true
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/rule_manager_spec.rb:158`_
+
+
+### returns false for non-cron strings
+
+```ruby
+        expect(RuleManager.send(:cron_pattern?, "every 5 minutes")).to be false
+        expect(RuleManager.send(:cron_pattern?, "17:30")).to be false
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/rule_manager_spec.rb:163`_
+
+
+### detects HH:MM patterns
+
+```ruby
+        expect(RuleManager.send(:time_pattern?, "0:05")).to be true
+        expect(RuleManager.send(:time_pattern?, "17:30")).to be true
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/rule_manager_spec.rb:170`_
+
+
+### rejects invalid patterns
+
+```ruby
+        expect(RuleManager.send(:time_pattern?, "1730")).to be false
+        expect(RuleManager.send(:time_pattern?, "every 5 minutes")).to be false
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/rule_manager_spec.rb:175`_
+
+
+### detects supported interval expressions
+
+```ruby
+        expect(RuleManager.send(:interval_pattern?, "every 5 minutes")).to be true
+        expect(RuleManager.send(:interval_pattern?, "every 1 hour")).to be true
+        expect(RuleManager.send(:interval_pattern?, "every 2 days")).to be true
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/rule_manager_spec.rb:182`_
+
+
+### rejects unsupported strings
+
+```ruby
+        expect(RuleManager.send(:interval_pattern?, "sometimes")).to be false
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/rule_manager_spec.rb:188`_
+
+
+### schedules later today when time is in the future
+
+```ruby
+        expect(time.hour).to eq(13)
+        expect(time.min).to eq(30)
+        expect(time.to_date).to eq(base_time.to_date)
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/rule_manager_spec.rb:194`_
+
+
+### schedules for tomorrow when time has already passed today
+
+```ruby
+        expect(time.to_date).to eq((base_time + 1.day).to_date)
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/rule_manager_spec.rb:201`_
+
+
+### parses minute intervals
+
+```ruby
+        expect(time).to eq(base_time + 5.minutes)
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/rule_manager_spec.rb:208`_
 
 
 ## Source Code

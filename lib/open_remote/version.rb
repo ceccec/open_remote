@@ -4,7 +4,9 @@ module OpenRemote
     MINOR = 1
     PATCH = 0
 
-    STRING = [MAJOR, MINOR, PATCH].join(".")
+    STRING = [ MAJOR, MINOR, PATCH ].join(".")
   end
-end
 
+  # Public version constant for the gem/engine
+  VERSION = Version::STRING
+end

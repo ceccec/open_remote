@@ -19,12 +19,15 @@ class Ability
       ability.cannot :access, :rails_admin
 
       # Viewers can only read assets, rules, and data
-      ability.can :read, Asset
-      ability.can :read, AssetType
-      ability.can :read, Rule
-      ability.can :read, RuleExecution
-      ability.can :read, DataPoint
-      ability.can :read, Notification
+      grant_read_access(
+        ability,
+        Asset,
+        AssetType,
+        Rule,
+        RuleExecution,
+        DataPoint,
+        Notification
+      )
 
       # Viewers cannot manage anything
       ability.cannot :manage, :all

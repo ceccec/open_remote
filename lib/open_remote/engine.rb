@@ -18,4 +18,3 @@ module OpenRemote
     # compatible with the current app while still being mountable.
   end
 end
-

@@ -16,10 +16,32 @@ API documentation for AssetType
 
 - `rails_admin_label`
 
+  **Examples:**
+  - returns display_name when present
+  - falls back to name when display_name is blank
+
 
 ## Examples
 
 The following examples are extracted from test files:
+
+### returns display_name when present
+
+```ruby
+      expect(type.rails_admin_label).to eq("Pretty Name")
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_type_label_spec.rb:5`_
+
+
+### falls back to name when display_name is blank
+
+```ruby
+      expect(type.rails_admin_label).to eq("internal_name")
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_type_label_spec.rb:10`_
+
 
 ### is valid with valid attributes
 
@@ -73,7 +95,7 @@ See: `/Users/ceci/github/ceccec/openremote/open_remote/app/models/asset_type.rb`
 
 ## Test File
 
-See: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_type_spec.rb`
+See: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_type_label_spec.rb`
 
 ---
 

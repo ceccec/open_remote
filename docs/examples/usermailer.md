@@ -6,8 +6,8 @@ Test-driven examples for UserMailer functionality.
 
 ```ruby
       expect(mail.subject).to eq("Confirm your account")
-      expect(mail.to).to eq([user.email])
-      expect(mail.from).to eq(["from@example.com"])
+      expect(mail.to).to eq([ user.email ])
+      expect(mail.from).to eq([ "from@example.com" ])
 ```
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/mailers/user_mailer_spec.rb:19`_
@@ -30,8 +30,8 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/mailers/user_mai
 
 ```ruby
       expect(mail.subject).to eq("Reset your password")
-      expect(mail.to).to eq([user.email])
-      expect(mail.from).to eq(["from@example.com"])
+      expect(mail.to).to eq([ user.email ])
+      expect(mail.from).to eq([ "from@example.com" ])
 ```
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/mailers/user_mailer_spec.rb:19`_
@@ -54,8 +54,8 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/mailers/user_mai
 
 ```ruby
       expect(mail.subject).to eq("Unlock your account")
-      expect(mail.to).to eq([user.email])
-      expect(mail.from).to eq(["from@example.com"])
+      expect(mail.to).to eq([ user.email ])
+      expect(mail.from).to eq([ "from@example.com" ])
 ```
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/mailers/user_mailer_spec.rb:19`_

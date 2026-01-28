@@ -80,6 +80,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_typ
 
 ```ruby
       expect(asset).not_to respond_to(:total_capacity)
+      expect(asset).not_to respond_to(:total_capacity)
 ```
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_type_dispatch_spec.rb:87`_
@@ -92,7 +93,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_typ
       expect(reloaded.total_capacity).to eq(1000)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_type_dispatch_spec.rb:98`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_type_dispatch_spec.rb:101`_
 
 
 ### extends module on after_initialize callback
@@ -101,7 +102,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_typ
       expect(asset).to respond_to(:total_capacity)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_type_dispatch_spec.rb:112`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_type_dispatch_spec.rb:115`_
 
 
 ### does not extend module if already extended
@@ -111,7 +112,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_typ
       expect(asset.method(:total_capacity)).to eq(original_method)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_type_dispatch_spec.rb:123`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_type_dispatch_spec.rb:126`_
 
 
 ## Methods

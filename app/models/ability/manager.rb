@@ -18,15 +18,18 @@ class Ability
       grant_rails_admin_access(ability)
 
       # Managers can manage assets, rules, data points, and notifications
-      ability.can :manage, Asset
-      ability.can :manage, AssetType
-      ability.can :manage, Rule
-      ability.can :manage, RuleExecution
-      ability.can :manage, DataPoint
-      ability.can :manage, Notification
+      grant_manage_access(
+        ability,
+        Asset,
+        AssetType,
+        Rule,
+        RuleExecution,
+        DataPoint,
+        Notification
+      )
 
       # Managers can read but not manage users
-      ability.can :read, User
+      grant_read_access(ability, User)
       ability.cannot :manage, User
     end
   end

@@ -63,6 +63,19 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/asset_d
 
 ---
 
+### returns a hash of latest datapoints by attribute name
+
+```ruby
+      expect(latest.keys).to contain_exactly("totalCapacity", "totalPowerOutput")
+      expect(latest["totalCapacity"].value).to eq(1200)
+      expect(latest["totalPowerOutput"].value).to eq(800)
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/asset_datapoint_service_spec.rb:87`_
+
+
+---
+
 ### records data points for all current attributes
 
 ```ruby
@@ -71,7 +84,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/asset_d
       expect(datapoint.value).to eq(1000)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/asset_datapoint_service_spec.rb:81`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/asset_datapoint_service_spec.rb:97`_
 
 
 ---
@@ -82,7 +95,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/asset_d
       expect(AssetDatapointService.record_current_attributes(asset)).to eq([])
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/asset_datapoint_service_spec.rb:91`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/asset_datapoint_service_spec.rb:107`_
 
 
 ---
@@ -94,7 +107,31 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/asset_d
       expect(DataPoint.where("timestamp < ?", 90.days.ago).count).to eq(0)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/asset_datapoint_service_spec.rb:105`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/asset_datapoint_service_spec.rb:121`_
+
+
+---
+
+### returns 0 when asset type does not exist
+
+```ruby
+      expect(count).to eq(0)
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/asset_datapoint_service_spec.rb:131`_
+
+
+---
+
+### records datapoints for all assets of given type
+
+```ruby
+      expect do
+        expect(count).to eq(2) # two attributes for one asset
+      expect(DataPoint.where(asset: other_asset).count).to eq(0)
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/asset_datapoint_service_spec.rb:136`_
 
 
 ---

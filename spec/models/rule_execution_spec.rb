@@ -41,4 +41,20 @@ RSpec.describe RuleExecution, type: :model do
       expect(execution.rule).to eq(rule)
     end
   end
+
+  describe "#rails_admin_label" do
+    it "includes rule name, status and formatted executed_at" do
+      time = Time.utc(2026, 1, 28, 14, 30)
+      execution = RuleExecution.create!(
+        rule: rule,
+        executed_at: time,
+        status: "failed"
+      )
+
+      label = execution.rails_admin_label
+      expect(label).to include("Test Rule")
+      expect(label).to include("failed")
+      expect(label).to include("2026-01-28 14:30")
+    end
+  end
 end

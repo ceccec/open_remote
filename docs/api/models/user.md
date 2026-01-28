@@ -12,14 +12,24 @@
 - `User::Recoverable`
 - `User::Rememberable`
 - `User::Lockable`
+- `User::Seedable`
 
 
 
 ## Methods
 
 - `admin?`
+
+  **Examples:**
+  - returns true when admin flag is true
+  - returns true when user has admin role but flag is false
+
 - `find_by_confirmation_token`
 - `find_by_remember_token`
+
+  **Examples:**
+  - returns nil when token is blank
+
 - `find_by_reset_password_token`
 - `find_by_unlock_token`
 - `make_admin!`
@@ -111,6 +121,63 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/user_spec
 ```
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/user_spec.rb:68`_
+
+
+### returns true when admin flag is true
+
+```ruby
+      expect(user.admin?).to be true
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/user_spec.rb:79`_
+
+
+### returns true when user has admin role but flag is false
+
+```ruby
+      expect(user.admin?).to be true
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/user_spec.rb:84`_
+
+
+### adds admin role and sets admin flag
+
+```ruby
+      expect(user.admin).to be true
+      expect(user.has_role?(:admin)).to be true
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/user_spec.rb:92`_
+
+
+### removes admin role and clears admin flag
+
+```ruby
+      expect(user.admin).to be false
+      expect(user.has_role?(:admin)).to be false
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/user_spec.rb:102`_
+
+
+### returns nil when token is blank
+
+```ruby
+      expect(User.find_by_remember_token(nil)).to be_nil
+      expect(User.find_by_remember_token("")).to be_nil
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/user_spec.rb:115`_
+
+
+### finds user by remember token when token is present
+
+```ruby
+      expect(found).to eq(user)
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/user_spec.rb:120`_
 
 
 ## Source Code

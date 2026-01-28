@@ -14,4 +14,3 @@ require "open_remote/version"
 #
 module OpenRemote
 end
-

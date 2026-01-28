@@ -2,6 +2,19 @@
 
 Test-driven examples for DataPoint functionality.
 
+### includes asset name, attribute_name and formatted timestamp
+
+```ruby
+      expect(label).to include("Main Park")
+      expect(label).to include("powerOutput")
+      expect(label).to include("2026-01-28 15:45")
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point_label_spec.rb:5`_
+
+
+---
+
 ### is valid with valid attributes
 
 ```ruby

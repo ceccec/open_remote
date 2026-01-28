@@ -40,7 +40,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/
 
 ```ruby
       expect(pairs.size).to eq(2)
-      expect(pairs.map(&:first)).to contain_exactly(@array.id, array2.id)
+      expect(pairs.map(&:first)).to contain_exactly(@array.id.to_s, array2.id.to_s)
       expect(pairs.map(&:last)).to contain_exactly(1000.0, 2000.0)
 ```
 
@@ -59,10 +59,21 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/
 ### handles arrays without powerOutput attribute
 
 ```ruby
-      expect(pairs.size).to be >= 1
+      expect(pair).to be_present
+      expect(pair.last).to eq(0.0)
 ```
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:66`_
+
+
+### handles arrays with nil attributes_data
+
+```ruby
+      expect(pair).to be_present
+      expect(pair.last).to eq(0.0)
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:80`_
 
 
 ### handles string numeric powerOutput values
@@ -71,7 +82,16 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/
       expect(pairs.map(&:last)).to include(1500.0)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:78`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:93`_
+
+
+### ensures id is always a string
+
+```ruby
+        expect(id_str).to be_a(String)
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:104`_
 
 
 ### filters assets by numeric attribute value
@@ -82,7 +102,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/
       expect(result).not_to include(@park)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:91`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:113`_
 
 
 ### handles string numeric values
@@ -91,7 +111,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/
       expect(result).to include(asset)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:110`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:132`_
 
 
 ### excludes assets without the attribute
@@ -100,7 +120,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/
       expect(result).not_to include(asset_no_attr)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:121`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:143`_
 
 
 ### handles different attribute names
@@ -110,7 +130,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/
       expect(result).not_to include(asset)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:132`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:154`_
 
 
 ## Methods

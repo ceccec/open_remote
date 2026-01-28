@@ -57,6 +57,17 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/rule_exec
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/rule_execution_spec.rb:35`_
 
 
+### includes rule name, status and formatted executed_at
+
+```ruby
+      expect(label).to include("Test Rule")
+      expect(label).to include("failed")
+      expect(label).to include("2026-01-28 14:30")
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/rule_execution_spec.rb:46`_
+
+
 ## Source Code
 
 See: `/Users/ceci/github/ceccec/openremote/open_remote/app/models/rule_execution.rb`

@@ -2,6 +2,28 @@
 
 Test-driven examples for AssetType functionality.
 
+### returns display_name when present
+
+```ruby
+      expect(type.rails_admin_label).to eq("Pretty Name")
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_type_label_spec.rb:5`_
+
+
+---
+
+### falls back to name when display_name is blank
+
+```ruby
+      expect(type.rails_admin_label).to eq("internal_name")
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_type_label_spec.rb:10`_
+
+
+---
+
 ### is valid with valid attributes
 
 ```ruby

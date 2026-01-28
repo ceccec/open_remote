@@ -19,8 +19,7 @@ class Ability
       grant_full_access(ability)
 
       # Admins can manage users and roles
-      ability.can :manage, User
-      ability.can :manage, Role
+      grant_manage_access(ability, User, Role)
     end
   end
 end

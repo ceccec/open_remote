@@ -93,6 +93,9 @@ RSpec.describe "Asset::Type::Dispatch", type: :model do
       )
 
       expect(asset).not_to respond_to(:total_capacity)
+      # Explicitly verify the else nil branch is executed (mod will be nil, so extend won't happen)
+      asset.send(:extend_type_module)
+      expect(asset).not_to respond_to(:total_capacity)
     end
 
     it "extends module on after_find callback" do

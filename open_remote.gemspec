@@ -3,8 +3,8 @@ require_relative "lib/open_remote/version"
 Gem::Specification.new do |spec|
   spec.name          = "open_remote"
   spec.version       = OpenRemote::Version::STRING
-  spec.authors       = ["ceccec"]
-  spec.email         = ["ceccec@psg.bg"]
+  spec.authors       = [ "ceccec" ]
+  spec.email         = [ "ceccec@psg.bg" ]
 
   spec.summary       = "OpenRemote Rails manager as a mountable engine."
   spec.description   = "Rails-based OpenRemote manager packaged as a Rails engine for reuse and deployment."
@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
 
   spec.bindir        = "bin"
   spec.executables   = spec.files.grep(%r{\Abin/}) { |f| File.basename(f) }
-  spec.require_paths = ["lib"]
+  spec.require_paths = [ "lib" ]
 
   # Runtime dependencies (mirroring Gemfile)
   spec.add_dependency "rails", ">= 8.1.2", "< 9.0"

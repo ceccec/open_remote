@@ -77,6 +77,22 @@ RSpec.describe AssetDatapointService do
     end
   end
 
+  describe ".get_latest_datapoints" do
+    before do
+      AssetDatapointService.record_datapoint(asset, "totalCapacity", 1000, timestamp: 2.hours.ago)
+      AssetDatapointService.record_datapoint(asset, "totalCapacity", 1200, timestamp: Time.current)
+      AssetDatapointService.record_datapoint(asset, "totalPowerOutput", 800, timestamp: 1.hour.ago)
+    end
+
+    it "returns a hash of latest datapoints by attribute name" do
+      latest = AssetDatapointService.get_latest_datapoints(asset)
+
+      expect(latest.keys).to contain_exactly("totalCapacity", "totalPowerOutput")
+      expect(latest["totalCapacity"].value).to eq(1200)
+      expect(latest["totalPowerOutput"].value).to eq(800)
+    end
+  end
+
   describe ".record_current_attributes" do
     it "records data points for all current attributes" do
       expect do
@@ -108,6 +124,28 @@ RSpec.describe AssetDatapointService do
       end.to change { DataPoint.count }.by(-1)
 
       expect(DataPoint.where("timestamp < ?", 90.days.ago).count).to eq(0)
+    end
+  end
+
+  describe ".record_all_attributes_for_type" do
+    it "returns 0 when asset type does not exist" do
+      count = AssetDatapointService.record_all_attributes_for_type("NonExistingType")
+      expect(count).to eq(0)
+    end
+
+    it "records datapoints for all assets of given type" do
+      other_type = AssetType.create!(name: "OtherType", display_name: "Other")
+      other_asset = Asset.create!(name: "Other", asset_type: other_type, attributes_data: { "foo" => 1 })
+
+      asset.update!(attributes_data: { "totalCapacity" => 1000, "totalPowerOutput" => 800 })
+
+      expect do
+        count = AssetDatapointService.record_all_attributes_for_type("SolarPark")
+        expect(count).to eq(2) # two attributes for one asset
+      end.to change(DataPoint, :count).by(2)
+
+      # Ensure other asset type was not affected
+      expect(DataPoint.where(asset: other_asset).count).to eq(0)
     end
   end
 end

@@ -11,6 +11,7 @@ class User < ApplicationRecord
   include User::Recoverable
   include User::Rememberable
   include User::Lockable
+  include User::Seedable
 
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, length: { minimum: 6 }, if: -> { new_record? || !password.nil? }
