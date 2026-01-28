@@ -1,4 +1,6 @@
-      export default {
+      import { defineConfig } from 'vitepress'
+
+      export default defineConfig({
         title: 'OpenRemote Rails API',
         description: 'API documentation auto-generated from Rails components and test examples',
         base: '/',
@@ -99,4 +101,4 @@
       ]
           }
         }
-      }
+      })
