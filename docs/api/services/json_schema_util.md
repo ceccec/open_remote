@@ -10,14 +10,8 @@
 
 ## Methods
 
-### `build_schema`
-
-
-
-
-### `build_property_schema`
-
-
+- `build_property_schema`
+- `build_schema`
 
 
 ## Examples

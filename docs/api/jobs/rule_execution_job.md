@@ -10,13 +10,11 @@ API documentation for RuleExecutionJob
 
 ## Methods
 
-### `perform`
+- `perform`
 
-
-
-**Examples:**
-- executes the rule
-- raises when rule is missing
+  **Examples:**
+  - executes the rule
+  - raises when rule is missing
 
 
 ## Examples

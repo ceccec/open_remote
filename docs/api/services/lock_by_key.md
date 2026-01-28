@@ -10,25 +10,16 @@
 
 ## Methods
 
-### `initialize`
+- `initialize`
+- `lock`
 
+  **Examples:**
+  - handles unlock on non-existent key gracefully
 
+- `unlock`
 
-
-### `lock`
-
-
-
-**Examples:**
-- handles unlock on non-existent key gracefully
-
-
-### `unlock`
-
-
-
-**Examples:**
-- handles unlock on non-existent key gracefully
+  **Examples:**
+  - handles unlock on non-existent key gracefully
 
 
 ## Examples

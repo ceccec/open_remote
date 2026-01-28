@@ -10,34 +10,12 @@
 
 ## Methods
 
-### `new`
-
-
-
-
-### `create`
-
-
-
-
-### `edit`
-
-
-
-
-### `update`
-
-
-
-
-### `user_params`
-
-
-
-
-### `user_update_params`
-
-
+- `create`
+- `edit`
+- `new`
+- `update`
+- `user_params`
+- `user_update_params`
 
 
 

@@ -10,29 +10,11 @@
 
 ## Methods
 
-### `sum_for`
-
-
-
-
-### `average_for`
-
-
-
-
-### `max_for`
-
-
-
-
-### `min_for`
-
-
-
-
-### `create_continuous_aggregate`
-
-
+- `average_for`
+- `create_continuous_aggregate`
+- `max_for`
+- `min_for`
+- `sum_for`
 
 
 

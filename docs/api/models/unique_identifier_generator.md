@@ -10,14 +10,8 @@ API documentation for UniqueIdentifierGenerator
 
 ## Methods
 
-### `generate_id`
-
-
-
-
-### `base62_encode`
-
-
+- `base62_encode`
+- `generate_id`
 
 
 ## Examples

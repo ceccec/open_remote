@@ -10,19 +10,9 @@
 
 ## Methods
 
-### `new`
-
-
-
-
-### `create`
-
-
-
-
-### `destroy`
-
-
+- `create`
+- `destroy`
+- `new`
 
 
 ## Examples

@@ -10,9 +10,7 @@
 
 ## Methods
 
-### `index`
-
-
+- `index`
 
 
 

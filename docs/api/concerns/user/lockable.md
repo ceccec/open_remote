@@ -10,44 +10,14 @@
 
 ## Methods
 
-### `access_locked?`
-
-
-
-
-### `increment_failed_attempts!`
-
-
-
-
-### `lock_access!`
-
-
-
-
-### `unlock_access!`
-
-
-
-
-### `send_unlock_instructions`
-
-
-
-
-### `lock_expired?`
-
-
-
-
-### `reset_failed_attempts!`
-
-
-
-
-### `generate_unlock_token!`
-
-
+- `access_locked?`
+- `generate_unlock_token!`
+- `increment_failed_attempts!`
+- `lock_access!`
+- `lock_expired?`
+- `reset_failed_attempts!`
+- `send_unlock_instructions`
+- `unlock_access!`
 
 
 

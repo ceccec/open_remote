@@ -10,14 +10,8 @@ API documentation for Mapping
 
 ## Methods
 
-### `normalize_openremote_attributes`
-
-
-
-
-### `denormalize_to_openremote_attributes`
-
-
+- `denormalize_to_openremote_attributes`
+- `normalize_openremote_attributes`
 
 
 

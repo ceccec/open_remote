@@ -10,228 +10,61 @@ API documentation for Asset
 
 ## Methods
 
-### `solar_arrays`
-
-
-
-**Examples:**
-- finds solar arrays
-
-
-### `solar_parks`
-
-
-
-**Examples:**
-- finds solar parks
-
-
-### `of_type`
-
-
-
-**Examples:**
-- finds assets of specific type
-
-
-### `solar_array_power_outputs`
-
-
-
-
-### `with_numeric_attribute_greater_than`
-
-
-
-
-### `validate_associated_records_for_data_points`
-
-
-
-
-### `autosave_associated_records_for_notifications`
-
-
-
-
-### `validate_associated_records_for_notifications`
-
-
-
-
-### `version=`
-
-
-
-
-### `versions_association_name`
-
-
-
-
-### `paper_trail_options?`
-
-
-
-
-### `version_association_name?`
-
-
-
-
-### `attributes_data_pretty_json`
-
-
-
-
-### `paper_trail_event=`
-
-
-
-
-### `autosave_associated_records_for_asset_type`
-
-
-
-
-### `_run_initialize_callbacks`
-
-
-
-
-### `version_class_name?`
-
-
-
-
-### `_run_find_callbacks`
-
-
-
-
-### `_run_destroy_callbacks`
-
-
-
-
-### `versions_association_name?`
-
-
-
-
-### `autosave_associated_records_for_parent`
-
-
-
-
-### `_run_create_callbacks`
-
-
-
-
-### `_run_update_callbacks`
-
-
-
-
-### `_run_save_callbacks`
-
-
-
-
-### `paper_trail_options`
-
-
-
-
-### `validate_associated_records_for_versions`
-
-
-
-
-### `version`
-
-
-
-
-### `version_class_name`
-
-
-
-
-### `version_class_name=`
-
-
-
-
-### `autosave_associated_records_for_versions`
-
-
-
-
-### `versions_association_name=`
-
-
-
-
-### `_run_rollback_callbacks`
-
-
-
-
-### `_run_touch_callbacks`
-
-
-
-
-### `version_association_name`
-
-
-
-
-### `autosave_associated_records_for_children`
-
-
-
-
-### `validate_associated_records_for_children`
-
-
-
-
-### `paper_trail_event`
-
-
-
-
-### `version_association_name=`
-
-
-
-
-### `paper_trail_options=`
-
-
-
-
-### `autosave_associated_records_for_data_points`
-
-
-
-
-### `root_assets`
-
-
-
-
-### `with_parent`
-
-
-
-
-### `by_type`
-
-
+- `_run_create_callbacks`
+- `_run_destroy_callbacks`
+- `_run_find_callbacks`
+- `_run_initialize_callbacks`
+- `_run_rollback_callbacks`
+- `_run_save_callbacks`
+- `_run_touch_callbacks`
+- `_run_update_callbacks`
+- `attributes_data_pretty_json`
+- `autosave_associated_records_for_asset_type`
+- `autosave_associated_records_for_children`
+- `autosave_associated_records_for_data_points`
+- `autosave_associated_records_for_notifications`
+- `autosave_associated_records_for_parent`
+- `autosave_associated_records_for_versions`
+- `by_type`
+- `of_type`
+
+  **Examples:**
+  - finds assets of specific type
+
+- `paper_trail_event`
+- `paper_trail_event=`
+- `paper_trail_options`
+- `paper_trail_options=`
+- `paper_trail_options?`
+- `root_assets`
+- `solar_array_power_outputs`
+- `solar_arrays`
+
+  **Examples:**
+  - finds solar arrays
+
+- `solar_parks`
+
+  **Examples:**
+  - finds solar parks
+
+- `validate_associated_records_for_children`
+- `validate_associated_records_for_data_points`
+- `validate_associated_records_for_notifications`
+- `validate_associated_records_for_versions`
+- `version`
+- `version=`
+- `version_association_name`
+- `version_association_name=`
+- `version_association_name?`
+- `version_class_name`
+- `version_class_name=`
+- `version_class_name?`
+- `versions_association_name`
+- `versions_association_name=`
+- `versions_association_name?`
+- `with_numeric_attribute_greater_than`
+- `with_parent`
 
 
 ## Examples

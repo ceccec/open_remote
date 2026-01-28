@@ -10,19 +10,9 @@
 
 ## Methods
 
-### `show`
-
-
-
-
-### `new`
-
-
-
-
-### `create`
-
-
+- `create`
+- `new`
+- `show`
 
 
 

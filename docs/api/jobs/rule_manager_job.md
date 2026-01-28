@@ -10,9 +10,7 @@
 
 ## Methods
 
-### `perform`
-
-
+- `perform`
 
 
 ## Examples

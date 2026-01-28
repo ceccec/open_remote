@@ -14,149 +14,35 @@ API documentation for AssetType
 
 ## Methods
 
-### `rails_admin_label`
-
-
-
-
-### `version=`
-
-
-
-
-### `paper_trail_options?`
-
-
-
-
-### `version_association_name?`
-
-
-
-
-### `paper_trail_event=`
-
-
-
-
-### `version_class_name?`
-
-
-
-
-### `_run_destroy_callbacks`
-
-
-
-
-### `versions_association_name?`
-
-
-
-
-### `_run_save_callbacks`
-
-
-
-
-### `_run_create_callbacks`
-
-
-
-
-### `_run_update_callbacks`
-
-
-
-
-### `autosave_associated_records_for_versions`
-
-
-
-
-### `paper_trail_options`
-
-
-
-
-### `validate_associated_records_for_versions`
-
-
-
-
-### `version`
-
-
-
-
-### `version_class_name`
-
-
-
-
-### `autosave_associated_records_for_assets`
-
-
-
-
-### `validate_associated_records_for_assets`
-
-
-
-
-### `versions_association_name=`
-
-
-
-
-### `version_class_name=`
-
-
-
-
-### `_run_rollback_callbacks`
-
-
-
-
-### `_run_touch_callbacks`
-
-
-
-
-### `version_association_name`
-
-
-
-
-### `versions_association_name`
-
-
-
-
-### `version_association_name=`
-
-
-
-
-### `paper_trail_event`
-
-
-
-
-### `paper_trail_options=`
-
-
-
-
-### `by_name`
-
-
-
-
-### `with_assets`
-
-
+- `_run_create_callbacks`
+- `_run_destroy_callbacks`
+- `_run_rollback_callbacks`
+- `_run_save_callbacks`
+- `_run_touch_callbacks`
+- `_run_update_callbacks`
+- `autosave_associated_records_for_assets`
+- `autosave_associated_records_for_versions`
+- `by_name`
+- `paper_trail_event`
+- `paper_trail_event=`
+- `paper_trail_options`
+- `paper_trail_options=`
+- `paper_trail_options?`
+- `rails_admin_label`
+- `validate_associated_records_for_assets`
+- `validate_associated_records_for_versions`
+- `version`
+- `version=`
+- `version_association_name`
+- `version_association_name=`
+- `version_association_name?`
+- `version_class_name`
+- `version_class_name=`
+- `version_class_name?`
+- `versions_association_name`
+- `versions_association_name=`
+- `versions_association_name?`
+- `with_assets`
 
 
 ## Examples

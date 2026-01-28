@@ -17,194 +17,44 @@
 
 ## Methods
 
-### `find_by_reset_password_token`
-
-
-
-
-### `find_by_confirmation_token`
-
-
-
-
-### `find_by_remember_token`
-
-
-
-
-### `find_by_unlock_token`
-
-
-
-
-### `admin?`
-
-
-
-
-### `make_admin!`
-
-
-
-
-### `remove_admin!`
-
-
-
-
-### `autosave_associated_records_for_roles`
-
-
-
-
-### `validate_associated_records_for_roles`
-
-
-
-
-### `version=`
-
-
-
-
-### `password_reset_token_expires_in`
-
-
-
-
-### `paper_trail_options?`
-
-
-
-
-### `version_association_name?`
-
-
-
-
-### `paper_trail_event=`
-
-
-
-
-### `version_class_name?`
-
-
-
-
-### `versions_association_name?`
-
-
-
-
-### `_run_destroy_callbacks`
-
-
-
-
-### `_run_save_callbacks`
-
-
-
-
-### `_run_create_callbacks`
-
-
-
-
-### `_run_update_callbacks`
-
-
-
-
-### `autosave_associated_records_for_versions`
-
-
-
-
-### `paper_trail_options`
-
-
-
-
-### `validate_associated_records_for_versions`
-
-
-
-
-### `version`
-
-
-
-
-### `version_class_name`
-
-
-
-
-### `version_class_name=`
-
-
-
-
-### `_run_rollback_callbacks`
-
-
-
-
-### `versions_association_name=`
-
-
-
-
-### `_run_touch_callbacks`
-
-
-
-
-### `version_association_name`
-
-
-
-
-### `versions_association_name`
-
-
-
-
-### `version_association_name=`
-
-
-
-
-### `paper_trail_event`
-
-
-
-
-### `paper_trail_options=`
-
-
-
-
-### `autosave_associated_records_for_roles_users`
-
-
-
-
-### `validate_associated_records_for_roles_users`
-
-
-
-
-### `find_by_password_reset_token`
-
-
-
-
-### `find_by_password_reset_token!`
-
-
+- `_run_create_callbacks`
+- `_run_destroy_callbacks`
+- `_run_rollback_callbacks`
+- `_run_save_callbacks`
+- `_run_touch_callbacks`
+- `_run_update_callbacks`
+- `admin?`
+- `autosave_associated_records_for_roles`
+- `autosave_associated_records_for_roles_users`
+- `autosave_associated_records_for_versions`
+- `find_by_confirmation_token`
+- `find_by_password_reset_token`
+- `find_by_password_reset_token!`
+- `find_by_remember_token`
+- `find_by_reset_password_token`
+- `find_by_unlock_token`
+- `make_admin!`
+- `paper_trail_event`
+- `paper_trail_event=`
+- `paper_trail_options`
+- `paper_trail_options=`
+- `paper_trail_options?`
+- `password_reset_token_expires_in`
+- `remove_admin!`
+- `validate_associated_records_for_roles`
+- `validate_associated_records_for_roles_users`
+- `validate_associated_records_for_versions`
+- `version`
+- `version=`
+- `version_association_name`
+- `version_association_name=`
+- `version_association_name?`
+- `version_class_name`
+- `version_class_name=`
+- `version_class_name?`
+- `versions_association_name`
+- `versions_association_name=`
+- `versions_association_name?`
 
 
 ## Examples

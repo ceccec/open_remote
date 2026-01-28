@@ -16,6 +16,9 @@
 !/log/.keep
 !/tmp/.keep
 
+# Test/coverage output (generated)
+/coverage/
+
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*
 !/tmp/pids/
@@ -44,6 +47,10 @@ node_modules
 # Local OpenRemote source checkout
 /tmp/openremote
 
+# YARD output (generated)
+/.yardoc/
+/doc/
+
 # VitePress documentation build artifacts
 /docs/.vitepress/dist
 /docs/.vitepress/cache
@@ -60,4 +67,8 @@ node_modules
 # VitePress temporary files
 *.vitepress-temp
 .vitepress-temp/
+
+# Vendor (keep directory via .keep)
+/vendor/*
+!/vendor/.keep
 

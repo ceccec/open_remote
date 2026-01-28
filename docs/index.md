@@ -58,7 +58,7 @@ npm run docs:dev
 - [RuleExecutionJob](/api/jobs/rule_execution_job)
 - [RuleManagerJob](/api/jobs/rule_manager_job)
 
-### Concerns (7)
+### Concerns (8)
 
 - [Admin](/api/concerns/admin)
 - [Assets](/api/concerns/assets)
@@ -67,6 +67,7 @@ npm run docs:dev
 - [User::Lockable](/api/concerns/user/lockable)
 - [User::Recoverable](/api/concerns/user/recoverable)
 - [User::Rememberable](/api/concerns/user/rememberable)
+- [User::Seedable](/api/concerns/user/seedable)
 
 
 ## Examples

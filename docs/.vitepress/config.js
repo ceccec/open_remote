@@ -1,9 +1,9 @@
       export default {
         title: 'OpenRemote Rails API',
         description: 'API documentation auto-generated from Rails components and test examples',
-        base: '/',
-        outDir: '../public',
-        ignoreDeadLinks: true,
+        base: '/open_remote/',
+        outDir: '.vitepress/dist',
+        ignoreDeadLinks: false,
         themeConfig: {
           nav: [
     { text: 'Home', link: '/' },
@@ -62,7 +62,8 @@
         { text: 'User::Confirmable', link: '/api/concerns/user/confirmable' },
         { text: 'User::Lockable', link: '/api/concerns/user/lockable' },
         { text: 'User::Recoverable', link: '/api/concerns/user/recoverable' },
-        { text: 'User::Rememberable', link: '/api/concerns/user/rememberable' }
+        { text: 'User::Rememberable', link: '/api/concerns/user/rememberable' },
+        { text: 'User::Seedable', link: '/api/concerns/user/seedable' }
       ],
       '/examples/': [
         { text: 'Ability', link: '/examples/ability' },

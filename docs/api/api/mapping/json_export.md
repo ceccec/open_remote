@@ -49,10 +49,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/mapping
 
 ## Methods
 
-### `to_openremote_json_tree`
-
-
-
+- `to_openremote_json_tree`
 
 ## Test File
 

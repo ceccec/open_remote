@@ -10,29 +10,11 @@
 
 ## Methods
 
-### `process_attribute_update`
-
-
-
-
-### `process_attribute_updates`
-
-
-
-
-### `trigger_attribute_change_rules`
-
-
-
-
-### `rule_should_trigger?`
-
-
-
-
-### `process_outdated_attributes`
-
-
+- `process_attribute_update`
+- `process_attribute_updates`
+- `process_outdated_attributes`
+- `rule_should_trigger?`
+- `trigger_attribute_change_rules`
 
 
 ## Examples

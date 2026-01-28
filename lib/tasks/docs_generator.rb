@@ -30,6 +30,7 @@ class DocsGenerator
     extract_test_examples
     generate_index
     generate_api_docs
+    generate_examples_index
     generate_examples_docs
     generate_vitepress_config
   end
@@ -356,6 +357,14 @@ class DocsGenerator
       # Use extracted methods only
     end
 
+    # Avoid generating extremely large method lists (can slow/bug VitePress rendering)
+    methods = methods.sort
+    methods_truncated = false
+    if methods.length > 50
+      methods = methods.first(50)
+      methods_truncated = true
+    end
+
     <<~MARKDOWN
       # #{class_name}
 
@@ -370,6 +379,7 @@ class DocsGenerator
       ## Methods
 
       #{generate_methods_doc(class_name, methods, examples)}
+      #{methods_truncated ? "\n\n_Note: method list truncated to first 50 entries._" : ""}
 
       #{examples.any? ? "## Examples\n\nThe following examples are extracted from test files:\n\n#{examples.map { |ex| generate_example_markdown(ex) }.join("\n\n")}" : ""}
 
@@ -481,16 +491,23 @@ class DocsGenerator
   def generate_methods_doc(class_name, methods, examples)
     return "No methods documented." if methods.empty?
 
-    methods.map do |method|
+    lines = []
+
+    methods.each do |method|
+      lines << "- `#{method}`"
+
       method_examples = examples.select { |ex| ex[:code].join.include?(method.to_s) }
-      example_text = method_examples.any? ? "\n\n**Examples:**\n#{method_examples.map { |ex| "- #{ex[:description]}" }.join("\n")}" : ""
+      next if method_examples.empty?
 
-      <<~MARKDOWN
-        ### `#{method}`
+      lines << ""
+      lines << "  **Examples:**"
+      method_examples.each do |ex|
+        lines << "  - #{ex[:description]}"
+      end
+      lines << ""
+    end
 
-        #{example_text}
-      MARKDOWN
-    end.join("\n\n")
+    lines.join("\n").strip
   end
 
   def generate_examples_docs
@@ -502,6 +519,24 @@ class DocsGenerator
       content = generate_feature_doc(feature, examples)
       File.write(file_path, content)
     end
+  end
+
+  def generate_examples_index
+    features = group_examples_by_feature.keys.sort
+
+    content = <<~MARKDOWN
+      # Examples
+
+      Test-driven examples extracted from the RSpec suite.
+
+      #{features.map { |feature| "- [#{feature}](/examples/#{feature.parameterize})" }.join("\n")}
+
+      ---
+
+      [← Back to Index](/)
+    MARKDOWN
+
+    File.write(EXAMPLES_DIR.join("index.md"), content)
   end
 
   def group_examples_by_feature
@@ -565,7 +600,7 @@ class DocsGenerator
         description: 'API documentation auto-generated from Rails components and test examples',
         base: '#{base_path}',
         outDir: '#{out_dir}',
-        ignoreDeadLinks: true,
+        ignoreDeadLinks: false,
         themeConfig: {
           nav: #{nav_config},
           sidebar: {

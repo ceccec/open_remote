@@ -10,9 +10,7 @@
 
 ## Methods
 
-### `define`
-
-
+- `define`
 
 
 ## Examples

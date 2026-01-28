@@ -10,108 +10,31 @@
 
 ## Methods
 
-### `initialize`
-
-
-
-
-### `try_advance_active`
-
-
-
-
-### `get_delay`
-
-
-
-
-### `get_time_until_next_occurrence`
-
-
-
-
-### `is_after_schedule_end`
-
-
-
-**Examples:**
-- returns false when there is no end_time and no recurrence
-- returns true when fixed schedule end is passed
-
-
-### `set_current`
-
-
-
-
-### `parse_recurrence`
-
-
-
-
-### `first_occurrence`
-
-
-
-
-### `interval_seconds`
-
-
-
-
-### `occurrences_between`
-
-
-
-
-### `next_after`
-
-
-
-
-### `start`
-
-
-
-
-### `freq`
-
-
-
-
-### `by_hour`
-
-
-
-
-### `by_minute`
-
-
-
-
-### `until_time`
-
-
-
-
-### `upcoming`
-
-
-
-
-### `current`
-
-
-
-
-### `end_time`
-
-
-
-
-### `count`
-
-
+- `by_hour`
+- `by_minute`
+- `count`
+- `current`
+- `end_time`
+- `first_occurrence`
+- `freq`
+- `get_delay`
+- `get_time_until_next_occurrence`
+- `initialize`
+- `interval_seconds`
+- `is_after_schedule_end`
+
+  **Examples:**
+  - returns false when there is no end_time and no recurrence
+  - returns true when fixed schedule end is passed
+
+- `next_after`
+- `occurrences_between`
+- `parse_recurrence`
+- `set_current`
+- `start`
+- `try_advance_active`
+- `until_time`
+- `upcoming`
 
 
 ## Examples

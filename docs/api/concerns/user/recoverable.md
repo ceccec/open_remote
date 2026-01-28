@@ -10,24 +10,10 @@
 
 ## Methods
 
-### `send_reset_password_instructions`
-
-
-
-
-### `reset_password`
-
-
-
-
-### `reset_password_period_valid?`
-
-
-
-
-### `generate_reset_password_token!`
-
-
+- `generate_reset_password_token!`
+- `reset_password`
+- `reset_password_period_valid?`
+- `send_reset_password_instructions`
 
 
 

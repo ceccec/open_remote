@@ -64,33 +64,20 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/appl
 
 ## Methods
 
-### `current_user`
+- `current_user`
 
+  **Examples:**
+  - returns nil and false when there is no user in the session
+  - returns the user and true when a user id is stored in the session
 
+- `find_current_user`
+- `logged_in?`
 
-**Examples:**
-- returns nil and false when there is no user in the session
-- returns the user and true when a user id is stored in the session
+  **Examples:**
+  - returns nil and false when there is no user in the session
+  - returns the user and true when a user id is stored in the session
 
-
-### `logged_in?`
-
-
-
-**Examples:**
-- returns nil and false when there is no user in the session
-- returns the user and true when a user id is stored in the session
-
-
-### `find_current_user`
-
-
-
-
-### `_routes`
-
-
-
+- `_routes`
 
 ## Test File
 

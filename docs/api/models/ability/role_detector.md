@@ -10,9 +10,7 @@
 
 ## Methods
 
-### `role_for`
-
-
+- `role_for`
 
 
 

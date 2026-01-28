@@ -10,96 +10,32 @@
 
 ## Methods
 
-### `execute_due_rules`
-
-
-
-
-### `find_due_rules`
-
-
-
-
-### `rule_due?`
-
-
-
-**Examples:**
-- returns false for rules without schedule
-- returns true for rules with wildcard schedule
-
-
-### `next_execution_time`
-
-
-
-**Examples:**
-- returns nil for rules without schedule
-
-
-### `enqueue_rule_execution`
-
-
-
-
-### `parse_schedule`
-
-
-
-
-### `cron_pattern?`
-
-
-
-
-### `time_pattern?`
-
-
-
-
-### `interval_pattern?`
-
-
-
-
-### `parse_cron_schedule`
-
-
-
-
-### `parse_time_schedule`
-
-
-
-
-### `parse_interval_schedule`
-
-
-
-
-### `parse_specific_time`
-
-
-
-
-### `matches_schedule?`
-
-
-
-
-### `matches_cron_schedule`
-
-
-
-
-### `matches_field`
-
-
-
-
-### `matches_time_schedule`
-
-
+- `cron_pattern?`
+- `enqueue_rule_execution`
+- `execute_due_rules`
+- `find_due_rules`
+- `interval_pattern?`
+- `matches_cron_schedule`
+- `matches_field`
+- `matches_schedule?`
+- `matches_time_schedule`
+- `next_execution_time`
+
+  **Examples:**
+  - returns nil for rules without schedule
+
+- `parse_cron_schedule`
+- `parse_interval_schedule`
+- `parse_schedule`
+- `parse_specific_time`
+- `parse_time_schedule`
+- `rule_due?`
+
+  **Examples:**
+  - returns false for rules without schedule
+  - returns true for rules with wildcard schedule
+
+- `time_pattern?`
 
 
 ## Examples

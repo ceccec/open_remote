@@ -19,210 +19,64 @@
 
 ## Methods
 
-### `when_config_pretty_json`
-
-
-
-**Examples:**
-- returns pretty JSON representations of configs
-- pretty prints empty configs as empty objects/arrays
-
-
-### `then_config_pretty_json`
-
-
-
-**Examples:**
-- returns pretty JSON representations of configs
-- pretty prints empty configs as empty objects/arrays
-
-
-### `when_config_presence`
-
-
-
-
-### `then_config_presence`
-
-
-
-
-### `version=`
-
-
-
-
-### `autosave_associated_records_for_rule_executions`
-
-
-
-
-### `validate_associated_records_for_rule_executions`
-
-
-
-
-### `paper_trail_options?`
-
-
-
-
-### `version_association_name?`
-
-
-
-
-### `paper_trail_event=`
-
-
-
-
-### `version_class_name?`
-
-
-
-
-### `_run_destroy_callbacks`
-
-
-
-
-### `versions_association_name?`
-
-
-
-
-### `_run_save_callbacks`
-
-
-
-
-### `_run_create_callbacks`
-
-
-
-
-### `_run_update_callbacks`
-
-
-
-
-### `autosave_associated_records_for_versions`
-
-
-
-
-### `paper_trail_options`
-
-
-
-
-### `validate_associated_records_for_versions`
-
-
-
-
-### `version`
-
-
-
-
-### `version_class_name`
-
-
-
-
-### `version_class_name=`
-
-
-
-
-### `_run_rollback_callbacks`
-
-
-
-
-### `versions_association_name=`
-
-
-
-
-### `_run_touch_callbacks`
-
-
-
-
-### `version_association_name`
-
-
-
-
-### `versions_association_name`
-
-
-
-
-### `version_association_name=`
-
-
-
-
-### `paper_trail_event`
-
-
-
-
-### `paper_trail_options=`
-
-
-
-
-### `disabled`
-
-
-
-**Examples:**
-- skips disabled rule
-
-
-### `recently_executed`
-
-
-
-
-### `with_schedule`
-
-
-
-
-### `attribute_value`
-
-
-
-
-### `scheduled`
-
-
-
-
-### `enabled`
-
-
-
-**Examples:**
-- defaults enabled to true
-- imports rule from OpenRemote JSON
-- exports rule to OpenRemote JSON
-
-
-### `with_failed_executions`
-
-
-
-
-### `attribute_changed`
-
-
+- `_run_create_callbacks`
+- `_run_destroy_callbacks`
+- `_run_rollback_callbacks`
+- `_run_save_callbacks`
+- `_run_touch_callbacks`
+- `_run_update_callbacks`
+- `attribute_changed`
+- `attribute_value`
+- `autosave_associated_records_for_rule_executions`
+- `autosave_associated_records_for_versions`
+- `disabled`
+
+  **Examples:**
+  - skips disabled rule
+
+- `enabled`
+
+  **Examples:**
+  - defaults enabled to true
+  - imports rule from OpenRemote JSON
+  - exports rule to OpenRemote JSON
+
+- `paper_trail_event`
+- `paper_trail_event=`
+- `paper_trail_options`
+- `paper_trail_options=`
+- `paper_trail_options?`
+- `recently_executed`
+- `scheduled`
+- `then_config_presence`
+- `then_config_pretty_json`
+
+  **Examples:**
+  - returns pretty JSON representations of configs
+  - pretty prints empty configs as empty objects/arrays
+
+- `validate_associated_records_for_rule_executions`
+- `validate_associated_records_for_versions`
+- `version`
+- `version=`
+- `version_association_name`
+- `version_association_name=`
+- `version_association_name?`
+- `version_class_name`
+- `version_class_name=`
+- `version_class_name?`
+- `versions_association_name`
+- `versions_association_name=`
+- `versions_association_name?`
+- `when_config_presence`
+- `when_config_pretty_json`
+
+  **Examples:**
+  - returns pretty JSON representations of configs
+  - pretty prints empty configs as empty objects/arrays
+
+- `with_failed_executions`
+- `with_schedule`
 
 
 ## Examples

@@ -10,47 +10,18 @@
 
 ## Methods
 
-### `record_datapoint`
+- `cleanup_old_datapoints`
+- `get_datapoints`
+- `get_latest_datapoint`
+- `get_latest_datapoints`
+- `record_all_attributes_for_type`
+- `record_current_attributes`
 
+  **Examples:**
+  - returns empty array for asset without attributes
 
-
-
-### `record_datapoints`
-
-
-
-
-### `get_datapoints`
-
-
-
-
-### `get_latest_datapoint`
-
-
-
-
-### `get_latest_datapoints`
-
-
-
-
-### `cleanup_old_datapoints`
-
-
-
-
-### `record_current_attributes`
-
-
-
-**Examples:**
-- returns empty array for asset without attributes
-
-
-### `record_all_attributes_for_type`
-
-
+- `record_datapoint`
+- `record_datapoints`
 
 
 ## Examples

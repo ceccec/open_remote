@@ -10,32 +10,15 @@
 
 ## Methods
 
-### `initialize`
+- `current_time_millis`
 
+  **Examples:**
+  - uses UTC offset for unknown zone IDs
 
-
-
-### `set_time`
-
-
-
-
-### `set_time_iso`
-
-
-
-
-### `zone_offset_for`
-
-
-
-
-### `current_time_millis`
-
-
-
-**Examples:**
-- uses UTC offset for unknown zone IDs
+- `initialize`
+- `set_time`
+- `set_time_iso`
+- `zone_offset_for`
 
 
 ## Examples

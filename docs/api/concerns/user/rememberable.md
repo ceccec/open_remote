@@ -10,24 +10,10 @@
 
 ## Methods
 
-### `remember_me!`
-
-
-
-
-### `forget_me!`
-
-
-
-
-### `remember_token_valid?`
-
-
-
-
-### `generate_remember_token!`
-
-
+- `forget_me!`
+- `generate_remember_token!`
+- `remember_me!`
+- `remember_token_valid?`
 
 
 

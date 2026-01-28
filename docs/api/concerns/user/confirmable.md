@@ -10,34 +10,12 @@
 
 ## Methods
 
-### `confirmed?`
-
-
-
-
-### `confirm!`
-
-
-
-
-### `send_confirmation_instructions`
-
-
-
-
-### `confirmation_period_valid?`
-
-
-
-
-### `generate_confirmation_token`
-
-
-
-
-### `generate_confirmation_token!`
-
-
+- `confirm!`
+- `confirmation_period_valid?`
+- `confirmed?`
+- `generate_confirmation_token`
+- `generate_confirmation_token!`
+- `send_confirmation_instructions`
 
 
 

@@ -10,49 +10,15 @@ API documentation for Assets
 
 ## Methods
 
-### `active_power`
-
-
-
-
-### `reactive_power`
-
-
-
-
-### `apparent_power`
-
-
-
-
-### `energy_import`
-
-
-
-
-### `energy_export`
-
-
-
-
-### `voltage`
-
-
-
-
-### `current`
-
-
-
-
-### `power_factor`
-
-
-
-
-### `frequency`
-
-
+- `active_power`
+- `apparent_power`
+- `current`
+- `energy_export`
+- `energy_import`
+- `frequency`
+- `power_factor`
+- `reactive_power`
+- `voltage`
 
 
 

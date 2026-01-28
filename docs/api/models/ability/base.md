@@ -10,24 +10,10 @@
 
 ## Methods
 
-### `grant_rails_admin_access`
-
-
-
-
-### `grant_full_access`
-
-
-
-
-### `grant_read_access`
-
-
-
-
-### `grant_manage_access`
-
-
+- `grant_full_access`
+- `grant_manage_access`
+- `grant_rails_admin_access`
+- `grant_read_access`
 
 
 

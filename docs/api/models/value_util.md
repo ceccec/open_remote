@@ -10,19 +10,9 @@ API documentation for ValueUtil
 
 ## Methods
 
-### `validate_positive_integer`
-
-
-
-
-### `validate_array_of_positive_integers`
-
-
-
-
-### `validate_array_of_array_of_positive_integers`
-
-
+- `validate_array_of_array_of_positive_integers`
+- `validate_array_of_positive_integers`
+- `validate_positive_integer`
 
 
 

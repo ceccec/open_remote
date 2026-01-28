@@ -10,24 +10,10 @@
 
 ## Methods
 
-### `new`
-
-
-
-
-### `create`
-
-
-
-
-### `edit`
-
-
-
-
-### `update`
-
-
+- `create`
+- `edit`
+- `new`
+- `update`
 
 
 
