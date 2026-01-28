@@ -1,8 +1,8 @@
       export default {
         title: 'OpenRemote Rails API',
         description: 'API documentation auto-generated from Rails components and test examples',
-        base: '/open_remote/',
-        outDir: '.vitepress/dist',
+        base: '/',
+        outDir: '../public',
         ignoreDeadLinks: false,
         themeConfig: {
           nav: [
