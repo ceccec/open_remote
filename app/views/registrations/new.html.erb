@@ -1,0 +1,37 @@
+<h1>Sign Up</h1>
+
+<%= form_with model: @user, url: signup_path, local: true do |form| %>
+  <% if @user.errors.any? %>
+    <div class="alert alert-danger">
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :email %><br>
+    <%= form.email_field :email, autofocus: true, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :password %><br>
+    <%= form.password_field :password, required: true, minlength: 6 %>
+    <small>Minimum 6 characters</small>
+  </div>
+
+  <div>
+    <%= form.label :password_confirmation, "Confirm Password" %><br>
+    <%= form.password_field :password_confirmation, required: true %>
+  </div>
+
+  <div>
+    <%= form.submit "Sign up" %>
+  </div>
+<% end %>
+
+<p>
+  <%= link_to "Already have an account? Log in", login_path %>
+</p>

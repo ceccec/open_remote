@@ -23,6 +23,7 @@ RailsAdmin.config do |config|
   # Explicit model inclusion (allowlist approach)
   config.included_models = [
     "User",
+    "Role",
     "AssetType",
     "Asset",
     "DataPoint",
@@ -55,22 +56,92 @@ RailsAdmin.config do |config|
     list do
       field :email
       field :admin
+      field :roles do
+        pretty_value do
+          bindings[:object].roles.pluck(:name).join(", ")
+        end
+      end
       field :created_at
       field :updated_at
     end
 
     edit do
-      field :email
-      field :password
-      field :admin
+      group :basic_info do
+        field :email
+        field :password
+        field :admin
+      end
+
+      group :roles do
+        field :role_ids, :multiselect do
+          associated_collection_scope do
+            proc { |scope| scope }
+          end
+        end
+      end
     end
 
     show do
-      field :id
-      field :email
-      field :admin
+      group :basic_info do
+        field :id
+        field :email
+        field :admin
+        field :created_at
+        field :updated_at
+      end
+
+      group :roles do
+        field :roles do
+          pretty_value do
+            bindings[:object].roles.map(&:rails_admin_label).join(", ")
+          end
+        end
+      end
+    end
+  end
+
+  # Role model configuration
+  config.model "Role" do
+    navigation_label "Users & Access"
+    object_label_method :rails_admin_label
+
+    list do
+      field :name
+      field :resource_type
+      field :resource_id
+      field :users_count do
+        pretty_value do
+          bindings[:object].users.count
+        end
+      end
       field :created_at
-      field :updated_at
+    end
+
+    edit do
+      group :basic_info do
+        field :name
+        field :resource_type
+        field :resource_id
+      end
+    end
+
+    show do
+      group :basic_info do
+        field :id
+        field :name
+        field :resource_type
+        field :resource_id
+        field :created_at
+        field :updated_at
+      end
+
+      group :users do
+        field :users do
+          associated_collection_scope do
+            proc { |scope| scope.limit(100) }
+          end
+        end
+      end
     end
   end
 

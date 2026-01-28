@@ -71,3 +71,7 @@ gem "vite_rails"
 gem "rails_admin"
 gem "cancancan"
 gem "paper_trail"
+
+gem "rolify", "~> 6.0"
+
+gem "yard", "~> 0.9.38", group: :development

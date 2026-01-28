@@ -1,0 +1,16 @@
+<h1>Forgot Your Password?</h1>
+
+<%= form_with model: @user, url: password_path, local: true do |form| %>
+  <div>
+    <%= form.label :email, "Email address" %><br>
+    <%= form.email_field :email, autofocus: true, required: true %>
+  </div>
+
+  <div>
+    <%= form.submit "Send reset instructions" %>
+  </div>
+<% end %>
+
+<p>
+  <%= link_to "Back to login", login_path %>
+</p>

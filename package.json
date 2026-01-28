@@ -2,9 +2,10 @@
   "private": true,
   "type": "module",
   "devDependencies": {
+    "esbuild": "^0.25.12",
     "vite": "^7.1.0",
     "vite-plugin-ruby": "^5.1.2",
-    "esbuild": "^0.25.12"
+    "vitepress": "^1.6.4"
   },
   "dependencies": {
     "rails_admin": "3.3.0",
@@ -13,5 +14,10 @@
   "resolutions": {
     "@hotwired/turbo": "^8.0.21",
     "esbuild": "^0.25.12"
+  },
+  "scripts": {
+    "docs:dev": "cd docs && npm run dev",
+    "docs:build": "cd docs && npm run build",
+    "docs:preview": "cd docs && npm run preview"
   }
 }

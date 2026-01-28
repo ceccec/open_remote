@@ -1,0 +1,25 @@
+# YARD configuration options
+# See https://yardoc.org/guides/getting-started.html for more options
+
+# Include source files
+app/**/*.rb
+lib/**/*.rb
+
+# Exclude test files from documentation (but we'll link to them via @see tags)
+--exclude spec/
+--exclude test/
+
+# Markdown formatting
+--markup markdown
+
+# Output directory
+--output-dir doc
+
+# Include private methods
+--no-private
+
+# Use README as main page if it exists
+--readme README.md
+
+# Load Rails environment for proper class loading
+--load config/environment.rb

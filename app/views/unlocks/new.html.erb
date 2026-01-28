@@ -1,0 +1,16 @@
+<h1>Resend Unlock Instructions</h1>
+
+<%= form_with model: @user, url: create_unlock_path, local: true do |form| %>
+  <div>
+    <%= form.label :email, "Email address" %><br>
+    <%= form.email_field :email, autofocus: true, required: true %>
+  </div>
+
+  <div>
+    <%= form.submit "Resend unlock instructions" %>
+  </div>
+<% end %>
+
+<p>
+  <%= link_to "Back to login", login_path %>
+</p>

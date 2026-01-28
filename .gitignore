@@ -44,3 +44,20 @@ node_modules
 # Local OpenRemote source checkout
 /tmp/openremote
 
+# VitePress documentation build artifacts
+/docs/.vitepress/dist
+/docs/.vitepress/cache
+/docs/node_modules
+/docs/.vitepress/.temp
+/docs/.vitepress/.cache
+
+# VitePress build output (served from public/ for local, dist/ for GitHub Pages)
+/public/index.html
+/public/assets/
+/public/.vitepress/
+/public/.nojekyll
+
+# VitePress temporary files
+*.vitepress-temp
+.vitepress-temp/
+
