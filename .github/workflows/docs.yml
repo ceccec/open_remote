@@ -58,10 +58,28 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install docs dependencies
+      - name: Cache root npm dependencies
+        uses: actions/cache@v5
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-root-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-root-
+
+      - name: Cache docs npm dependencies
+        uses: actions/cache@v5
+        with:
+          path: docs/node_modules
+          key: ${{ runner.os }}-node-docs-${{ hashFiles('docs/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-docs-
+
+      - name: Install root npm dependencies
+        run: npm ci
+
+      - name: Install docs npm dependencies
         working-directory: docs
-        run: |
-          npm ci
+        run: npm ci
 
       - name: Prepare VitePress cache directory
         run: |
