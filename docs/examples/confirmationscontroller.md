@@ -1,29 +1,6 @@
-# ConfirmationsController
+# ConfirmationsController Examples
 
-# Email confirmation controller.
-
-**Type:** Controllers  
-**File:** `confirmations_controller.rb`
-
-
-
-
-## Methods
-
-- `create`
-- `new`
-
-  **Examples:**
-  - redirects to new confirmation path with alert
-  - redirects to new confirmation path with alert
-  - redirects to new confirmation path with alert
-
-- `show`
-
-
-## Examples
-
-The following examples are extracted from test files:
+Test-driven examples for ConfirmationsController functionality.
 
 ### confirms the user and redirects to login
 
@@ -37,15 +14,7 @@ The following examples are extracted from test files:
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/confirmations_controller_spec.rb:21`_
 
 
-### redirects to new confirmation path with alert
-
-```ruby
-        expect(response).to redirect_to("/confirmation/new")
-        expect(flash[:alert]).to eq("Confirmation token is invalid or has expired.")
-```
-
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/confirmations_controller_spec.rb:32`_
-
+---
 
 ### redirects to new confirmation path with alert
 
@@ -57,6 +26,8 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/conf
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/confirmations_controller_spec.rb:32`_
 
 
+---
+
 ### redirects to new confirmation path with alert
 
 ```ruby
@@ -66,6 +37,20 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/conf
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/confirmations_controller_spec.rb:32`_
 
+
+---
+
+### redirects to new confirmation path with alert
+
+```ruby
+        expect(response).to redirect_to("/confirmation/new")
+        expect(flash[:alert]).to eq("Confirmation token is invalid or has expired.")
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/confirmations_controller_spec.rb:32`_
+
+
+---
 
 ### returns success
 
@@ -75,6 +60,8 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/conf
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/confirmations_controller_spec.rb:71`_
 
+
+---
 
 ### sends confirmation instructions and redirects
 
@@ -87,6 +74,8 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/conf
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/confirmations_controller_spec.rb:83`_
 
 
+---
+
 ### redirects to login with notice
 
 ```ruby
@@ -97,6 +86,8 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/conf
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/confirmations_controller_spec.rb:96`_
 
 
+---
+
 ### redirects to login without revealing email existence
 
 ```ruby
@@ -106,14 +97,6 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/conf
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/confirmations_controller_spec.rb:104`_
 
-
-## Source Code
-
-See: `/Users/ceci/github/ceccec/openremote/open_remote/app/controllers/confirmations_controller.rb`
-
-## Test File
-
-See: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/confirmations_controller_spec.rb`
 
 ---
 

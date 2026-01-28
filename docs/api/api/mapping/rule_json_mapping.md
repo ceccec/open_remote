@@ -92,7 +92,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/mapping
 
 ## Methods
 
-- `to_openremote_json`
+No methods documented.
 
 ## Test File
 

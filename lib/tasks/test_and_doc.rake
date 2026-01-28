@@ -1,6 +1,9 @@
 ##
 # Rake tasks to run tests and generate documentation together.
-# Links test results to documentation generation.
+# Relies on the SimpleCov + after(:suite) hook in spec/rails_helper,
+# which generates both:
+# - YARD docs into doc/
+# - VitePress content + config via DocsGenerator into docs/
 #
 namespace :test do
   desc "Run all tests and generate documentation"
@@ -9,22 +12,19 @@ namespace :test do
     puts "Running test suite..."
     puts "=" * 80
 
-    # Run RSpec tests
+    # Run RSpec tests; spec/rails_helper will:
+    # - enforce coverage via SimpleCov
+    # - generate YARD docs
+    # - generate VitePress docs (DocsGenerator)
     rspec_result = system("bundle exec rspec")
     unless rspec_result
-      puts "\n⚠️  Tests failed. Documentation will still be generated."
+      puts "\n⚠️  Tests failed. Documentation generation may be partial."
     end
 
     puts "\n" + "=" * 80
-    puts "Generating YARD documentation..."
-    puts "=" * 80
-
-    # Generate YARD documentation
-    require "yard"
-    YARD::CLI::CommandParser.run("doc", [ "--no-cache" ])
-
-    puts "\n" + "=" * 80
-    puts "✅ Documentation generated in doc/ directory"
+    puts "✅ Documentation pipeline finished"
+    puts "   YARD docs:   doc/index.html"
+    puts "   VitePress docs content + config: docs/"
     puts "=" * 80
   end
 
@@ -34,21 +34,15 @@ namespace :test do
     puts "Running test suite with coverage..."
     puts "=" * 80
 
-    # Run RSpec with coverage
+    # Run RSpec with coverage; SimpleCov in spec/rails_helper enforces
+    # the minimum_coverage gate and triggers doc + VitePress generation.
     rspec_result = system("COVERAGE=true bundle exec rspec")
 
     puts "\n" + "=" * 80
-    puts "Generating YARD documentation..."
-    puts "=" * 80
-
-    # Generate YARD documentation
-    require "yard"
-    YARD::CLI::CommandParser.run("doc", [ "--no-cache" ])
-
-    puts "\n" + "=" * 80
-    puts "✅ Documentation generated in doc/ directory"
+    puts "✅ Coverage + documentation pipeline finished"
     puts "📊 Coverage report available at coverage/index.html"
-    puts "📚 API documentation available at doc/index.html"
+    puts "📚 YARD API documentation available at doc/index.html"
+    puts "📚 VitePress docs content + config available under docs/"
     puts "=" * 80
   end
 end

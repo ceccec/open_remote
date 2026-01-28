@@ -93,13 +93,18 @@
         { text: 'AssetTypeDispatch', link: '/examples/assettypedispatch' },
         { text: 'Assets', link: '/examples/assets' },
         { text: 'AttributeNormalization', link: '/examples/attributenormalization' },
+        { text: 'ConfirmationsController', link: '/examples/confirmationscontroller' },
         { text: 'DataPoint', link: '/examples/datapoint' },
         { text: 'DataPointAnalyticsEdgeCases', link: '/examples/datapointanalyticsedgecases' },
+        { text: 'DatapointCleanupJob', link: '/examples/datapointcleanupjob' },
+        { text: 'DocsController', link: '/examples/docscontroller' },
         { text: 'JsonSchemaUtil', link: '/examples/jsonschemautil' },
         { text: 'LockByKey', link: '/examples/lockbykey' },
         { text: 'Mapping', link: '/examples/mapping' },
         { text: 'Notification', link: '/examples/notification' },
+        { text: 'PasswordsController', link: '/examples/passwordscontroller' },
         { text: 'PseudoClock', link: '/examples/pseudoclock' },
+        { text: 'RegistrationsController', link: '/examples/registrationscontroller' },
         { text: 'Rule', link: '/examples/rule' },
         { text: 'RuleExecution', link: '/examples/ruleexecution' },
         { text: 'RuleExecutionActions', link: '/examples/ruleexecutionactions' },
@@ -110,7 +115,9 @@
         { text: 'SessionsController', link: '/examples/sessionscontroller' },
         { text: 'SimulatorSchedule', link: '/examples/simulatorschedule' },
         { text: 'UniqueIdentifierGenerator', link: '/examples/uniqueidentifiergenerator' },
-        { text: 'User', link: '/examples/user' }
+        { text: 'UnlocksController', link: '/examples/unlockscontroller' },
+        { text: 'User', link: '/examples/user' },
+        { text: 'UserMailer', link: '/examples/usermailer' }
       ]
           }
         }

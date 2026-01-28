@@ -78,4 +78,19 @@ RSpec.describe ApplicationController, type: :controller do
       expect(response).to have_http_status(:ok)
     end
   end
+
+  describe "CanCan::AccessDenied rescue" do
+    controller do
+      def index
+        raise CanCan::AccessDenied.new("Not authorized", :read, User)
+      end
+    end
+
+    it "redirects to root with error message" do
+      session[:user_id] = user.id
+      get :index
+      expect(response).to redirect_to("/")
+      expect(flash[:alert]).to eq("Not authorized")
+    end
+  end
 end

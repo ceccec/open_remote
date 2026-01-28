@@ -1,29 +1,6 @@
-# UnlocksController
+# UnlocksController Examples
 
-# Account unlock controller.
-
-**Type:** Controllers  
-**File:** `unlocks_controller.rb`
-
-
-
-
-## Methods
-
-- `create`
-- `new`
-
-  **Examples:**
-  - redirects to new unlock path with alert
-  - redirects to new unlock path with alert
-  - redirects to new unlock path with alert
-
-- `show`
-
-
-## Examples
-
-The following examples are extracted from test files:
+Test-driven examples for UnlocksController functionality.
 
 ### unlocks the account and redirects to login
 
@@ -38,15 +15,7 @@ The following examples are extracted from test files:
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlocks_controller_spec.rb:21`_
 
 
-### redirects to new unlock path with alert
-
-```ruby
-        expect(response).to redirect_to("/unlock/new")
-        expect(flash[:alert]).to eq("Unlock token is invalid or account is not locked.")
-```
-
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlocks_controller_spec.rb:33`_
-
+---
 
 ### redirects to new unlock path with alert
 
@@ -58,6 +27,8 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlo
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlocks_controller_spec.rb:33`_
 
 
+---
+
 ### redirects to new unlock path with alert
 
 ```ruby
@@ -67,6 +38,20 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlo
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlocks_controller_spec.rb:33`_
 
+
+---
+
+### redirects to new unlock path with alert
+
+```ruby
+        expect(response).to redirect_to("/unlock/new")
+        expect(flash[:alert]).to eq("Unlock token is invalid or account is not locked.")
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlocks_controller_spec.rb:33`_
+
+
+---
 
 ### returns success
 
@@ -76,6 +61,8 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlo
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlocks_controller_spec.rb:72`_
 
+
+---
 
 ### sends unlock instructions and redirects
 
@@ -88,6 +75,8 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlo
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlocks_controller_spec.rb:84`_
 
 
+---
+
 ### redirects without revealing account status
 
 ```ruby
@@ -98,6 +87,8 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlo
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlocks_controller_spec.rb:93`_
 
 
+---
+
 ### redirects without revealing email existence
 
 ```ruby
@@ -107,14 +98,6 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlo
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlocks_controller_spec.rb:101`_
 
-
-## Source Code
-
-See: `/Users/ceci/github/ceccec/openremote/open_remote/app/controllers/unlocks_controller.rb`
-
-## Test File
-
-See: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlocks_controller_spec.rb`
 
 ---
 

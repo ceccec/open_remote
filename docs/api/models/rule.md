@@ -19,35 +19,6 @@
 
 ## Methods
 
-- `_run_create_callbacks`
-- `_run_destroy_callbacks`
-- `_run_rollback_callbacks`
-- `_run_save_callbacks`
-- `_run_touch_callbacks`
-- `_run_update_callbacks`
-- `attribute_changed`
-- `attribute_value`
-- `autosave_associated_records_for_rule_executions`
-- `autosave_associated_records_for_versions`
-- `disabled`
-
-  **Examples:**
-  - skips disabled rule
-
-- `enabled`
-
-  **Examples:**
-  - defaults enabled to true
-  - imports rule from OpenRemote JSON
-  - exports rule to OpenRemote JSON
-
-- `paper_trail_event`
-- `paper_trail_event=`
-- `paper_trail_options`
-- `paper_trail_options=`
-- `paper_trail_options?`
-- `recently_executed`
-- `scheduled`
 - `then_config_presence`
 - `then_config_pretty_json`
 
@@ -55,28 +26,12 @@
   - returns pretty JSON representations of configs
   - pretty prints empty configs as empty objects/arrays
 
-- `validate_associated_records_for_rule_executions`
-- `validate_associated_records_for_versions`
-- `version`
-- `version=`
-- `version_association_name`
-- `version_association_name=`
-- `version_association_name?`
-- `version_class_name`
-- `version_class_name=`
-- `version_class_name?`
-- `versions_association_name`
-- `versions_association_name=`
-- `versions_association_name?`
 - `when_config_presence`
 - `when_config_pretty_json`
 
   **Examples:**
   - returns pretty JSON representations of configs
   - pretty prints empty configs as empty objects/arrays
-
-- `with_failed_executions`
-- `with_schedule`
 
 
 ## Examples
@@ -291,41 +246,6 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/rule_spec
 ```
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/rule_spec.rb:290`_
-
-
-### executes attribute changed rules without condition checks
-
-```ruby
-      expect { rule.execute! }.to change { RuleExecution.count }.by(1)
-      expect(RuleExecution.last.status).to eq("success")
-```
-
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/rule_spec.rb:326`_
-
-
-### logs informational actions without raising for forecast/grid strategy actions
-
-```ruby
-      expect(Rails.logger).to receive(:info).twice
-      expect { rule.execute! }.to change { RuleExecution.count }.by(1)
-      expect(RuleExecution.last.status).to eq("success")
-```
-
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/rule_spec.rb:343`_
-
-
-### logs a failed execution and re-raises when an error occurs
-
-```ruby
-      expect do
-        expect { rule.execute! }.to raise_error(StandardError, "boom")
-      expect(execution.status).to eq("failed")
-      expect(execution.result["error"]).to eq("boom")
-      expect(execution.result["backtrace"]).to be_an(Array)
-      expect(execution.result["backtrace"].length).to be <= 5
-```
-
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/rule_spec.rb:360`_
 
 
 ## Source Code

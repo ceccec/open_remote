@@ -4,3 +4,6 @@
 require_relative "config/application"
 
 Rails.application.load_tasks
+
+# Ensure `bundle exec rake test` runs the full coverage + docs pipeline
+task :test => "test:coverage_doc"

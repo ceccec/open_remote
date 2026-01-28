@@ -14,38 +14,7 @@ API documentation for RuleExecution
 
 ## Methods
 
-- `_run_create_callbacks`
-- `_run_destroy_callbacks`
-- `_run_rollback_callbacks`
-- `_run_save_callbacks`
-- `_run_touch_callbacks`
-- `_run_update_callbacks`
-- `autosave_associated_records_for_rule`
-- `autosave_associated_records_for_versions`
-- `failed`
-- `for_rule`
-- `paper_trail_event`
-- `paper_trail_event=`
-- `paper_trail_options`
-- `paper_trail_options=`
-- `paper_trail_options?`
 - `rails_admin_label`
-- `recent`
-- `skipped`
-- `successful`
-- `validate_associated_records_for_versions`
-- `version`
-- `version=`
-- `version_association_name`
-- `version_association_name=`
-- `version_association_name?`
-- `version_class_name`
-- `version_class_name=`
-- `version_class_name?`
-- `versions_association_name`
-- `versions_association_name=`
-- `versions_association_name?`
-- `with_errors`
 
 
 ## Examples

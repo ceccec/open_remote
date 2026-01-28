@@ -28,8 +28,9 @@ class Asset
                 .join(asset_types_t).on(asset_types_t[:id].eq(t[:asset_type_id]))
                 .where(asset_types_t[:name].eq("SolarArray"))
 
+        # Return UUID id and numeric power output as floats
         connection.select_all(query.to_sql).map do |row|
-          [ row["id"].to_i, row["power_output"].to_f ]
+          [ row["id"], row["power_output"].to_f ]
         end
       end
 

@@ -1,43 +1,6 @@
-# RegistrationsController
+# RegistrationsController Examples
 
-# User registration controller.
-
-**Type:** Controllers  
-**File:** `registrations_controller.rb`
-
-
-
-
-## Methods
-
-- `create`
-
-  **Examples:**
-  - creates user and sends confirmation instructions
-
-- `edit`
-
-  **Examples:**
-  - requires authentication
-
-- `new`
-
-  **Examples:**
-  - updates user and redirects
-
-- `update`
-
-  **Examples:**
-  - updates user and redirects
-  - updates email only
-
-- `user_params`
-- `user_update_params`
-
-
-## Examples
-
-The following examples are extracted from test files:
+Test-driven examples for RegistrationsController functionality.
 
 ### returns success
 
@@ -47,6 +10,8 @@ The following examples are extracted from test files:
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:13`_
 
+
+---
 
 ### creates user and sends confirmation instructions
 
@@ -60,14 +25,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/regi
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:21`_
 
 
-### returns unprocessable content status
-
-```ruby
-        expect(response).to have_http_status(:unprocessable_content)
-```
-
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:38`_
-
+---
 
 ### returns unprocessable content status
 
@@ -77,6 +35,19 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/regi
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:38`_
 
+
+---
+
+### returns unprocessable content status
+
+```ruby
+        expect(response).to have_http_status(:unprocessable_content)
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:38`_
+
+
+---
 
 ### requires authentication
 
@@ -86,6 +57,8 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/regi
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:69`_
 
+
+---
 
 ### updates user and redirects
 
@@ -99,6 +72,8 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/regi
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:82`_
 
 
+---
+
 ### raises error due to missing template
 
 ```ruby
@@ -107,6 +82,8 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/regi
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:99`_
 
+
+---
 
 ### updates email only
 
@@ -118,14 +95,6 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/regi
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:113`_
 
-
-## Source Code
-
-See: `/Users/ceci/github/ceccec/openremote/open_remote/app/controllers/registrations_controller.rb`
-
-## Test File
-
-See: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb`
 
 ---
 

@@ -10,13 +10,7 @@
 
 ## Methods
 
-- `by_hour`
-- `by_minute`
-- `count`
-- `current`
-- `end_time`
 - `first_occurrence`
-- `freq`
 - `get_delay`
 - `get_time_until_next_occurrence`
 - `initialize`
@@ -31,10 +25,7 @@
 - `occurrences_between`
 - `parse_recurrence`
 - `set_current`
-- `start`
 - `try_advance_active`
-- `until_time`
-- `upcoming`
 
 
 ## Examples

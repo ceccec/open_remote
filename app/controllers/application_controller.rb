@@ -19,43 +19,10 @@ class ApplicationController < ActionController::Base
 
   ##
   # Get the current logged-in user.
-  # Checks session first, then remember token cookie.
-  # Only returns confirmed users.
   #
   # @return [User, nil] the current user or nil if not logged in
   def current_user
-    @current_user ||= find_current_user
-  end
-
-  ##
-  # Find current user from session or remember token.
-  # Tries session first, then falls back to remember token cookie.
-  # Only returns confirmed users.
-  #
-  # @return [User, nil] the current user or nil if not found
-  def find_current_user
-    # Try session first (most common case)
-    if session[:user_id]
-      user = User.find_by(id: session[:user_id])
-      return user if user&.confirmed?
-    end
-
-    # Try remember token (for "remember me" functionality)
-    remember_token = cookies.signed[:remember_token]
-    if remember_token
-      user = User.find_by_remember_token(remember_token)
-      if user&.remember_token_valid? && user.confirmed?
-        # Restore session from remember token
-        session[:user_id] = user.id
-        return user
-      else
-        # Clean up invalid remember token
-        user&.forget_me!
-        cookies.delete(:remember_token)
-      end
-    end
-
-    nil
+    @current_user ||= User.find_by(id: session[:user_id])
   end
 
   ##
@@ -74,7 +41,7 @@ class ApplicationController < ActionController::Base
   #
   # @return [void]
   def authenticate_user!
-    redirect_to main_app.login_path unless logged_in?
+    redirect_to "/login" unless logged_in?
   end
 
   ##
@@ -83,7 +50,7 @@ class ApplicationController < ActionController::Base
   #
   # @return [void]
   def require_admin!
-    redirect_to main_app.login_path unless current_user&.admin?
+    redirect_to "/login" unless current_user&.admin?
   end
 
   ##

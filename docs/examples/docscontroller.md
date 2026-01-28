@@ -1,21 +1,6 @@
-# DocsController
+# DocsController Examples
 
-# Controller to serve VitePress documentation at root.
-
-**Type:** Controllers  
-**File:** `docs_controller.rb`
-
-
-
-
-## Methods
-
-- `index`
-
-
-## Examples
-
-The following examples are extracted from test files:
+Test-driven examples for DocsController functionality.
 
 ### serves the index.html file
 
@@ -27,6 +12,8 @@ The following examples are extracted from test files:
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/docs_controller_spec.rb:17`_
 
 
+---
+
 ### sets cache control headers
 
 ```ruby
@@ -37,6 +24,8 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/docs
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/docs_controller_spec.rb:28`_
 
 
+---
+
 ### does not set cache control headers
 
 ```ruby
@@ -45,6 +34,8 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/docs
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/docs_controller_spec.rb:36`_
 
+
+---
 
 ### redirects to /api
 
@@ -55,14 +46,6 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/docs
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/docs_controller_spec.rb:49`_
 
-
-## Source Code
-
-See: `/Users/ceci/github/ceccec/openremote/open_remote/app/controllers/docs_controller.rb`
-
-## Test File
-
-See: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/docs_controller_spec.rb`
 
 ---
 

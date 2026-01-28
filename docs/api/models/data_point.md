@@ -18,37 +18,7 @@
 
 ## Methods
 
-- `_run_create_callbacks`
-- `_run_destroy_callbacks`
-- `_run_rollback_callbacks`
-- `_run_save_callbacks`
-- `_run_touch_callbacks`
-- `_run_update_callbacks`
-- `autosave_associated_records_for_asset`
-- `autosave_associated_records_for_versions`
-- `for_asset`
-- `for_attribute`
-- `in_time_range`
-- `latest_for_attribute`
-- `paper_trail_event`
-- `paper_trail_event=`
-- `paper_trail_options`
-- `paper_trail_options=`
-- `paper_trail_options?`
 - `rails_admin_label`
-- `recent`
-- `validate_associated_records_for_versions`
-- `version`
-- `version=`
-- `version_association_name`
-- `version_association_name=`
-- `version_association_name?`
-- `version_class_name`
-- `version_class_name=`
-- `version_class_name?`
-- `versions_association_name`
-- `versions_association_name=`
-- `versions_association_name?`
 
 
 ## Examples

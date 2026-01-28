@@ -17,6 +17,12 @@ class DocsGenerator
     concerns: "app/models/concerns"
   }
 
+  # Soft limits to keep generated docs (and VitePress builds) lightweight
+  MAX_METHODS_PER_COMPONENT = 50
+  MAX_EXAMPLES_PER_COMPONENT = 20
+  MAX_EXAMPLES_PER_FEATURE = 40
+  MAX_EXAMPLE_REFERENCES_PER_METHOD = 5
+
   def initialize
     @test_files = Dir[Rails.root.join("spec", "**", "*_spec.rb")]
     @examples_by_class = {}
@@ -315,7 +321,7 @@ class DocsGenerator
     @components.each do |type, components|
       components.each do |component|
         class_name = component[:class_name]
-        examples = @examples_by_class[class_name] || []
+        examples = (@examples_by_class[class_name] || []).first(MAX_EXAMPLES_PER_COMPONENT)
 
         path = class_name.gsub("::", "/").underscore
         file_path = API_DIR.join(type.to_s, "#{path}.md")
@@ -337,7 +343,7 @@ class DocsGenerator
       path = class_name.gsub("::", "/").underscore
       file_path = API_DIR.join("api", "#{path}.md")
 
-      content = generate_class_doc(class_name, examples)
+      content = generate_class_doc(class_name, examples.first(MAX_EXAMPLES_PER_COMPONENT))
       FileUtils.mkdir_p(file_path.dirname)
       File.write(file_path, content)
     end
@@ -348,20 +354,11 @@ class DocsGenerator
     description = component[:description] || extract_class_description(class_name)
     methods = component[:methods] || []
 
-    # Try to load the actual class to get more method info
-    begin
-      klass = class_name.constantize
-      all_methods = (klass.instance_methods(false) + klass.methods(false)).map(&:to_s)
-      methods = (methods + all_methods).uniq
-    rescue NameError, LoadError
-      # Use extracted methods only
-    end
-
     # Avoid generating extremely large method lists (can slow/bug VitePress rendering)
     methods = methods.sort
     methods_truncated = false
-    if methods.length > 50
-      methods = methods.first(50)
+    if methods.length > MAX_METHODS_PER_COMPONENT
+      methods = methods.first(MAX_METHODS_PER_COMPONENT)
       methods_truncated = true
     end
 
@@ -396,13 +393,9 @@ class DocsGenerator
   end
 
   def generate_class_doc(class_name, examples)
-    # Try to load the actual class to get method signatures
-    begin
-      klass = class_name.constantize
-      methods = klass.instance_methods(false) + klass.methods(false)
-    rescue NameError
-      methods = []
-    end
+    # We don't constantize here to avoid loading the full Rails environment
+    # just for documentation. Methods are inferred from examples instead.
+    methods = []
 
     <<~MARKDOWN
       # #{class_name}
@@ -417,7 +410,7 @@ class DocsGenerator
 
       ## Methods
 
-      #{generate_methods_doc(class_name, methods, examples)}
+      #{generate_methods_doc(class_name, methods, examples.first(MAX_EXAMPLES_PER_COMPONENT))}
 
       ## Test File
 
@@ -497,6 +490,7 @@ class DocsGenerator
       lines << "- `#{method}`"
 
       method_examples = examples.select { |ex| ex[:code].join.include?(method.to_s) }
+                                 .first(MAX_EXAMPLE_REFERENCES_PER_METHOD)
       next if method_examples.empty?
 
       lines << ""
@@ -516,7 +510,7 @@ class DocsGenerator
 
     examples_by_feature.each do |feature, examples|
       file_path = EXAMPLES_DIR.join("#{feature.parameterize}.md")
-      content = generate_feature_doc(feature, examples)
+      content = generate_feature_doc(feature, examples.first(MAX_EXAMPLES_PER_FEATURE))
       File.write(file_path, content)
     end
   end

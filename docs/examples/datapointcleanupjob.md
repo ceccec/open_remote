@@ -1,21 +1,6 @@
-# DatapointCleanupJob
+# DatapointCleanupJob Examples
 
-# Recurring job to clean up old data points.
-
-**Type:** Jobs  
-**File:** `datapoint_cleanup_job.rb`
-
-
-
-
-## Methods
-
-- `perform`
-
-
-## Examples
-
-The following examples are extracted from test files:
+Test-driven examples for DatapointCleanupJob functionality.
 
 ### deletes data points older than 90 days
 
@@ -28,6 +13,8 @@ The following examples are extracted from test files:
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/jobs/datapoint_cleanup_job_spec.rb:8`_
 
 
+---
+
 ### deletes data points older than specified days
 
 ```ruby
@@ -39,6 +26,8 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/jobs/datapoint_c
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/jobs/datapoint_cleanup_job_spec.rb:31`_
 
 
+---
+
 ### does not log anything
 
 ```ruby
@@ -47,14 +36,6 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/jobs/datapoint_c
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/jobs/datapoint_cleanup_job_spec.rb:54`_
 
-
-## Source Code
-
-See: `/Users/ceci/github/ceccec/openremote/open_remote/app/jobs/datapoint_cleanup_job.rb`
-
-## Test File
-
-See: `/Users/ceci/github/ceccec/openremote/open_remote/spec/jobs/datapoint_cleanup_job_spec.rb`
 
 ---
 

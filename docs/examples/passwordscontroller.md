@@ -1,32 +1,6 @@
-# PasswordsController
+# PasswordsController Examples
 
-# Password reset controller.
-
-**Type:** Controllers  
-**File:** `passwords_controller.rb`
-
-
-
-
-## Methods
-
-- `create`
-- `edit`
-- `new`
-
-  **Examples:**
-  - redirects to new password path with alert
-  - redirects to new password path with alert
-  - resets password and redirects to login
-  - redirects to new password path with alert
-  - redirects to new password path with alert
-
-- `update`
-
-
-## Examples
-
-The following examples are extracted from test files:
+Test-driven examples for PasswordsController functionality.
 
 ### returns success
 
@@ -36,6 +10,8 @@ The following examples are extracted from test files:
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:13`_
 
+
+---
 
 ### sends reset password instructions and redirects
 
@@ -48,6 +24,8 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:21`_
 
 
+---
+
 ### redirects without revealing email existence
 
 ```ruby
@@ -58,6 +36,8 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:30`_
 
 
+---
+
 ### returns success
 
 ```ruby
@@ -67,15 +47,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:47`_
 
 
-### redirects to new password path with alert
-
-```ruby
-        expect(response).to redirect_to("/password/new")
-        expect(flash[:alert]).to eq("Password reset token is invalid or has expired.")
-```
-
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:54`_
-
+---
 
 ### redirects to new password path with alert
 
@@ -86,6 +58,20 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:54`_
 
+
+---
+
+### redirects to new password path with alert
+
+```ruby
+        expect(response).to redirect_to("/password/new")
+        expect(flash[:alert]).to eq("Password reset token is invalid or has expired.")
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:54`_
+
+
+---
 
 ### resets password and redirects to login
 
@@ -99,6 +85,8 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:86`_
 
 
+---
+
 ### returns unprocessable content status
 
 ```ruby
@@ -108,15 +96,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:110`_
 
 
-### redirects to new password path with alert
-
-```ruby
-        expect(response).to redirect_to("/password/new")
-        expect(flash[:alert]).to eq("Password reset token is invalid or has expired.")
-```
-
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:54`_
-
+---
 
 ### redirects to new password path with alert
 
@@ -128,13 +108,17 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:54`_
 
 
-## Source Code
+---
 
-See: `/Users/ceci/github/ceccec/openremote/open_remote/app/controllers/passwords_controller.rb`
+### redirects to new password path with alert
 
-## Test File
+```ruby
+        expect(response).to redirect_to("/password/new")
+        expect(flash[:alert]).to eq("Password reset token is invalid or has expired.")
+```
 
-See: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb`
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:54`_
+
 
 ---
 

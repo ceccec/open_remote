@@ -62,22 +62,19 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/appl
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/application_controller_spec.rb:75`_
 
 
+### redirects to root with error message
+
+```ruby
+      expect(response).to redirect_to("/")
+      expect(flash[:alert]).to eq("Not authorized")
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/application_controller_spec.rb:89`_
+
+
 ## Methods
 
-- `current_user`
-
-  **Examples:**
-  - returns nil and false when there is no user in the session
-  - returns the user and true when a user id is stored in the session
-
-- `logged_in?`
-
-  **Examples:**
-  - returns nil and false when there is no user in the session
-  - returns the user and true when a user id is stored in the session
-
-- `find_current_user`
-- `_routes`
+No methods documented.
 
 ## Test File
 

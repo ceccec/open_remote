@@ -10,11 +10,6 @@
 
 ## Methods
 
-- `current_time_millis`
-
-  **Examples:**
-  - uses UTC offset for unknown zone IDs
-
 - `initialize`
 - `set_time`
 - `set_time_iso`

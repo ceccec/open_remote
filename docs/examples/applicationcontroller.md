@@ -70,4 +70,16 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/appl
 
 ---
 
+### redirects to root with error message
+
+```ruby
+      expect(response).to redirect_to("/")
+      expect(flash[:alert]).to eq("Not authorized")
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/application_controller_spec.rb:89`_
+
+
+---
+
 [← Back to Index](/)

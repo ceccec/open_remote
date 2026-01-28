@@ -14,13 +14,18 @@ Test-driven examples extracted from the RSpec suite.
 - [AssetTypeDispatch](/examples/assettypedispatch)
 - [Assets](/examples/assets)
 - [AttributeNormalization](/examples/attributenormalization)
+- [ConfirmationsController](/examples/confirmationscontroller)
 - [DataPoint](/examples/datapoint)
 - [DataPointAnalyticsEdgeCases](/examples/datapointanalyticsedgecases)
+- [DatapointCleanupJob](/examples/datapointcleanupjob)
+- [DocsController](/examples/docscontroller)
 - [JsonSchemaUtil](/examples/jsonschemautil)
 - [LockByKey](/examples/lockbykey)
 - [Mapping](/examples/mapping)
 - [Notification](/examples/notification)
+- [PasswordsController](/examples/passwordscontroller)
 - [PseudoClock](/examples/pseudoclock)
+- [RegistrationsController](/examples/registrationscontroller)
 - [Rule](/examples/rule)
 - [RuleExecution](/examples/ruleexecution)
 - [RuleExecutionActions](/examples/ruleexecutionactions)
@@ -31,7 +36,9 @@ Test-driven examples extracted from the RSpec suite.
 - [SessionsController](/examples/sessionscontroller)
 - [SimulatorSchedule](/examples/simulatorschedule)
 - [UniqueIdentifierGenerator](/examples/uniqueidentifiergenerator)
+- [UnlocksController](/examples/unlockscontroller)
 - [User](/examples/user)
+- [UserMailer](/examples/usermailer)
 
 ---
 
