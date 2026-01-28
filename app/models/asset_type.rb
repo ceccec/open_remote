@@ -8,4 +8,9 @@ class AssetType < ApplicationRecord
   # Scopes
   scope :with_assets, -> { joins(:assets).distinct }
   scope :by_name, ->(name) { where(name: name) }
+
+  # RailsAdmin object label
+  def rails_admin_label
+    display_name.presence || name
+  end
 end

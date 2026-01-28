@@ -28,4 +28,9 @@ class DataPoint < ApplicationRecord
   scope :recent, -> { order(timestamp: :desc) }
   scope :in_time_range, ->(from, to) { where(timestamp: from..to) }
   scope :latest_for_attribute, ->(asset, attr_name) { for_asset(asset).for_attribute(attr_name).recent.limit(1) }
+
+  # RailsAdmin object label
+  def rails_admin_label
+    "#{asset&.name} - #{attribute_name} (#{timestamp&.strftime('%Y-%m-%d %H:%M')})"
+  end
 end

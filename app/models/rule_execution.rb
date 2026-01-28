@@ -13,4 +13,9 @@ class RuleExecution < ApplicationRecord
   scope :recent, -> { order(executed_at: :desc) }
   scope :for_rule, ->(rule) { where(rule: rule) }
   scope :with_errors, -> { where.not(error_message: nil) }
+
+  # RailsAdmin object label
+  def rails_admin_label
+    "#{rule&.name} - #{status} (#{executed_at&.strftime('%Y-%m-%d %H:%M')})"
+  end
 end

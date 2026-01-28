@@ -18,4 +18,13 @@ class Notification < ApplicationRecord
   scope :info, -> { where(severity: "info") }
   scope :warning, -> { where(severity: "warning") }
   scope :error, -> { where(severity: "error") }
+
+  # RailsAdmin object label
+  def rails_admin_label
+    parts = [ message&.truncate(50) ]
+    parts << "(#{severity})" if severity.present?
+    parts << asset&.name if asset.present?
+    parts << rule&.name if rule.present?
+    parts.join(" - ")
+  end
 end

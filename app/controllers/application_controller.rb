@@ -7,8 +7,9 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :logged_in?
 
-  private
+  protected
 
+  # Protected so RailsAdmin controllers (which inherit from ApplicationController) can access it
   def current_user
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
   end
@@ -17,12 +18,14 @@ class ApplicationController < ActionController::Base
     current_user.present?
   end
 
+  private
+
   def authenticate_user!
-    redirect_to login_path unless logged_in?
+    redirect_to main_app.login_path unless logged_in?
   end
 
   def require_admin!
-    redirect_to login_path unless current_user&.admin?
+    redirect_to main_app.login_path unless current_user&.admin?
   end
 
   # Handle CanCan authorization errors

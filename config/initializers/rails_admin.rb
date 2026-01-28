@@ -7,7 +7,8 @@ RailsAdmin.config do |config|
   config.authenticate_with do
     authenticate_user!
   end
-  config.current_user_method(&:current_user)
+  # Use a lambda to properly access the protected current_user method
+  config.current_user_method { current_user }
 
   # Authorization: role-based permissions via CanCanCan
   # All role checks and permissions are handled in Ability class
@@ -76,9 +77,7 @@ RailsAdmin.config do |config|
   # AssetType model configuration
   config.model "AssetType" do
     navigation_label "Assets"
-    object_label_method do
-      display_name.presence || name
-    end
+    object_label_method :rails_admin_label
 
     list do
       scopes [ :with_assets, nil ]
@@ -246,9 +245,7 @@ RailsAdmin.config do |config|
   # DataPoint model configuration
   config.model "DataPoint" do
     navigation_label "Data"
-    object_label_method do
-      "#{asset&.name} - #{attribute_name} (#{timestamp&.strftime('%Y-%m-%d %H:%M')})"
-    end
+    object_label_method :rails_admin_label
 
     list do
       scopes [ :recent, nil ]
@@ -452,9 +449,7 @@ RailsAdmin.config do |config|
   # RuleExecution model configuration
   config.model "RuleExecution" do
     navigation_label "Rules"
-    object_label_method do
-      "#{rule&.name} - #{status} (#{executed_at&.strftime('%Y-%m-%d %H:%M')})"
-    end
+    object_label_method :rails_admin_label
 
     list do
       scopes [ :successful, :failed, :skipped, :recent, :with_errors, nil ]
@@ -504,13 +499,7 @@ RailsAdmin.config do |config|
   # Notification model configuration
   config.model "Notification" do
     navigation_label "System"
-    object_label_method do
-      parts = [ message&.truncate(50) ]
-      parts << "(#{severity})" if severity.present?
-      parts << asset&.name if asset.present?
-      parts << rule&.name if rule.present?
-      parts.join(" - ")
-    end
+    object_label_method :rails_admin_label
 
     list do
       scopes [ :unacknowledged, :acknowledged, :info, :warning, :error, :recent, nil ]
