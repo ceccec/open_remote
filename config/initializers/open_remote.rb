@@ -26,6 +26,21 @@ module OpenRemote
       "../public"
     end
 
+    # VitePress cache directory (relative to docs/)
+    VITEPRESS_CACHE_DIR = ".vitepress/cache"
+
+    # VitePress language/locale
+    VITEPRESS_LANG = "en-US"
+
+    # Enable last updated timestamps (uses Git)
+    VITEPRESS_LAST_UPDATED = true
+
+    # Dark mode appearance: true (auto), false (disabled), 'dark' (default dark), 'force-dark', 'force-auto'
+    VITEPRESS_APPEARANCE = true
+
+    # Ignore dead links during build (can be true, 'localhostLinks', or array of patterns)
+    VITEPRESS_IGNORE_DEAD_LINKS = false
+
     # Documentation paths
     DOCS_DIR = Rails.root.join("docs")
     DOCS_API_DIR = DOCS_DIR.join("api")

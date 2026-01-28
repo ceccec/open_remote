@@ -1,11 +1,24 @@
       import { defineConfig } from 'vitepress'
 
       export default defineConfig({
+        // Site metadata
         title: 'OpenRemote Rails API',
         description: 'API documentation auto-generated from Rails components and test examples',
+        lang: 'en-US',
+
+        // Routing
         base: '/',
+
+        // Build configuration
         outDir: '../public',
+        cacheDir: '.vitepress/cache',
         ignoreDeadLinks: false,
+
+        // Theming
+        appearance: true,
+        lastUpdated: true,
+
+        // Theme configuration
         themeConfig: {
           nav: [
     { text: 'Home', link: '/' },

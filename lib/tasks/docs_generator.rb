@@ -567,8 +567,13 @@ class DocsGenerator
     # Use centralized configuration from OpenRemote::Config
     base_path = OpenRemote::Config::VITEPRESS_BASE_PATH
     out_dir = OpenRemote::Config::VITEPRESS_OUT_DIR
+    cache_dir = OpenRemote::Config::VITEPRESS_CACHE_DIR
     app_name = OpenRemote::Config::APP_NAME
     app_description = OpenRemote::Config::APP_DESCRIPTION
+    lang = OpenRemote::Config::VITEPRESS_LANG
+    last_updated = OpenRemote::Config::VITEPRESS_LAST_UPDATED
+    appearance = OpenRemote::Config::VITEPRESS_APPEARANCE
+    ignore_dead_links = OpenRemote::Config::VITEPRESS_IGNORE_DEAD_LINKS
 
     config = {
       title: app_name,
@@ -583,15 +588,44 @@ class DocsGenerator
     nav_config = format_nav_for_js(generate_nav_config)
     sidebar_config = format_sidebar_for_js(generate_sidebar_config_all)
 
+    # Format appearance value (can be boolean, string, or object)
+    appearance_js = case appearance
+    when true then "true"
+    when false then "false"
+    when String then "'#{appearance}'"
+    else "true"
+    end
+
+    # Format ignoreDeadLinks value
+    ignore_dead_links_js = case ignore_dead_links
+    when true then "true"
+    when false then "false"
+    when String then "'#{ignore_dead_links}'"
+    else "false"
+    end
+
     js_content = <<~JS
       import { defineConfig } from 'vitepress'
 
       export default defineConfig({
+        // Site metadata
         title: '#{app_name}',
         description: '#{app_description}',
+        lang: '#{lang}',
+
+        // Routing
         base: '#{base_path}',
+
+        // Build configuration
         outDir: '#{out_dir}',
-        ignoreDeadLinks: false,
+        cacheDir: '#{cache_dir}',
+        ignoreDeadLinks: #{ignore_dead_links_js},
+
+        // Theming
+        appearance: #{appearance_js},
+        lastUpdated: #{last_updated},
+
+        // Theme configuration
         themeConfig: {
           nav: #{nav_config},
           sidebar: {
