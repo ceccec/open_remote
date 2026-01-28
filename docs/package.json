@@ -1,5 +1,5 @@
 {
-  "_comment": "VitePress version is configured in config/initializers/open_remote.rb (OpenRemote::Config::VITEPRESS_VERSION). Update there to change version.",
+  "_comment": "VitePress and Vite versions are configured in config/initializers/open_remote.rb (OpenRemote::Config::VITEPRESS_VERSION, VITE_VERSION). Update there to change versions.",
   "name": "openremote-docs",
   "version": "1.0.0",
   "private": true,
@@ -10,6 +10,7 @@
     "preview": "vitepress preview"
   },
   "devDependencies": {
-    "vitepress": "alpha"
+    "vitepress": "alpha",
+    "vite": "^7.0.0"
   }
 }

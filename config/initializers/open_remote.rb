@@ -10,6 +10,9 @@ module OpenRemote
 
     # VitePress configuration
     VITEPRESS_VERSION = "alpha" # Use 'alpha' for latest alpha, or specific version like '^1.6.0'
+    
+    # Vite version (must be compatible with VitePress)
+    VITE_VERSION = "^7.0.0" # Use Vite 7 for latest features
     VITEPRESS_BASE_PATH = if ENV["GITHUB_REPOSITORY"]
       repo_name = ENV["GITHUB_REPOSITORY"].split("/").last
       "/#{repo_name}/"

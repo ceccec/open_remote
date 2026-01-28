@@ -24,7 +24,7 @@ namespace :docs do
     Rake::Task["docs:from_tests"].invoke
     puts "\nStarting VitePress dev server..."
     Dir.chdir(OpenRemote::Config::DOCS_DIR) do
-      system("npx vitepress dev")
+      system("npm run dev")
     end
   end
 
@@ -33,7 +33,8 @@ namespace :docs do
     Rake::Task["docs:from_tests"].invoke
     puts "\nBuilding VitePress documentation..."
     Dir.chdir(OpenRemote::Config::DOCS_DIR) do
-      system("npx vitepress build")
+      # Use npm run to ensure we use the local node_modules with VitePress alpha
+      system("npm run build")
     end
     puts "✅ Documentation built to #{OpenRemote::Config::VITEPRESS_OUT_DIR}"
     puts "   Access at: http://localhost:3000/"
