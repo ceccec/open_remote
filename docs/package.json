@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "vitepress dev",
-    "build": "vitepress build",
-    "preview": "vitepress preview"
+    "dev": "VITE_CACHE_DIR=../tmp/vitepress-cache vitepress dev",
+    "build": "VITE_CACHE_DIR=../tmp/vitepress-cache vitepress build",
+    "preview": "VITE_CACHE_DIR=../tmp/vitepress-cache vitepress preview"
   },
   "devDependencies": {
     "vitepress": "^1.6.0"

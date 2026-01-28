@@ -68,6 +68,17 @@ node_modules
 *.vitepress-temp
 .vitepress-temp/
 
+# VitePress temporary directories (now in tmp/vitepress, which is already ignored via /tmp/*)
+/docs/public/
+
+# Public directory - ignore generated documentation and build artifacts
+# (error pages like 404.html, 500.html should be tracked)
+/public/api/
+/public/examples/
+/public/hashmap.json
+/public/README.html
+/public/vp-icons.css
+
 # Vendor (keep directory via .keep)
 /vendor/*
 !/vendor/.keep

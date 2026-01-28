@@ -7,6 +7,6 @@ node_modules
 .vitepress/.temp
 .vitepress/.cache
 
-# Temporary files
+# Temporary files (now in tmp/vitepress, which is already ignored via /tmp/*)
 *.vitepress-temp
 .vitepress-temp/
