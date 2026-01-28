@@ -595,7 +595,9 @@ class DocsGenerator
     sidebar_config = format_sidebar_for_js(generate_sidebar_config_all)
 
     js_content = <<~JS
-      export default {
+      import { defineConfig } from 'vitepress'
+
+      export default defineConfig({
         title: 'OpenRemote Rails API',
         description: 'API documentation auto-generated from Rails components and test examples',
         base: '#{base_path}',
@@ -607,7 +609,7 @@ class DocsGenerator
 #{sidebar_config}
           }
         }
-      }
+      })
     JS
 
     File.write(DOCS_DIR.join(".vitepress", "config.js"), js_content)

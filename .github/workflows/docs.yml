@@ -109,12 +109,10 @@ jobs:
       - name: Build VitePress documentation
         working-directory: docs
         env:
-          VITE_CACHE_DIR: ../tmp/vitepress-cache
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_ACTIONS: 'true'
         run: |
           echo "Building VitePress site..."
-          echo "Cache directory: $VITE_CACHE_DIR"
           npm run build
           echo "Build completed"
           ls -la .vitepress/dist || echo "Build output directory not found"
