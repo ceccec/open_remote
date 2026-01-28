@@ -9,7 +9,9 @@ on:
       - 'app/**'
       - 'spec/**'
       - 'lib/tasks/docs_generator.rb'
+      - 'lib/tasks/docs_from_tests.rake'
       - 'config/initializers/rails_admin.rb'
+      - 'config/initializers/open_remote.rb'
       - '.github/workflows/docs.yml'
   workflow_dispatch:
 
@@ -57,6 +59,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20' # Configured in config/initializers/open_remote.rb (OpenRemote::Config::NODE_VERSION)
+          cache: 'npm'
+          cache-dependency-path: |
+            package-lock.json
+            docs/package-lock.json
 
       - name: Cache root npm dependencies
         uses: actions/cache@v5
@@ -74,16 +80,24 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-docs-
 
+      - name: Cache VitePress build cache
+        uses: actions/cache@v5
+        with:
+          path: docs/.vitepress/cache
+          key: ${{ runner.os }}-vitepress-cache-${{ hashFiles('docs/.vitepress/config.js', 'docs/**/*.md') }}
+          restore-keys: |
+            ${{ runner.os }}-vitepress-cache-
+
       - name: Install root npm dependencies
-        run: npm ci
+        run: npm ci --prefer-offline --no-audit
 
       - name: Install docs npm dependencies
         working-directory: docs
-        run: npm ci
+        run: npm ci --prefer-offline --no-audit
 
       - name: Prepare VitePress cache directory
         run: |
-          mkdir -p tmp/vitepress-cache # Configured in config/initializers/open_remote.rb (OpenRemote::Config::TMP_VITEPRESS_CACHE_DIR)
+          mkdir -p docs/.vitepress/cache # Configured in config/initializers/open_remote.rb (OpenRemote::Config::VITEPRESS_CACHE_DIR)
 
       - name: Set up database
         env:
@@ -92,6 +106,19 @@ jobs:
         run: |
           bundle exec rails db:create || echo "Database may already exist"
           bundle exec rails db:schema:load || bundle exec rails db:migrate || echo "Schema load/migrate completed or skipped"
+
+      - name: Validate VitePress configuration
+        run: |
+          echo "Validating VitePress setup..."
+          if [ ! -f "docs/package.json" ]; then
+            echo "Error: docs/package.json not found"
+            exit 1
+          fi
+          if [ ! -f "docs/package-lock.json" ]; then
+            echo "Error: docs/package-lock.json not found"
+            exit 1
+          fi
+          echo "✓ Package files validated"
 
       - name: Generate documentation from components and tests
         env:
@@ -104,6 +131,21 @@ jobs:
           echo "Generating documentation..."
           bundle exec rake docs:from_tests
           echo "Documentation generation completed"
+          
+          # Validate generated config
+          if [ ! -f "docs/.vitepress/config.js" ]; then
+            echo "Error: VitePress config.js not generated"
+            exit 1
+          fi
+          echo "✓ VitePress config generated"
+          
+          # Check for critical config values
+          if ! grep -q "defineConfig" docs/.vitepress/config.js; then
+            echo "Error: VitePress config missing defineConfig wrapper"
+            exit 1
+          fi
+          echo "✓ Config structure validated"
+          
           ls -la docs/.vitepress/ || echo "VitePress config directory not found"
 
       - name: Build VitePress documentation
@@ -111,14 +153,64 @@ jobs:
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_ACTIONS: 'true'
+          NODE_ENV: production
         run: |
           echo "Building VitePress site..."
           npm run build
           echo "Build completed"
-          ls -la .vitepress/dist || echo "Build output directory not found"
+          
+          # Validate build output
+          if [ ! -d ".vitepress/dist" ]; then
+            echo "Error: Build output directory not found"
+            exit 1
+          fi
+          
+          # Check for essential files
+          if [ ! -f ".vitepress/dist/index.html" ]; then
+            echo "Error: index.html not found in build output"
+            exit 1
+          fi
+          echo "✓ Build output validated"
+          
+          # Check build size (warn if suspiciously small)
+          BUILD_SIZE=$(du -sh .vitepress/dist | cut -f1)
+          echo "Build size: $BUILD_SIZE"
+          
+          # List key directories
+          ls -la .vitepress/dist | head -20
+          
+          # Count generated pages
+          HTML_COUNT=$(find .vitepress/dist -name "*.html" | wc -l)
+          echo "Generated HTML pages: $HTML_COUNT"
+          
+          if [ "$HTML_COUNT" -lt 5 ]; then
+            echo "Warning: Very few HTML pages generated ($HTML_COUNT). Build may be incomplete."
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
+      - name: Verify artifact before upload
+        working-directory: docs
+        run: |
+          echo "Verifying artifact structure..."
+          
+          # Check for required files
+          REQUIRED_FILES=("index.html" "assets")
+          for file in "${REQUIRED_FILES[@]}"; do
+            if [ ! -e ".vitepress/dist/$file" ]; then
+              echo "Error: Required file/directory '$file' not found in build output"
+              exit 1
+            fi
+          done
+          
+          # Verify no empty directories
+          if find .vitepress/dist -type d -empty | grep -q .; then
+            echo "Warning: Empty directories found in build output"
+            find .vitepress/dist -type d -empty
+          fi
+          
+          echo "✓ Artifact verification passed"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
