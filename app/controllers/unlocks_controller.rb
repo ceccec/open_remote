@@ -5,6 +5,9 @@
 class UnlocksController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :show, :new, :create ]
 
+  # Rate limit unlock requests to prevent abuse
+  rate_limit to: 5, within: 15.minutes, only: :create
+
   ##
   # Unlock user account using unlock token.
   #

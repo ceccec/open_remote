@@ -3,12 +3,28 @@
 # Extracts examples from RSpec tests and creates comprehensive documentation.
 #
 namespace :docs do
-  desc "Generate VitePress documentation from test examples"
+  desc "Generate VitePress documentation using YARD (recommended)"
   task from_tests: :environment do
+    require_relative "../tasks/yard_docs_generator"
+
+    puts "=" * 80
+    puts "Generating VitePress documentation using YARD..."
+    puts "=" * 80
+
+    generator = YardDocsGenerator.new
+    generator.generate
+
+    puts "\n✅ Documentation generated in docs/ directory"
+    puts "📚 View documentation: npm run docs:dev"
+    puts "=" * 80
+  end
+
+  desc "Generate VitePress documentation (legacy manual parsing)"
+  task from_tests_legacy: :environment do
     require_relative "../tasks/docs_generator"
 
     puts "=" * 80
-    puts "Generating VitePress documentation from test examples..."
+    puts "Generating VitePress documentation from test examples (legacy)..."
     puts "=" * 80
 
     generator = DocsGenerator.new

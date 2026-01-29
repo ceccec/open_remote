@@ -60,8 +60,8 @@ RSpec.describe "Asset Attribute Modules", type: :model do
         }
         asset.update_performance_ratio!
 
-        expect(asset.performance_ratio).to eq(75.0)
-        expect(asset.reload.attributes_data["performanceRatio"]).to eq(75.0)
+        expect(asset.performance_ratio).to eq(0.75)
+        expect(asset.reload.attributes_data["performanceRatio"]).to eq(0.75)
       end
 
       it "does not update when capacity is zero" do
@@ -103,7 +103,7 @@ RSpec.describe "Asset Attribute Modules", type: :model do
         }
         asset.update_performance_ratio!
 
-        expect(asset.performance_ratio).to eq(80.0)
+        expect(asset.performance_ratio).to eq(0.8)
       end
     end
   end

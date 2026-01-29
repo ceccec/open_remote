@@ -9,10 +9,10 @@ module OpenRemote
     APP_DESCRIPTION = "API documentation auto-generated from Rails components and test examples"
 
     # VitePress configuration
-    VITEPRESS_VERSION = "alpha" # Use 'alpha' for latest alpha, or specific version like '^1.6.0'
+    VITEPRESS_VERSION = "1.6.4" # Stable VitePress version
 
     # Vite version (must be compatible with VitePress)
-    VITE_VERSION = "^7.0.0" # Use Vite 7 for latest features
+    VITE_VERSION = "^6.0.0" # Vite 6 - compatible with VitePress 1.6.4
     VITEPRESS_BASE_PATH = if ENV["GITHUB_REPOSITORY"]
       repo_name = ENV["GITHUB_REPOSITORY"].split("/").last
       "/#{repo_name}/"
@@ -22,11 +22,12 @@ module OpenRemote
 
     # VitePress output directory configuration
     # - For GitHub Pages: .vitepress/dist (relative to docs/)
-    # - For local development: ../public (relative to docs/)
+    # - For local development: ../public/docs (relative to docs/)
+    # All documentation is compiled in docs/, then VitePress builds to public/docs/
     VITEPRESS_OUT_DIR = if ENV["GITHUB_ACTIONS"] == "true"
       ".vitepress/dist"
     else
-      "../public"
+      "../public/docs"
     end
 
     # VitePress cache directory (relative to docs/)

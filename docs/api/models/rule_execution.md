@@ -5,16 +5,75 @@ API documentation for RuleExecution
 **Type:** Models  
 **File:** `rule_execution.rb`
 
+This model inherits from `ApplicationRecord`, providing database persistence, validations, associations, scopes, callbacks, query methods, and more. See [ApplicationRecord](https://api.rubyonrails.org/classes/ApplicationRecord.html) for the complete API.
+**Rails Framework References:**
+- **Base Class**: [ApplicationRecord](https://api.rubyonrails.org/classes/ApplicationRecord.html) - Database persistence, querying, and model lifecycle
+- **Associations**: [ActiveRecord::Associations](https://api.rubyonrails.org/classes/ActiveRecord/Associations.html) - `belongs_to` relationships. See [ClassMethods](https://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html) for `has_many`, `belongs_to`, `has_one`
+- **Validations**: [ActiveRecord::Validations](https://api.rubyonrails.org/classes/ActiveRecord/Validations.html) - Model validation rules and error handling
+- **Callbacks**: [ActiveRecord::Callbacks](https://api.rubyonrails.org/classes/ActiveRecord/Callbacks.html) - Lifecycle hooks (`before_save`, `after_create`, etc.)
+- **Scoping**: [ActiveRecord::Scoping](https://api.rubyonrails.org/classes/ActiveRecord/Scoping.html) - Named scopes and default scopes
+- **Query Methods**: [ActiveRecord::QueryMethods](https://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html) - Query building (`where`, `joins`, `includes`, etc.)
+- **Querying**: [ActiveRecord::Querying](https://api.rubyonrails.org/classes/ActiveRecord/Querying.html) - Query interface and finder methods
+- **Persistence**: [ActiveRecord::Persistence](https://api.rubyonrails.org/classes/ActiveRecord/Persistence.html) - `save`, `create`, `update`, `destroy` methods
+- **ActiveRecord Module**: [ActiveRecord](https://api.rubyonrails.org/classes/ActiveRecord.html) - Complete API reference
+
+
+::: details 📊 Coverage & Testing Statistics
+
+### Test Suite Statistics
+
+<Badge type="tip" text="69 test files" />
+<Badge type="tip" text="514 examples" />
+<Badge type="info" text="56 classes tested" />
+
+
+- **Total Test Files**: 69
+- **Total Examples**: 514
+- **Classes Tested**: 56
+
+**Tests by Type:**
+
+- **Models**: 32 test files
+- **Other**: 13 test files
+- **Controllers**: 7 test files
+- **Services**: 7 test files
+- **Concerns**: 6 test files
+- **Jobs**: 3 test files
+- **Mailers**: 1 test file
+
+### Class-Specific Statistics
+
+- **Examples for this class**: 5
+- **Test file**: `spec/models/rule_execution_spec.rb`
+- **Last tested**: 2026-01-28 22:55:41
+
+:::
+
+
+
 ## Associations
 
-- `belongs_to :rule`
+ActiveRecord associations define relationships between models. See [ActiveRecord::Associations](https://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html) for details.
 
+- `belongs_to :rule` - many-to-one relationship - this model belongs to a rule
+
+
+## Included Modules
+
+These modules extend the class with additional behavior. Concerns use [ActiveSupport::Concern](https://api.rubyonrails.org/classes/ActiveSupport/Concern.html) for modular functionality.
+
+- `TestExpectations` - Provides additional functionality
 
 
 
 ## Methods
 
+- `error_message`
+- `failed?`
+- `has_error?`
 - `rails_admin_label`
+- `skipped?`
+- `successful?`
 
 
 ## Examples

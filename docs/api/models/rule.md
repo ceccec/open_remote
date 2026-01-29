@@ -5,20 +5,78 @@
 **Type:** Models  
 **File:** `rule.rb`
 
+This model inherits from `ApplicationRecord`, providing database persistence, validations, associations, scopes, callbacks, query methods, and more. See [ApplicationRecord](https://api.rubyonrails.org/classes/ApplicationRecord.html) for the complete API.
+**Rails Framework References:**
+- **Base Class**: [ApplicationRecord](https://api.rubyonrails.org/classes/ApplicationRecord.html) - Database persistence, querying, and model lifecycle
+- **Associations**: [ActiveRecord::Associations](https://api.rubyonrails.org/classes/ActiveRecord/Associations.html) - `has_many` relationships. See [ClassMethods](https://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html) for `has_many`, `belongs_to`, `has_one`
+- **Validations**: [ActiveRecord::Validations](https://api.rubyonrails.org/classes/ActiveRecord/Validations.html) - Model validation rules and error handling
+- **Callbacks**: [ActiveRecord::Callbacks](https://api.rubyonrails.org/classes/ActiveRecord/Callbacks.html) - Lifecycle hooks (`before_save`, `after_create`, etc.)
+- **Scoping**: [ActiveRecord::Scoping](https://api.rubyonrails.org/classes/ActiveRecord/Scoping.html) - Named scopes and default scopes
+- **Query Methods**: [ActiveRecord::QueryMethods](https://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html) - Query building (`where`, `joins`, `includes`, etc.)
+- **Querying**: [ActiveRecord::Querying](https://api.rubyonrails.org/classes/ActiveRecord/Querying.html) - Query interface and finder methods
+- **Persistence**: [ActiveRecord::Persistence](https://api.rubyonrails.org/classes/ActiveRecord/Persistence.html) - `save`, `create`, `update`, `destroy` methods
+- **ActiveRecord Module**: [ActiveRecord](https://api.rubyonrails.org/classes/ActiveRecord.html) - Complete API reference
+
+
+::: details 📊 Coverage & Testing Statistics
+
+### Test Suite Statistics
+
+<Badge type="tip" text="69 test files" />
+<Badge type="tip" text="514 examples" />
+<Badge type="info" text="56 classes tested" />
+
+
+- **Total Test Files**: 69
+- **Total Examples**: 514
+- **Classes Tested**: 56
+
+**Tests by Type:**
+
+- **Models**: 32 test files
+- **Other**: 13 test files
+- **Controllers**: 7 test files
+- **Services**: 7 test files
+- **Concerns**: 6 test files
+- **Jobs**: 3 test files
+- **Mailers**: 1 test file
+
+### Class-Specific Statistics
+
+- **Examples for this class**: 23
+- **Test file**: `spec/models/rule_spec.rb`
+- **Last tested**: 2026-01-28 17:06:46
+
+:::
+
+
+
 ## Associations
 
-- `has_many :rule_executions`
+ActiveRecord associations define relationships between models. See [ActiveRecord::Associations](https://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html) for details.
+
+- `has_many :rule_executions` - one-to-many relationship - this model has many rule_executions
 
 
 ## Included Modules
 
-- `Rule::Execution`
-- `Mapping::RuleJsonMapping`
+These modules extend the class with additional behavior. Concerns use [ActiveSupport::Concern](https://api.rubyonrails.org/classes/ActiveSupport/Concern.html) for modular functionality.
+
+- `TestExpectations` - Provides additional functionality
+- `Rule::Execution` - Provides additional functionality
+- `Mapping::RuleJsonMapping` - Provides JSON import/export functionality
+- `Rule::References` - Provides additional functionality
+- `BatchActions` - Provides additional functionality
 
 
 
 ## Methods
 
+- `execution_counts`
+- `has_failed_executions?`
+- `last_execution`
+- `last_successful_execution`
+- `scheduled?`
 - `then_config_presence`
 - `then_config_pretty_json`
 

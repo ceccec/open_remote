@@ -73,7 +73,7 @@ class AssetProcessingService
     rules.find_each do |rule|
       # Check if rule should be triggered for this asset
       if rule_should_trigger?(rule, asset, attribute_name, value)
-        RuleExecutionJob.perform_later(rule.id)
+        RuleExecutionJob.perform_later(rule)
       end
     end
   end
@@ -105,8 +105,10 @@ class AssetProcessingService
 
     # Get latest data points for each asset/attribute combination
     # Only include those where the latest data point is older than the threshold
+    # Eager load assets to prevent N+1 queries
     latest_datapoints = DataPoint.select("DISTINCT ON (asset_id, attribute_name) *")
                                   .order(:asset_id, :attribute_name, timestamp: :desc)
+                                  .includes(:asset)
 
     # Group by attribute and filter by cutoff time
     latest_datapoints.group_by(&:attribute_name).each do |attribute_name, data_points|

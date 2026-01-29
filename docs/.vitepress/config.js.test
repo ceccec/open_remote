@@ -1,0 +1,18 @@
+import { defineConfig } from 'vitepress'
+
+export default defineConfig({
+  title: 'OpenRemote Rails API',
+  description: 'API documentation',
+  base: '/docs/',
+  outDir: '../public/docs',
+  themeConfig: {
+    nav: [
+      { text: 'Home', link: '/' }
+    ],
+    sidebar: {
+      '/': [
+        { text: 'Home', link: '/' }
+      ]
+    }
+  }
+})

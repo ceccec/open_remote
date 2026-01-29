@@ -24,7 +24,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/lib/tasks/docs_g
 
 ---
 
-### infers model class name with namespace
+### infers model class name with namespace when no class definition found
 
 ```ruby
       expect(result).to eq("Asset::Querying")
@@ -57,7 +57,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/lib/tasks/docs_g
 
 ---
 
-### infers concern class name with namespace
+### infers concern class name with namespace when no module definition found
 
 ```ruby
       expect(result).to eq("User::Confirmable")

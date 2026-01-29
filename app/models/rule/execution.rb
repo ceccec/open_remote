@@ -5,6 +5,13 @@
 # attribute updates, logging), and execution bookkeeping.
 module Rule::Execution
   extend ActiveSupport::Concern
+  extend ConcernFeatures
+
+  # Concern features - enables Rule interaction with Asset, Notification, RuleExecution
+  concern_feature :provides, :execute!, :condition_met?, :perform_actions!
+  enables_interaction :rule_execution, [ :Rule, :Asset ], "Enables Rule to execute against Asset conditions"
+  enables_interaction :notification_triggering, [ :Rule, :Notification ], "Enables Rule to trigger Notifications"
+  enables_interaction :execution_tracking, [ :Rule, :RuleExecution ], "Enables Rule to track execution history"
 
   ##
   # Execute the rule once, recording a `RuleExecution` row.
@@ -32,8 +39,6 @@ module Rule::Execution
       raise
   end
 
-  private
-
   ##
   # @return [Boolean] true when the rule is configured as a schedule-based rule
   def schedule_condition?
@@ -51,6 +56,8 @@ module Rule::Execution
   def attribute_changed_condition?
       when_config && when_config["condition"] == "Asset attribute value changed"
   end
+
+  private
 
   ##
   # Execute all configured actions without any asset filtering.

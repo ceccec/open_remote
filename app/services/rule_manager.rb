@@ -29,11 +29,17 @@ class RuleManager
   #
   # @return [Array<Rule>] rules that should be executed
   def self.find_due_rules
+    due_rules = []
+
+    # Process in batches to avoid loading all records into memory
     Rule.where(enabled: true)
         .where("when_config->>'condition' = ?", "Schedule")
         .where.not(schedule: [ nil, "" ])
-        .to_a
-        .select { |rule| rule_due?(rule) }
+        .find_each do |rule|
+      due_rules << rule if rule_due?(rule)
+    end
+
+    due_rules
   end
 
   ##
@@ -70,7 +76,7 @@ class RuleManager
   # @param rule [Rule] the rule to execute
   # @return [void]
   def self.enqueue_rule_execution(rule)
-    RuleExecutionJob.perform_later(rule.id)
+    RuleExecutionJob.perform_later(rule)
   end
 
   private

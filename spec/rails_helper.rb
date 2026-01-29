@@ -1,13 +1,15 @@
-require "simplecov"
+unless ENV["NO_COVERAGE"]
+  require "simplecov"
 
-SimpleCov.start "rails" do
-  add_filter "/spec/"
-  add_filter "/app/models/concerns/admin/" # RailsAdmin configuration DSL, not business logic
-  add_filter "/app/jobs/application_job.rb" # Rails boilerplate base class
-  add_filter "/app/mailers/application_mailer.rb" # Rails boilerplate base class
-  add_filter "/app/helpers/application_helper.rb" # Rails boilerplate helper (empty)
-  # Require 100% coverage - all code must be tested
-  minimum_coverage 100
+  SimpleCov.start "rails" do
+    add_filter "/spec/"
+    add_filter "/app/models/concerns/admin/" # RailsAdmin configuration DSL, not business logic
+    add_filter "/app/jobs/application_job.rb" # Rails boilerplate base class
+    add_filter "/app/mailers/application_mailer.rb" # Rails boilerplate base class
+    add_filter "/app/helpers/application_helper.rb" # Rails boilerplate helper (empty)
+    # Require 100% coverage - all code must be tested
+    minimum_coverage 100
+  end
 end
 
 ENV["RAILS_ENV"] ||= "test"
@@ -63,6 +65,20 @@ RSpec.configure do |config|
       rescue LoadError, StandardError => e
         puts "⚠️  VitePress documentation generation failed: #{e.message}"
         puts "   Run 'bundle exec rake docs:from_tests' manually to generate docs"
+      end
+
+      # Generate all comprehensive documentation
+      begin
+        comprehensive_docs_path = Rails.root.join("lib", "tasks", "docs_generator_comprehensive.rb")
+        if File.exist?(comprehensive_docs_path)
+          require comprehensive_docs_path.to_s
+          generator = ComprehensiveDocsGenerator.new
+          generator.generate_all
+          puts "✅ All documentation generated (README, features, interactions, capabilities, architecture)"
+        end
+      rescue LoadError, StandardError => e
+        puts "⚠️  Comprehensive documentation generation failed: #{e.message}"
+        puts "   Run 'bundle exec rake docs:generate_all' manually to generate docs"
       end
     end
   end

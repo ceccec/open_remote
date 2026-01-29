@@ -383,7 +383,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/rule_ma
 ### falls back to cron matching for unrecognized patterns
 
 ```ruby
-        expect(result).to be_in([true, false])
+        expect(result).to be_in([ true, false ])
 ```
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/services/rule_manager_spec.rb:286`_

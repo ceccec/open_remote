@@ -5,6 +5,9 @@
 class SessionsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :new, :create ]
 
+  # Rate limit login attempts to prevent brute-force attacks
+  rate_limit to: 10, within: 3.minutes, only: :create
+
   ##
   # Show login form.
   #
@@ -21,7 +24,9 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
 
     if user&.authenticate(params[:password])
-      # Create session
+      # Reset session to prevent session fixation attacks
+      reset_session
+      # Create new session
       session[:user_id] = user.id
       redirect_to "/", notice: "Logged in successfully"
     else

@@ -25,7 +25,7 @@ RSpec.describe Assets::SolarParkAttributes, type: :model do
       asset.update!(attributes_data: { "totalCapacity" => 1000, "totalPowerOutput" => 800 })
       asset.update_performance_ratio!
       asset.reload
-      expect(asset.attributes_data["performanceRatio"]).to eq(80.0)
+      expect(asset.attributes_data["performanceRatio"]).to eq(0.8)
     end
 
     it "initializes attributes_data if nil" do
@@ -33,7 +33,7 @@ RSpec.describe Assets::SolarParkAttributes, type: :model do
       asset.update!(attributes_data: { "totalCapacity" => 1000, "totalPowerOutput" => 500 })
       asset.update_performance_ratio!
       asset.reload
-      expect(asset.attributes_data["performanceRatio"]).to eq(50.0)
+      expect(asset.attributes_data["performanceRatio"]).to eq(0.5)
     end
   end
 end

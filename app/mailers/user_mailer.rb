@@ -6,11 +6,10 @@ class UserMailer < ApplicationMailer
   ##
   # Send email confirmation instructions.
   #
-  # @param user [User] the user to send confirmation to
   # @return [Mail::Message]
-  def confirmation_instructions(user)
-    @user = user
-    @confirmation_url = confirmation_url(user.confirmation_token)
+  def confirmation_instructions
+    @user = params[:user]
+    @confirmation_url = confirmation_url(@user.confirmation_token)
 
     mail(
       to: @user.email,
@@ -21,11 +20,10 @@ class UserMailer < ApplicationMailer
   ##
   # Send password reset instructions.
   #
-  # @param user [User] the user requesting password reset
   # @return [Mail::Message]
-  def reset_password_instructions(user)
-    @user = user
-    @reset_password_url = edit_password_url(user.reset_password_token)
+  def reset_password_instructions
+    @user = params[:user]
+    @reset_password_url = edit_password_url(@user.reset_password_token)
 
     mail(
       to: @user.email,
@@ -36,11 +34,10 @@ class UserMailer < ApplicationMailer
   ##
   # Send account unlock instructions.
   #
-  # @param user [User] the locked user
   # @return [Mail::Message]
-  def unlock_instructions(user)
-    @user = user
-    @unlock_url = unlock_url(user.unlock_token)
+  def unlock_instructions
+    @user = params[:user]
+    @unlock_url = unlock_url(@user.unlock_token)
 
     mail(
       to: @user.email,

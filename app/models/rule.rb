@@ -17,6 +17,8 @@
 # @!attribute [rw] timezone
 #   @return [String] timezone identifier used for schedule-based rules
 class Rule < ApplicationRecord
+  include TestExpectations
+
   has_many :rule_executions, dependent: :destroy
 
   validates :name, presence: true
@@ -24,18 +26,28 @@ class Rule < ApplicationRecord
   validate :when_config_presence
   validate :then_config_presence
 
+  # Feature declarations
+  feature :validates, :name, presence: true
+  feature :associates, :has_many, :rule_executions, dependent: :destroy
+  feature :provides, :when_config_pretty_json, :then_config_pretty_json, :execute!
+  feature :scopes, :enabled, :disabled, :with_schedule, :scheduled, :attribute_value, :attribute_changed, :recently_executed, :with_failed_executions
+
   include Rule::Execution
   include Mapping::RuleJsonMapping
+  include Rule::References
+  include BatchActions
 
   has_paper_trail
 
   # Scopes
+  # Indexed: enabled, schedule, when_config (GIN index for JSONB queries)
   scope :enabled, -> { where(enabled: true) }
   scope :disabled, -> { where(enabled: false) }
-  scope :with_schedule, -> { where.not(schedule: [ nil, "" ]) }
+  scope :with_schedule, -> { where.not(schedule: nil).where.not(schedule: "") }
   scope :scheduled, -> { where("when_config->>'condition' = ?", "Schedule") }
   scope :attribute_value, -> { where("when_config->>'condition' = ?", "Asset attribute value") }
   scope :attribute_changed, -> { where("when_config->>'condition' = ?", "Asset attribute value changed") }
+  # Indexed: rule_executions.executed_at, rule_executions.status
   scope :recently_executed, -> { joins(:rule_executions).order("rule_executions.executed_at DESC").distinct }
   scope :with_failed_executions, -> { joins(:rule_executions).where(rule_executions: { status: "failed" }).distinct }
 
@@ -55,6 +67,46 @@ class Rule < ApplicationRecord
     JSON.pretty_generate(then_config || [])
   end
 
+  ##
+  # Check if rule is scheduled (has a schedule condition).
+  #
+  # @return [Boolean]
+  def scheduled?
+    schedule_condition?
+  end
+
+  ##
+  # Get the last execution of this rule.
+  #
+  # @return [RuleExecution, nil]
+  def last_execution
+    rule_executions.order(executed_at: :desc).first
+  end
+
+  ##
+  # Get the last successful execution of this rule.
+  #
+  # @return [RuleExecution, nil]
+  def last_successful_execution
+    rule_executions.successful.order(executed_at: :desc).first
+  end
+
+  ##
+  # Check if rule has failed executions.
+  #
+  # @return [Boolean]
+  def has_failed_executions?
+    rule_executions.failed.any?
+  end
+
+  ##
+  # Get execution count for this rule.
+  #
+  # @return [Hash] counts by status
+  def execution_counts
+    rule_executions.group(:status).count
+  end
+
   private
 
   ##
@@ -63,7 +115,9 @@ class Rule < ApplicationRecord
   #
   # @return [void]
   def when_config_presence
-    errors.add(:when_config, "can't be blank") if when_config.nil? || when_config == {}
+    if when_config.blank?
+      errors.add(:when_config, :blank)
+    end
   end
 
   ##
@@ -72,6 +126,8 @@ class Rule < ApplicationRecord
   #
   # @return [void]
   def then_config_presence
-    errors.add(:then_config, "can't be blank") if then_config.nil? || then_config == [] || then_config == {}
+    if then_config.blank?
+      errors.add(:then_config, :blank)
+    end
   end
 end

@@ -5,6 +5,9 @@
 class PasswordsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :new, :create, :edit, :update ]
 
+  # Rate limit password reset requests to prevent abuse
+  rate_limit to: 5, within: 15.minutes, only: :create
+
   ##
   # Show password reset request form.
   #

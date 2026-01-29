@@ -14,6 +14,7 @@ Test-driven examples extracted from the RSpec suite.
 - [AssetTypeDispatch](/examples/assettypedispatch)
 - [Assets](/examples/assets)
 - [AttributeNormalization](/examples/attributenormalization)
+- [BatchActions](/examples/batchactions)
 - [ConfirmationsController](/examples/confirmationscontroller)
 - [DataPoint](/examples/datapoint)
 - [DataPointAnalyticsEdgeCases](/examples/datapointanalyticsedgecases)

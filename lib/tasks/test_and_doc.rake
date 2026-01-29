@@ -12,11 +12,12 @@ namespace :test do
     puts "Running test suite..."
     puts "=" * 80
 
-    # Run RSpec tests; spec/rails_helper will:
+    # Run RSpec tests with documentation format for structured rich docs content
+    # spec/rails_helper will:
     # - enforce coverage via SimpleCov
     # - generate YARD docs
     # - generate VitePress docs (DocsGenerator)
-    rspec_result = system("bundle exec rspec")
+    rspec_result = system("bundle exec rspec --format documentation")
     unless rspec_result
       puts "\n⚠️  Tests failed. Documentation generation may be partial."
     end
@@ -34,9 +35,10 @@ namespace :test do
     puts "Running test suite with coverage..."
     puts "=" * 80
 
-    # Run RSpec with coverage; SimpleCov in spec/rails_helper enforces
-    # the minimum_coverage gate and triggers doc + VitePress generation.
-    rspec_result = system("COVERAGE=true bundle exec rspec")
+    # Run RSpec with coverage and documentation format for structured rich docs content
+    # SimpleCov in spec/rails_helper enforces the minimum_coverage gate and triggers
+    # doc + VitePress generation.
+    rspec_result = system("COVERAGE=true bundle exec rspec --format documentation")
 
     puts "\n" + "=" * 80
     puts "✅ Coverage + documentation pipeline finished"

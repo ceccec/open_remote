@@ -5,6 +5,9 @@
 class ConfirmationsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :show, :new, :create ]
 
+  # Rate limit confirmation resend requests to prevent abuse
+  rate_limit to: 5, within: 15.minutes, only: :create
+
   ##
   # Confirm user's email address using confirmation token.
   #

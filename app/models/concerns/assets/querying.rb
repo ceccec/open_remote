@@ -1,6 +1,12 @@
 module Assets
   module Querying
     extend ActiveSupport::Concern
+    extend ConcernFeatures
+
+    # Concern features - enables Asset interaction with DataPoint and AssetType
+    concern_feature :provides, :solar_arrays, :solar_parks, :of_type, :solar_array_power_outputs, :with_numeric_attribute_greater_than
+    enables_interaction :querying, [ :Asset ], "Enables Asset to query by type, filter by attributes, and interact with AssetType"
+    enables_interaction :data_analysis, [ :Asset, :DataPoint ], "Enables Asset to query and analyze DataPoint relationships"
 
     class_methods do
       def solar_arrays
@@ -18,7 +24,8 @@ module Assets
       def solar_array_power_outputs
         # Iterate over records and extract both ID and power output
         # Using records ensures UUIDs are handled correctly by ActiveRecord
-        solar_arrays.includes(:asset_type).map do |asset|
+        # Note: This method returns an Array, not a Relation, as it extracts and transforms data
+        solar_arrays.map do |asset|
           power_output = (asset.attributes_data || {})["powerOutput"]
           power_output = power_output.to_f if power_output
           # asset.id should already be a UUID string, but ensure it's a string

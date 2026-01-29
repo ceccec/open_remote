@@ -10,18 +10,55 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_28_172206) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_28_224757) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "action_mailbox_inbound_emails", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "message_checksum", null: false
+    t.string "message_id", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["message_id", "message_checksum"], name: "index_action_mailbox_inbound_emails_uniqueness", unique: true
+  end
+
+  create_table "active_storage_attachments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.uuid "record_id", null: false
+    t.string "record_type", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.string "content_type"
+    t.datetime "created_at", null: false
+    t.string "filename", null: false
+    t.string "key", null: false
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
 
   create_table "asset_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "description"
     t.string "display_name"
     t.string "icon"
-    t.string "name"
+    t.string "name", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_asset_types_on_name"
+    t.index ["name"], name: "index_asset_types_on_name", unique: true
   end
 
   create_table "assets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -45,6 +82,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_28_172206) do
     t.jsonb "value", null: false
     t.index ["asset_id", "attribute_name", "timestamp"], name: "index_data_points_on_asset_attr_time"
     t.index ["asset_id"], name: "index_data_points_on_asset_id"
+    t.index ["attribute_name"], name: "index_data_points_on_attribute_name"
     t.index ["timestamp"], name: "index_data_points_on_timestamp"
   end
 
@@ -57,6 +95,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_28_172206) do
     t.datetime "sent_at", null: false
     t.string "severity", null: false
     t.datetime "updated_at", null: false
+    t.index ["acknowledged_at", "severity", "sent_at"], name: "index_notifications_on_ack_severity_sent"
     t.index ["acknowledged_at"], name: "index_notifications_on_acknowledged_at"
     t.index ["asset_id"], name: "index_notifications_on_asset_id"
     t.index ["rule_id"], name: "index_notifications_on_rule_id"
@@ -73,17 +112,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_28_172206) do
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["name"], name: "index_roles_on_name"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
 
   create_table "rule_executions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "error_message"
     t.datetime "executed_at", null: false
-    t.jsonb "result", default: {}
+    t.jsonb "result", default: {}, null: false
     t.uuid "rule_id", null: false
     t.string "status", null: false
     t.datetime "updated_at", null: false
+    t.index ["error_message"], name: "index_rule_executions_on_error_message", where: "(error_message IS NOT NULL)"
     t.index ["executed_at"], name: "index_rule_executions_on_executed_at"
+    t.index ["rule_id", "status", "executed_at"], name: "index_rule_executions_on_rule_status_executed"
     t.index ["rule_id"], name: "index_rule_executions_on_rule_id"
     t.index ["status"], name: "index_rule_executions_on_status"
   end
@@ -94,11 +136,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_28_172206) do
     t.boolean "enabled", default: true, null: false
     t.string "name", null: false
     t.string "schedule"
-    t.jsonb "then_config", default: {}
-    t.string "timezone", default: "UTC"
+    t.jsonb "then_config", default: {}, null: false
+    t.string "timezone", default: "UTC", null: false
     t.datetime "updated_at", null: false
-    t.jsonb "when_config", default: {}
+    t.jsonb "when_config", default: {}, null: false
+    t.index ["enabled"], name: "index_rules_on_enabled"
     t.index ["name"], name: "index_rules_on_name"
+    t.index ["schedule"], name: "index_rules_on_schedule", where: "((schedule IS NOT NULL) AND ((schedule)::text <> ''::text))"
+    t.index ["when_config"], name: "index_rules_on_when_config_gin", using: :gin
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -117,8 +162,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_28_172206) do
     t.string "reset_password_token"
     t.string "unlock_token"
     t.datetime "updated_at", null: false
+    t.index ["admin"], name: "index_users_on_admin"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["confirmed_at"], name: "index_users_on_confirmed_at"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["locked_at"], name: "index_users_on_locked_at"
     t.index ["remember_token"], name: "index_users_on_remember_token", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
@@ -135,8 +183,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_28_172206) do
   create_table "versions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "event", null: false
-    t.uuid "item_id"
-    t.string "item_type"
+    t.uuid "item_id", null: false
+    t.string "item_type", null: false
     t.jsonb "object"
     t.jsonb "object_changes"
     t.datetime "updated_at", null: false
@@ -145,6 +193,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_28_172206) do
     t.index ["whodunnit"], name: "index_versions_on_whodunnit"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "assets", "asset_types"
   add_foreign_key "assets", "assets", column: "parent_id"
   add_foreign_key "data_points", "assets"

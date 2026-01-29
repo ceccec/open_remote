@@ -19,10 +19,10 @@ RSpec.describe DocsGenerator do
       expect(result).to eq("User")
     end
 
-    it "infers model class name with namespace" do
-      content = "class Asset"
+    it "infers model class name with namespace when no class definition found" do
+      content = "# No class definition here\n# Just comments"
       file_path = Rails.root.join("app/models/asset/querying.rb")
-      namespace = ["asset"]
+      namespace = [ "asset" ]
       result = generator.send(:extract_class_name_from_file, content, file_path.to_s, :models, namespace)
       expect(result).to eq("Asset::Querying")
     end
@@ -41,10 +41,10 @@ RSpec.describe DocsGenerator do
       expect(result).to eq("SomeJob")
     end
 
-    it "infers concern class name with namespace" do
-      content = "module SomeConcern"
+    it "infers concern class name with namespace when no module definition found" do
+      content = "# No module definition here\n# Just comments"
       file_path = Rails.root.join("app/models/concerns/user/confirmable.rb")
-      namespace = ["user"]
+      namespace = [ "user" ]
       result = generator.send(:extract_class_name_from_file, content, file_path.to_s, :concerns, namespace)
       expect(result).to eq("User::Confirmable")
     end

@@ -5,6 +5,9 @@
 class RegistrationsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :new, :create ]
 
+  # Rate limit registration to prevent abuse
+  rate_limit to: 5, within: 1.hour, only: :create
+
   ##
   # Show registration form.
   #

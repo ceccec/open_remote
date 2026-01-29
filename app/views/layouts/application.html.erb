@@ -8,6 +8,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= action_cable_meta_tag %>
 
     <%= yield :head %>
 
@@ -20,7 +21,6 @@
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
     <%= vite_client_tag %>
     <%= vite_javascript_tag 'application' %>
     <!--
@@ -36,6 +36,13 @@
   </head>
 
   <body>
+    <%# Display flash messages %>
+    <% flash.each do |name, msg| %>
+      <div class="flash flash-<%= name %>">
+        <%= msg %>
+      </div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

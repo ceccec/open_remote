@@ -471,7 +471,7 @@ RSpec.describe "Rule::Execution Action Handlers", type: :model do
       rule.execute!
 
       park.reload
-      expect(park.attributes_data["performanceRatio"]).to eq(75.0)
+      expect(park.attributes_data["performanceRatio"]).to eq(0.75)
 
       array.reload
       expect(array.attributes_data["performanceRatio"]).to be_nil

@@ -1,6 +1,9 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  # Prepare the ingress controller used to receive mail
+  # config.action_mailbox.ingress = :relay
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -25,13 +28,15 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
+  # Uncomment if using a reverse proxy that terminates SSL:
   # config.assume_ssl = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  # This enables HSTS (HTTP Strict Transport Security) header.
+  config.force_ssl = true
 
   # Skip http-to-https redirect for the default health check endpoint.
-  # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
+  config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
 
   # Log to STDOUT with the current request id as a default log tag.
   config.log_tags = [ :request_id ]
@@ -52,6 +57,22 @@ Rails.application.configure do
   # Replace the default in-process and non-durable queuing backend for Active Job.
   config.active_job.queue_adapter = :solid_queue
   config.solid_queue.connects_to = { database: { writing: :queue } }
+
+  # Action Cable configuration
+  # Configure allowed request origins for WebSocket connections
+  # Replace "example.com" with your actual domain
+  config.action_cable.allowed_request_origins = [
+    ENV.fetch("RAILS_HOST", "example.com") # Allow requests from configured host
+    # Add additional hosts or patterns as needed:
+    # %r{https://.*\.example\.com} # Allow requests from subdomains
+  ]
+
+  # Worker pool size for Action Cable (default: 4)
+  # Ensure database pool is at least as large as worker pool
+  # config.action_cable.worker_pool_size = 4
+
+  # Mount path for Action Cable (default: /cable)
+  # config.action_cable.mount_path = "/cable"
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -80,11 +101,14 @@ Rails.application.configure do
   config.active_record.attributes_for_inspect = [ :id ]
 
   # Enable DNS rebinding protection and other `Host` header attacks.
-  # config.hosts = [
-  #   "example.com",     # Allow requests from example.com
-  #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
-  # ]
-  #
+  # Configure allowed hosts for your production domain.
+  # Replace "example.com" with your actual domain.
+  config.hosts = [
+    ENV.fetch("RAILS_HOST", "example.com") # Allow requests from configured host
+    # Add additional hosts or patterns as needed:
+    # /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
+  ]
+
   # Skip DNS rebinding protection for the default health check endpoint.
-  # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+  config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 end

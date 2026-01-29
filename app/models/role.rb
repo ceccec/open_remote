@@ -4,6 +4,8 @@
 # Supports resource-scoped roles (e.g., admin of a specific asset).
 #
 class Role < ApplicationRecord
+  include TestExpectations
+
   has_and_belongs_to_many :users, join_table: :users_roles
 
   belongs_to :resource,
@@ -14,6 +16,12 @@ class Role < ApplicationRecord
   validates :resource_type,
             inclusion: { in: Rolify.resource_types },
             allow_nil: true
+
+  # Feature declarations
+  feature :validates, :name, presence: true, uniqueness: { scope: [ :resource_type, :resource_id ] }
+  feature :associates, :has_and_belongs_to_many, :users
+  feature :associates, :belongs_to, :resource, polymorphic: true, optional: true
+  feature :provides, :find_or_create_by_name, :rails_admin_label
 
   scopify
 

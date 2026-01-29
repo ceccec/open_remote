@@ -17,9 +17,9 @@ RSpec.configure do |config|
 
   config.warnings = true
 
-  if config.files_to_run.one?
-    config.default_formatter = "doc"
-  end
+  # Always use documentation format for rich, structured test output
+  # This enables better documentation generation from test examples
+  config.default_formatter = "documentation"
 
   config.profile_examples = 10
 

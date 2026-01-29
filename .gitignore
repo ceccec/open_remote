@@ -55,7 +55,9 @@ yarn.lock
 /docs/node_modules
 /docs/.vitepress/.temp
 /docs/.vitepress/.cache
-/docs/public/
+
+# Built documentation (VitePress builds from docs/ to public/docs/)
+/public/docs/
 
 # VitePress temporary files (now stored in tmp/vitepress-cache, which is already ignored via /tmp/*)
 *.vitepress-temp
@@ -77,3 +79,13 @@ yarn.lock
 
 # Built gem artifacts
 /open_remote-*.gem
+
+# Auto-generated documentation (keep structure, but files are regenerated)
+# Note: We keep these in git for now, but they're marked as auto-generated
+# README.md
+# docs/model_features.md
+# docs/model_interactions.md
+# docs/capabilities.md
+# docs/architecture.md
+# docs/api/index.md
+# docs/README.md

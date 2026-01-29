@@ -93,8 +93,8 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_att
 ### calculates and updates performance ratio when capacity is positive
 
 ```ruby
-        expect(asset.performance_ratio).to eq(75.0)
-        expect(asset.reload.attributes_data["performanceRatio"]).to eq(75.0)
+        expect(asset.performance_ratio).to eq(0.75)
+        expect(asset.reload.attributes_data["performanceRatio"]).to eq(0.75)
 ```
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_attribute_modules_spec.rb:56`_
@@ -138,7 +138,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_att
 ### handles string numeric values
 
 ```ruby
-        expect(asset.performance_ratio).to eq(80.0)
+        expect(asset.performance_ratio).to eq(0.8)
 ```
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_attribute_modules_spec.rb:99`_

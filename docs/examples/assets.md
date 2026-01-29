@@ -92,7 +92,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/
       expect(pairs.map(&:last)).to include(1500.0)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:93`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:95`_
 
 
 ---
@@ -103,7 +103,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/
         expect(id_str).to be_a(String)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:104`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:106`_
 
 
 ---
@@ -116,7 +116,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/
       expect(result).not_to include(@park)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:113`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:115`_
 
 
 ---
@@ -127,7 +127,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/
       expect(result).to include(asset)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:132`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:134`_
 
 
 ---
@@ -138,7 +138,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/
       expect(result).not_to include(asset_no_attr)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:143`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:145`_
 
 
 ---
@@ -150,7 +150,91 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/
       expect(result).not_to include(asset)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:154`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/concerns/assets/querying_spec.rb:156`_
+
+
+---
+
+### returns correct values from attributes_data
+
+```ruby
+      expect(asset.active_power).to eq(1000)
+      expect(asset.reactive_power).to eq(500)
+      expect(asset.apparent_power).to eq(1118)
+      expect(asset.energy_import).to eq(5000)
+      expect(asset.energy_export).to eq(2000)
+      expect(asset.voltage).to eq(240)
+      expect(asset.current).to eq(4.17)
+      expect(asset.power_factor).to eq(0.9)
+      expect(asset.frequency).to eq(60)
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/concerns/assets/energy_meter_attributes_spec.rb:39`_
+
+
+---
+
+### returns nil when attributes_data is empty
+
+```ruby
+      expect(asset.active_power).to be_nil
+      expect(asset.voltage).to be_nil
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/concerns/assets/energy_meter_attributes_spec.rb:51`_
+
+
+---
+
+### returns correct values
+
+```ruby
+      expect(asset.connection_capacity).to eq(10_000)
+      expect(asset.active_power).to eq(8000)
+      expect(asset.energy_exported).to eq(50_000)
+      expect(asset.connection_status).to eq("connected")
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/concerns/assets/grid_connection_point_attributes_spec.rb:35`_
+
+
+---
+
+### returns correct values
+
+```ruby
+      expect(asset.inverter_capacity).to eq(5000)
+      expect(asset.ac_power_output).to eq(4500)
+      expect(asset.efficiency).to eq(0.9375)
+      expect(asset.status).to eq("online")
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/concerns/assets/inverter_attributes_spec.rb:36`_
+
+
+---
+
+### returns nil when attribute is missing
+
+```ruby
+      expect(asset.inverter_capacity).to be_nil
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/concerns/assets/inverter_attributes_spec.rb:43`_
+
+
+---
+
+### returns correct values
+
+```ruby
+      expect(asset.array_capacity).to eq(5000)
+      expect(asset.power_output).to eq(4500)
+      expect(asset.panel_count).to eq(20)
+      expect(asset.status).to eq("online")
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/concerns/assets/solar_array_attributes_spec.rb:36`_
 
 
 ---
@@ -180,7 +264,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/concerns/
 ### calculates and saves performance ratio when capacity is positive
 
 ```ruby
-      expect(asset.attributes_data["performanceRatio"]).to eq(80.0)
+      expect(asset.attributes_data["performanceRatio"]).to eq(0.8)
 ```
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/concerns/assets/solar_park_attributes_spec.rb:24`_
@@ -191,10 +275,24 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/concerns/
 ### initializes attributes_data if nil
 
 ```ruby
-      expect(asset.attributes_data["performanceRatio"]).to eq(50.0)
+      expect(asset.attributes_data["performanceRatio"]).to eq(0.5)
 ```
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/concerns/assets/solar_park_attributes_spec.rb:31`_
+
+
+---
+
+### returns correct values
+
+```ruby
+      expect(asset.temperature).to eq(25.5)
+      expect(asset.humidity).to eq(60)
+      expect(asset.solar_irradiance).to eq(800)
+      expect(asset.location).to eq("40.7128,-74.0060")
+```
+
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/concerns/assets/weather_station_attributes_spec.rb:35`_
 
 
 ---

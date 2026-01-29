@@ -12,9 +12,12 @@ module User::Recoverable
   def send_reset_password_instructions
     generate_reset_password_token!
     update_column(:reset_password_sent_at, Time.current)
-    UserMailer.reset_password_instructions(self).deliver_later
+    UserMailer.with(user: self).reset_password_instructions.deliver_later
     reset_password_token
   end
+
+  # Alias for backward compatibility
+  alias_method :send_password_reset_instructions, :send_reset_password_instructions
 
   ##
   # Reset password with the provided token.

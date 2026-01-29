@@ -4,6 +4,11 @@
 #
 module User::Confirmable
   extend ActiveSupport::Concern
+  extend ConcernFeatures
+
+  # Concern features - enables User interaction with email confirmation
+  concern_feature :provides, :confirmed?, :confirm!, :send_confirmation_instructions, :confirmation_period_valid?
+  enables_interaction :email_confirmation, [ :User ], "Enables User to confirm email addresses via tokens"
 
   included do
     before_create :generate_confirmation_token, unless: :confirmed?
@@ -42,7 +47,7 @@ module User::Confirmable
   def send_confirmation_instructions
     generate_confirmation_token! unless confirmation_token.present?
     update_column(:confirmation_sent_at, Time.current)
-    UserMailer.confirmation_instructions(self).deliver_later
+    UserMailer.with(user: self).confirmation_instructions.deliver_later
     confirmation_token
   end
 

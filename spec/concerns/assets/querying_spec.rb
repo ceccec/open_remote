@@ -81,8 +81,10 @@ RSpec.describe Assets::Querying do
       array_nil = Asset.create!(
         name: "Array Nil",
         asset_type: solar_array_type,
-        attributes_data: nil
+        attributes_data: {}
       )
+      # Bypass validation to set nil for testing the code path
+      array_nil.update_column(:attributes_data, nil)
 
       pairs = Asset.solar_array_power_outputs
       pair = pairs.find { |p| p.first == array_nil.id.to_s }

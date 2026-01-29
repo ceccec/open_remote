@@ -7,6 +7,12 @@
 # This module is intended to be included into `DataPoint`.
 module DataPoint::Analytics
   extend ActiveSupport::Concern
+  extend ConcernFeatures
+
+  # Concern features - enables DataPoint interaction with Asset for analytics
+  concern_feature :provides, :sum_for, :average_for, :max_for, :min_for, :create_continuous_aggregate
+  enables_interaction :data_analytics, [ :DataPoint, :Asset ], "Enables DataPoint to perform analytics on Asset data"
+  enables_interaction :time_series_analysis, [ :DataPoint ], "Enables time-series aggregation and analysis"
 
   class_methods do
     ##

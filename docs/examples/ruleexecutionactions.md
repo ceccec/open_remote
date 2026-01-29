@@ -195,7 +195,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/rule_exec
 ### updates performance ratio for SolarPark assets
 
 ```ruby
-      expect(park.attributes_data["performanceRatio"]).to eq(75.0)
+      expect(park.attributes_data["performanceRatio"]).to eq(0.75)
       expect(array.attributes_data["performanceRatio"]).to be_nil
 ```
 

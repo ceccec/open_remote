@@ -285,7 +285,7 @@ RSpec.describe RuleManager do
 
       it "falls back to cron matching for unrecognized patterns" do
         result = RuleManager.matches_schedule?("unknown pattern", test_time, timezone)
-        expect(result).to be_in([true, false])
+        expect(result).to be_in([ true, false ])
       end
     end
 

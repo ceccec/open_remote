@@ -67,7 +67,7 @@ module User::Lockable
   # @return [String] the unlock token
   def send_unlock_instructions
     generate_unlock_token!
-    UserMailer.unlock_instructions(self).deliver_later
+    UserMailer.with(user: self).unlock_instructions.deliver_later
     unlock_token
   end
 
@@ -85,11 +85,13 @@ module User::Lockable
   end
 
   ##
-  # Reset failed attempts when account is unlocked.
+  # Reset failed attempts when saving a locked account.
+  # The callback condition ensures this only runs when account is locked.
   #
   # @return [void]
   def reset_failed_attempts!
-    self.failed_attempts = 0 if access_locked?
+    # Callback condition already ensures account is locked, so no need to check again
+    self.failed_attempts = 0
   end
 
   ##

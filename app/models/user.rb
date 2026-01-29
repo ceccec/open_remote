@@ -3,6 +3,8 @@
 # Includes: confirmable, recoverable, rememberable, lockable
 #
 class User < ApplicationRecord
+  include TestExpectations
+
   rolify
   has_secure_password
 
@@ -16,7 +18,24 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, length: { minimum: 6 }, if: -> { new_record? || !password.nil? }
 
+  # Feature declarations
+  feature :validates, :email, presence: true, uniqueness: true, format: URI::MailTo::EMAIL_REGEXP
+  feature :validates, :password, length: { minimum: 6 }
+  feature :provides, :admin?, :make_admin!, :remove_admin!, :confirmed?, :confirm!, :send_confirmation_instructions,
+           :remember_me!, :forget_me!, :remember_token_valid?, :send_reset_password_instructions,
+           :reset_password, :reset_password_period_valid?, :access_locked?, :lock_access!, :unlock_access!,
+           :increment_failed_attempts!, :send_unlock_instructions
+
   has_paper_trail
+
+  # Scopes for common queries
+  # Indexed: confirmed_at, locked_at, admin
+  scope :confirmed, -> { where.not(confirmed_at: nil) }
+  scope :unconfirmed, -> { where(confirmed_at: nil) }
+  scope :locked, -> { where.not(locked_at: nil) }
+  scope :unlocked, -> { where(locked_at: nil) }
+  scope :with_role, ->(role_name) { joins(:roles).where(roles: { name: role_name }) }
+  scope :admins, -> { where(admin: true).or(with_role(:admin)) }
 
   ##
   # Find user by reset password token.
