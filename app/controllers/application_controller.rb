@@ -3,11 +3,8 @@
 # Provides authentication, authorization, and user session management.
 #
 class ApplicationController < ActionController::Base
-  # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
+  # Only allow modern browsers supporting webp images, web push, badges, CSS nesting, and CSS :has.
   allow_browser versions: :modern
-
-  # Changes to the importmap will invalidate the etag for HTML responses
-  stale_when_importmap_changes
 
   # Make current_user and logged_in? available in views
   helper_method :current_user, :logged_in?
