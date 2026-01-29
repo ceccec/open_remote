@@ -19,7 +19,9 @@ RSpec.describe PasswordsController, type: :controller do
   describe "POST #create" do
     context "with existing user" do
       it "sends reset password instructions and redirects" do
-        expect(UserMailer).to receive(:reset_password_instructions).with(user).and_return(double(deliver_later: true))
+        mail_double = double(deliver_later: true)
+        mailer_double = double(reset_password_instructions: mail_double)
+        expect(UserMailer).to receive(:with).with(user: user).and_return(mailer_double)
         post :create, params: { user: { email: user.email } }
         expect(response).to redirect_to("/login")
         expect(flash[:notice]).to eq("Password reset instructions have been sent to your email.")

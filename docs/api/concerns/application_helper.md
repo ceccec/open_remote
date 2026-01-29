@@ -1,7 +1,7 @@
 ---
 title: ApplicationHelper
-description: API documentation for ApplicationHelper
-lastUpdated: 2026-01-28T21:47:06Z
+description: Application helper module.
+lastUpdated: 2026-01-29T01:42:54Z
 tags:
   - concern
   - api
@@ -10,7 +10,10 @@ tags:
 
 # ApplicationHelper <Badge type="warning" text="Concern" />
 
-API documentation for ApplicationHelper
+Application helper module.
+
+Provides helper methods available to all views. Currently empty,
+but can be extended with shared view helpers as needed.
 
 ::: info File Location
 **Source:** `app/helpers/application_helper.rb`
@@ -19,10 +22,24 @@ API documentation for ApplicationHelper
 ::: tip Rails Framework
 :::
 
+## Examples
+
+<Badge type="tip" text="1 example" />
+
+::: tip Adding a helper method
+```ruby
+module ApplicationHelper
+  def format_date(date)
+    date.strftime("%B %d, %Y")
+  end
+end
+```
+:::
+
 ::: info Test Examples
-Comprehensive test-driven examples are available in the [Examples section](/examples/).
+Comprehensive test-driven examples are available in the [Examples section](/docs/examples/).
 :::
 
 ---
 
-<Badge type="info" text="Navigation" /> [← Back to Index](/api/)
+<Badge type="info" text="Navigation" /> [← Back to Index](/docs/api/)

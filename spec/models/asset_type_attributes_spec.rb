@@ -151,7 +151,7 @@ RSpec.describe "Asset type attribute helpers" do
       # Exercise update_performance_ratio! branch
       allow(asset).to receive(:save!).and_return(true)
       asset.update_performance_ratio!
-      expect(asset.attributes_data["performanceRatio"]).to be_within(0.001).of(50.0)
+      expect(asset.attributes_data["performanceRatio"]).to be_within(0.001).of(0.5) # 500/1000 = 0.5
     end
 
     it "exposes solar park attributes via Asset::Type::SolarParkAttributes duplication module" do
@@ -180,7 +180,7 @@ RSpec.describe "Asset type attribute helpers" do
 
       allow(asset).to receive(:save!).and_return(true)
       asset.update_performance_ratio!
-      expect(asset.attributes_data["performanceRatio"]).to be_within(0.001).of(50.0)
+      expect(asset.attributes_data["performanceRatio"]).to be_within(0.001).of(0.5) # 400/800 = 0.5 (decimal ratio)
     end
   end
 

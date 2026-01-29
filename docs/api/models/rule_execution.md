@@ -4,6 +4,9 @@ API documentation for RuleExecution
 
 **Type:** Models  
 **File:** `rule_execution.rb`
+<Badge type="warning" text="File Coverage: 74.19%" />
+<Badge type="info" text="23/78 lines" />
+
 
 This model inherits from `ApplicationRecord`, providing database persistence, validations, associations, scopes, callbacks, query methods, and more. See [ApplicationRecord](https://api.rubyonrails.org/classes/ApplicationRecord.html) for the complete API.
 **Rails Framework References:**
@@ -69,11 +72,18 @@ These modules extend the class with additional behavior. Concerns use [ActiveSup
 ## Methods
 
 - `error_message`
+  <Badge type="warning" text="Coverage: 16.67%" />
+  <small>Uncovered lines: 63, 64, 65, 66, 67</small>
 - `failed?`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `has_error?`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `rails_admin_label`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `skipped?`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `successful?`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
 
 ## Examples

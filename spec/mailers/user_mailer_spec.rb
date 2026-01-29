@@ -10,7 +10,7 @@ RSpec.describe UserMailer, type: :mailer do
   end
 
   describe "#confirmation_instructions" do
-    let(:mail) { UserMailer.confirmation_instructions(user) }
+    let(:mail) { UserMailer.with(user: user).confirmation_instructions }
 
     before do
       user.update_column(:confirmation_token, "test_token")
@@ -19,7 +19,7 @@ RSpec.describe UserMailer, type: :mailer do
     it "renders the headers" do
       expect(mail.subject).to eq("Confirm your account")
       expect(mail.to).to eq([ user.email ])
-      expect(mail.from).to eq([ "from@example.com" ])
+      expect(mail.from).to eq([ "noreply@example.com" ])
     end
 
     it "assigns confirmation_url" do
@@ -28,7 +28,7 @@ RSpec.describe UserMailer, type: :mailer do
   end
 
   describe "#reset_password_instructions" do
-    let(:mail) { UserMailer.reset_password_instructions(user) }
+    let(:mail) { UserMailer.with(user: user).reset_password_instructions }
 
     before do
       user.update_column(:reset_password_token, "reset_token")
@@ -37,7 +37,7 @@ RSpec.describe UserMailer, type: :mailer do
     it "renders the headers" do
       expect(mail.subject).to eq("Reset your password")
       expect(mail.to).to eq([ user.email ])
-      expect(mail.from).to eq([ "from@example.com" ])
+      expect(mail.from).to eq([ "noreply@example.com" ])
     end
 
     it "assigns reset_password_url" do
@@ -46,7 +46,7 @@ RSpec.describe UserMailer, type: :mailer do
   end
 
   describe "#unlock_instructions" do
-    let(:mail) { UserMailer.unlock_instructions(user) }
+    let(:mail) { UserMailer.with(user: user).unlock_instructions }
 
     before do
       user.update_column(:unlock_token, "unlock_token")
@@ -55,7 +55,7 @@ RSpec.describe UserMailer, type: :mailer do
     it "renders the headers" do
       expect(mail.subject).to eq("Unlock your account")
       expect(mail.to).to eq([ user.email ])
-      expect(mail.from).to eq([ "from@example.com" ])
+      expect(mail.from).to eq([ "noreply@example.com" ])
     end
 
     it "assigns unlock_url" do

@@ -122,7 +122,7 @@ RSpec.describe RuleManager do
 
       expect do
         RuleManager.execute_due_rules
-      end.to have_enqueued_job(RuleExecutionJob).with(rule.id)
+      end.to have_enqueued_job(RuleExecutionJob).with(rule)
     end
 
     it "returns count of enqueued rules" do
@@ -146,7 +146,7 @@ RSpec.describe RuleManager do
     it "enqueues a RuleExecutionJob" do
       expect do
         RuleManager.enqueue_rule_execution(rule)
-      end.to have_enqueued_job(RuleExecutionJob).with(rule.id)
+      end.to have_enqueued_job(RuleExecutionJob).with(rule)
     end
   end
 

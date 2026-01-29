@@ -4,6 +4,9 @@
 
 **Type:** Models  
 **File:** `data_point/batch_actions.rb`
+<Badge type="warning" text="File Coverage: 12.04%" />
+<Badge type="info" text="13/322 lines" />
+
 
 This model inherits from `ActiveRecord::Base`, providing database persistence, validations, associations, and callbacks. See [ActiveRecord::Base](https://api.rubyonrails.org/classes/ActiveRecord/Base.html) for the complete API.
 
@@ -42,7 +45,7 @@ This model inherits from `ActiveRecord::Base`, providing database persistence, v
 
 - **Examples for this class**: 14
 - **Test file**: `spec/models/data_point/batch_actions_spec.rb`
-- **Last tested**: 2026-01-29 00:23:13
+- **Last tested**: 2026-01-29 03:56:17
 
 :::
 
@@ -54,31 +57,52 @@ This model inherits from `ActiveRecord::Base`, providing database persistence, v
 ## Methods
 
 - `batch_aggregate_by_window`
+  <Badge type="warning" text="Coverage: 1.19%" />
+  <small>Uncovered lines: 203, 204, 205, 206, 207...</small>
 - `batch_cleanup_for_asset`
+  <Badge type="warning" text="Coverage: 6.25%" />
+  <small>Uncovered lines: 59, 60, 61, 62, 63...</small>
 
   **Examples:**
   - deletes old data points for a specific asset
   - works with asset ID
 
 - `batch_cleanup_for_attribute`
+  <Badge type="warning" text="Coverage: 6.67%" />
+  <small>Uncovered lines: 89, 90, 91, 92, 93...</small>
 
   **Examples:**
   - deletes old data points for a specific attribute
 
 - `batch_cleanup_older_than`
+  <Badge type="warning" text="Coverage: 6.67%" />
+  <small>Uncovered lines: 30, 31, 32, 33, 34...</small>
 
   **Examples:**
   - deletes data points older than the given timestamp
   - does not delete recent data points
   - returns the number of records deleted
 
+- `batch_delete`
+  <Badge type="warning" text="Coverage: 20.0%" />
+  <small>Uncovered lines: 297, 298, 299, 300</small>
+
+  **Examples:**
+  - deletes duplicate data points, keeping the most recent
+
 - `batch_delete_duplicates`
+  <Badge type="warning" text="Coverage: 2.63%" />
+  <small>Uncovered lines: 147, 148, 149, 150, 151...</small>
 
   **Examples:**
   - deletes duplicate data points, keeping the most recent
 
 - `batch_transform_values`
+  <Badge type="warning" text="Coverage: 7.69%" />
+  <small>Uncovered lines: 119, 120, 121, 122, 123...</small>
 - `extract_numeric_value`
+  <Badge type="warning" text="Coverage: 14.29%" />
+  <small>Uncovered lines: 313, 314, 315, 316, 317...</small>
 
 
 ## Examples
@@ -123,6 +147,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_poin
 
 ```ruby
       expect { DataPoint.batch_cleanup_for_asset(asset, 1.month.ago) }
+      expect { DataPoint.batch_cleanup_for_asset(asset, 1.month.ago) }
 ```
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:45`_
@@ -134,23 +159,24 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_poin
       expect { DataPoint.batch_cleanup_for_asset(asset.id, 1.month.ago) }
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:51`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:52`_
 
 
 ### deletes old data points for a specific attribute
 
 ```ruby
       expect { DataPoint.batch_cleanup_for_attribute("power", 1.month.ago) }
+      expect { DataPoint.batch_cleanup_for_attribute("power", 1.month.ago) }
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:60`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:61`_
 
 
 ### transforms values using a block
 
 
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:68`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:70`_
 
 
 ### handles errors gracefully
@@ -160,7 +186,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_poin
       expect(results[:errors].first[:error]).to eq("Test error")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:78`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:80`_
 
 
 ### deletes duplicate data points, keeping the most recent
@@ -169,7 +195,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_poin
       expect { DataPoint.batch_delete_duplicates }
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:92`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:94`_
 
 
 ### keeps the data point with the highest ID
@@ -179,7 +205,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_poin
       expect(remaining.first.id).to eq([ duplicate1.id, duplicate2.id, duplicate3.id ].max)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:97`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:99`_
 
 
 ### creates aggregated data points by time window
@@ -190,25 +216,27 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_poin
       expect(aggregated.first.value["aggregated"]).to be true
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:110`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:122`_
 
 
 ### calculates average correctly
 
 ```ruby
-      expect(aggregated.value["value"]).to be_within(0.01).of(200.0) # (100 + 200) / 2
+      expect(aggregated).not_to be_nil
+      expect(aggregated.value["value"]).to be_within(0.01).of(150.0) # (100 + 200) / 2
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:119`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:131`_
 
 
 ### supports sum aggregation
 
 ```ruby
+      expect(aggregated).not_to be_nil
       expect(aggregated.value["value"]).to eq(300.0) # 100 + 200
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:125`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:142`_
 
 
 ## Source Code

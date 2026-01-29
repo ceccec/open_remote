@@ -4,6 +4,9 @@
 
 **Type:** Models  
 **File:** `rule.rb`
+<Badge type="warning" text="File Coverage: 79.55%" />
+<Badge type="info" text="35/133 lines" />
+
 
 This model inherits from `ApplicationRecord`, providing database persistence, validations, associations, scopes, callbacks, query methods, and more. See [ApplicationRecord](https://api.rubyonrails.org/classes/ApplicationRecord.html) for the complete API.
 **Rails Framework References:**
@@ -73,19 +76,30 @@ These modules extend the class with additional behavior. Concerns use [ActiveSup
 ## Methods
 
 - `execution_counts`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `has_failed_executions?`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `last_execution`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `last_successful_execution`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `scheduled?`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `then_config_presence`
+  <Badge type="warning" text="Coverage: 66.67%" />
+  <small>Uncovered lines: 130</small>
 - `then_config_pretty_json`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
   **Examples:**
   - returns pretty JSON representations of configs
   - pretty prints empty configs as empty objects/arrays
 
 - `when_config_presence`
+  <Badge type="warning" text="Coverage: 66.67%" />
+  <small>Uncovered lines: 119</small>
 - `when_config_pretty_json`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
   **Examples:**
   - returns pretty JSON representations of configs

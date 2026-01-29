@@ -182,7 +182,7 @@ Use `debug` helper when needed:
 
 ```erb
 <%= debug @user %>
-```
+```ruby
 
 **Status:** ✅ **No Issues** - Available when needed.
 
@@ -193,13 +193,13 @@ Use `debug` helper when needed:
 **Recommendation:**
 Consider explicit log level configuration:
 
-```ruby
+```
 # config/environments/development.rb
 config.log_level = :debug
 
 # config/environments/production.rb
 config.log_level = :info
-```
+```ruby
 
 **Status:** ✅ **No Issues** - Defaults are appropriate.
 
@@ -240,10 +240,10 @@ config.log_level = :info
 
 ### Medium Priority
 1. **Enable query log tags:**
-   ```ruby
+   ```
    # config/environments/development.rb
    config.active_record.query_log_tags_enabled = true
-   ```
+   ```ruby
    This adds context to SQL queries for better debugging.
 
 2. **Optimize logging performance:**

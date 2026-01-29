@@ -4,6 +4,9 @@
 
 **Type:** Models  
 **File:** `test_expectations.rb`
+<Badge type="warning" text="File Coverage: 59.21%" />
+<Badge type="info" text="45/206 lines" />
+
 
 This model inherits from `ActiveRecord::Base`, providing database persistence, validations, associations, and callbacks. See [ActiveRecord::Base](https://api.rubyonrails.org/classes/ActiveRecord/Base.html) for the complete API.
 
@@ -54,14 +57,25 @@ These modules extend the class with additional behavior. Concerns use [ActiveSup
 ## Methods
 
 - `associates_feature`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `feature`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `feature_documentation`
+  <Badge type="warning" text="Coverage: 4.0%" />
+  <small>Uncovered lines: 179, 180, 181, 182, 183...</small>
 - `features_of_type`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `generate_test`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `provides_feature`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `rails_api_info`
+  <Badge type="warning" text="Coverage: 36.71%" />
+  <small>Uncovered lines: 90, 95, 96, 101, 102...</small>
 - `scopes_feature`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `validates_feature`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
 
 

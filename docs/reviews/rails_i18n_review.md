@@ -25,7 +25,7 @@ The application demonstrates **minimal** I18n usage with basic locale configurat
 ```yaml
 en:
   hello: "Hello world"
-```
+```ruby
 
 ✅ **Strengths:**
 - Basic locale file exists
@@ -97,7 +97,7 @@ flash[:alert] = t("sessions.invalid_credentials")
 en:
   sessions:
     invalid_credentials: "Invalid email or password"
-```
+```ruby
 
 **Status:** ⚠️ **Optional Enhancement** - Not needed if application is English-only.
 
@@ -108,7 +108,7 @@ en:
 **Recommendation:**
 If multi-language support is needed, implement locale switching:
 
-```ruby
+```
 # app/controllers/application_controller.rb
 around_action :switch_locale
 
@@ -116,7 +116,7 @@ def switch_locale(&action)
   locale = params[:locale] || I18n.default_locale
   I18n.with_locale(locale, &action)
 end
-```
+```ruby
 
 **Status:** ⚠️ **Optional Enhancement** - Only needed if multi-language support is required.
 
@@ -153,7 +153,7 @@ en:
       user:
         email: "Email"
         password: "Password"
-```
+```ruby
 
 **Status:** ⚠️ **Optional Enhancement** - Only needed if custom model/attribute names are required.
 
@@ -177,7 +177,7 @@ en:
       default: "%Y-%m-%d %H:%M:%S"
       short: "%b %d, %H:%M"
       long: "%B %d, %Y at %I:%M %p"
-```
+```ruby
 
 **Status:** ⚠️ **Optional Enhancement** - Only needed if custom formats are required.
 

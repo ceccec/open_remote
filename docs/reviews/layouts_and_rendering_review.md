@@ -41,7 +41,7 @@ The application demonstrates **excellent** use of layouts and rendering with pro
     <%= yield %>
   </body>
 </html>
-```
+```ruby
 
 ✅ **Strengths:**
 - Proper HTML5 structure
@@ -66,7 +66,7 @@ The application demonstrates **excellent** use of layouts and rendering with pro
     <%= yield %>
   </body>
 </html>
-```
+```ruby
 
 ✅ **Strengths:**
 - Proper email HTML structure
@@ -133,7 +133,7 @@ redirect_to main_app.root_path, alert: "..."
 ```erb
 <%= content_for(:title) || "Open Remote" %>
 <%= yield :head %>
-```
+```ruby
 
 ✅ **Strengths:**
 - Uses `content_for(:title)` with fallback
@@ -151,7 +151,7 @@ redirect_to main_app.root_path, alert: "..."
 <%= javascript_importmap_tags %>
 <%= vite_client_tag %>
 <%= vite_javascript_tag 'application' %>
-```
+```ruby
 
 ✅ **Strengths:**
 - Proper use of meta tag helpers
@@ -176,7 +176,7 @@ Add flash message display to `application.html.erb`:
     <%= msg %>
   </div>
 <% end %>
-```
+```ruby
 
 **Status:** ⚠️ **Enhancement Needed** - Flash messages should be displayed in the layout.
 
@@ -199,13 +199,13 @@ Consider extracting common elements to partials:
 **Recommendation:**
 If you need different layouts for different sections (e.g., admin vs. public), consider nested layouts:
 
-```ruby
+```
 # In controller
 layout "admin"
 
 # In app/views/layouts/admin.html.erb
 <%= render template: "layouts/application" %>
-```
+```ruby
 
 **Status:** ✅ **No Issues** - Single layout is sufficient for current needs.
 

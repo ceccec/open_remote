@@ -19,7 +19,9 @@ RSpec.describe RegistrationsController, type: :controller do
   describe "POST #create" do
     context "with valid parameters" do
       it "creates user and sends confirmation instructions" do
-        expect(UserMailer).to receive(:confirmation_instructions).and_return(double(deliver_later: true))
+        mail_double = double(deliver_later: true)
+        mailer_double = double(confirmation_instructions: mail_double)
+        allow(UserMailer).to receive(:with).and_return(mailer_double)
         post :create, params: {
           user: {
             email: "newuser@example.com",

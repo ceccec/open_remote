@@ -12,6 +12,7 @@
 #
 module DataPoint::BatchActions
   extend ActiveSupport::Concern
+  require "set"
 
     class_methods do
       ##
@@ -144,20 +145,35 @@ module DataPoint::BatchActions
       #
       def batch_delete_duplicates(batch_size: 1000)
         total_deleted = 0
+        processed_groups = Set.new
 
-        # Find duplicate groups
-        duplicate_groups = select(:asset_id, :attribute_name, :timestamp)
-          .group(:asset_id, :attribute_name, :timestamp)
-          .having("COUNT(*) > 1")
-          .pluck(:asset_id, :attribute_name, :timestamp)
+        # Load all records and group by asset_id, attribute_name, timestamp (rounded to second), and value
+        # This handles timestamp microsecond precision and ensures only true duplicates (same value) are grouped
+        all_points = select(:id, :asset_id, :attribute_name, :timestamp, :value).to_a
 
-        duplicate_groups.each do |asset_id, attribute_name, timestamp|
+        # Group by asset_id, attribute_name, timestamp rounded to second, and value
+        # Use change(usec: 0) to round down to beginning of second
+        grouped = all_points.group_by do |dp|
+          timestamp_second = dp.timestamp.change(usec: 0)
+          [ dp.asset_id, dp.attribute_name, timestamp_second, dp.value ]
+        end
+
+        # Process each group that has duplicates
+        grouped.each do |(asset_id, attribute_name, timestamp_second, value), points|
+          next if points.length <= 1
+
+          # Find all duplicates within the same second with the same value using database query
+          # Use change(usec: 0) for start and change(usec: 999999) for end of second
+          timestamp_start = timestamp_second.change(usec: 0)
+          timestamp_end = timestamp_second.change(usec: 999999)
+
           # Keep the most recent (highest ID), delete the rest
           duplicates = where(
             asset_id: asset_id,
             attribute_name: attribute_name,
-            timestamp: timestamp
-          ).order(id: :desc)
+            value: value
+          ).where("timestamp >= ? AND timestamp <= ?", timestamp_start, timestamp_end)
+            .order(id: :desc)
 
           # Skip the first (keep it), delete the rest
           to_delete = duplicates.offset(1).limit(batch_size)
@@ -207,10 +223,23 @@ module DataPoint::BatchActions
             # Calculate window start time
             window_start = case window_size
             when /(\d+)\s*hour/i
-              dp.timestamp.beginning_of_hour + ($1.to_i * (dp.timestamp.hour / $1.to_i).floor).hours
+              hours = $1.to_i
+              if hours == 1
+                # Single hour window - use beginning of hour
+                dp.timestamp.beginning_of_hour
+              else
+                # Multi-hour window - round down to nearest window boundary
+                hour_offset = (dp.timestamp.hour / hours).floor * hours
+                dp.timestamp.beginning_of_day + hour_offset.hours
+              end
             when /(\d+)\s*day/i
-              dp.timestamp.beginning_of_day + ($1.to_i * (dp.timestamp.day / $1.to_i).floor).days
+              days = $1.to_i
+              # Round down to the nearest day boundary
+              day_offset = (dp.timestamp.to_date - dp.timestamp.beginning_of_year.to_date).to_i
+              day_offset = (day_offset / days).floor * days
+              dp.timestamp.beginning_of_year + day_offset.days
             else
+              # Default to hourly windows
               dp.timestamp.beginning_of_hour
             end
             [ asset_id, attribute_name, window_start ]
@@ -255,6 +284,21 @@ module DataPoint::BatchActions
         end
 
         results
+      end
+
+      ##
+      # Delete multiple records by ID.
+      # Delegates to BatchActions concern.
+      #
+      # @param ids [Array<Integer>, ActiveRecord::Relation] IDs or relation to delete
+      # @return [Integer] number of records deleted
+      #
+      def batch_delete(ids)
+        # Delegate to BatchActions concern method
+        relation = ids.is_a?(ActiveRecord::Relation) ? ids : where(id: ids)
+        count = relation.count
+        relation.delete_all
+        count
       end
 
       private

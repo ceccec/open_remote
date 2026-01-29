@@ -1,15 +1,32 @@
 ---
 title: ApplicationMailer
-description: API documentation for ApplicationMailer
-lastUpdated: 2026-01-28T21:47:06Z
+description: Base mailer for all application emails., Email mailer, includes ActionDispatch::Routing::RouteSet::MountedHelpers, AbstractController::UrlFor, ActionDispatch:...
+lastUpdated: 2026-01-29T01:42:54Z
 tags:
   - mailer
   - api
+head:
+  - - meta
+    - name: keywords
+      content: ApplicationMailer, mailer, rails, api, ruby, actionmailer, email, ActionDispatch::Routing::RouteSet::MountedHelpers, AbstractController::UrlFor, ActionDispatch::Routing::UrlFor, ActionDispatch::Routing::PolymorphicRoutes, AbstractController::Caching, AbstractController::Caching::ConfigMethods, AbstractController::Caching::Fragments, AbstractController::Callbacks, AbstractController::AssetPaths, AbstractController::Translation, AbstractController::Helpers, AbstractController::Logger, AbstractController::Rendering, ActionMailer::FormBuilder, ActionMailer::Previews, ActionMailer::Parameterized, ActionMailer::Rescuable, ActionMailer::QueuedDelivery, ActionMailer::DeliveryMethods, ActionMailer::Callbacks, JSON::Ext::Generator::GeneratorMethods::Object
+  - - meta
+    - property: og:title
+      content: ApplicationMailer - OpenRemote Rails API
+  - - meta
+    - property: og:description
+      content: Base mailer for all application emails., Email mailer, includes ActionDispatch::Routing::RouteSet::MountedHelpers, AbstractController::UrlFor, ActionDispatch:...
+  - - meta
+    - property: og:type
+      content: website
 ---
 
 # ApplicationMailer <Badge type="warning" text="Mailer" />
 
-API documentation for ApplicationMailer
+Base mailer for all application emails.
+
+Provides default configuration for all mailers, including:
+- Default sender address
+- Mailer layout template
 
 ::: info File Location
 **Source:** `app/mailers/application_mailer.rb`
@@ -48,10 +65,45 @@ This mailer inherits from `ActionMailer::Base`, providing email composition. See
 - <Badge type="info" text="Module" /> `ActionMailer::Callbacks`
 - <Badge type="info" text="Module" /> `JSON::Ext::Generator::GeneratorMethods::Object`
 
+## Examples
+
+<Badge type="tip" text="1 example" />
+
+::: tip Creating a new mailer
+```ruby
+class UserMailer < ApplicationMailer
+  def welcome(user)
+    @user = user
+    mail(to: user.email, subject: "Welcome!")
+  end
+end
+```
+:::
+
+::: details 📊 Coverage & Testing Statistics
+
+### Test Suite Statistics
+
+<Badge type="tip" text="69 test files" />
+
+- **Total Test Files**: 69
+
+**Tests by Type:**
+
+- **Models**: 32 test files
+- **Other**: 13 test files
+- **Controllers**: 7 test files
+- **Services**: 7 test files
+- **Concerns**: 6 test files
+- **Jobs**: 3 test files
+- **Mailers**: 1 test file
+
+:::
+
 ::: info Test Examples
-Comprehensive test-driven examples are available in the [Examples section](/examples/).
+Comprehensive test-driven examples are available in the [Examples section](/docs/examples/).
 :::
 
 ---
 
-<Badge type="info" text="Navigation" /> [← Back to Index](/api/)
+<Badge type="info" text="Navigation" /> [← Back to Index](/docs/api/)

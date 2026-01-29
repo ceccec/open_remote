@@ -6,3 +6,9 @@ inherit_gem: { rubocop-rails-omakase: rubocop.yml }
 # # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
 # Layout/SpaceInsideArrayLiteralBrackets:
 #   Enabled: false
+
+# Exclude node_modules and other generated directories
+AllCops:
+  Exclude:
+    - 'docs/node_modules/**/*'
+    - 'node_modules/**/*'

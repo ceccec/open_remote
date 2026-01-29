@@ -30,6 +30,23 @@ class DocsGenerator
     @component_tree = {}
     @coverage_stats = compute_coverage_stats
     @test_stats = compute_test_stats
+    @coverage_integration = load_coverage_integration
+  end
+
+  ##
+  # Load DocsCoverageIntegration if available
+  #
+  def load_coverage_integration
+    coverage_integration_path = Rails.root.join("lib", "tasks", "docs_coverage_integration.rb")
+    if coverage_integration_path.exist?
+      require_relative "docs_coverage_integration"
+      DocsCoverageIntegration.new
+    else
+      nil
+    end
+  rescue StandardError => e
+    Rails.logger.warn("Could not load coverage integration: #{e.message}") if defined?(Rails.logger)
+    nil
   end
 
   def generate
@@ -1008,14 +1025,20 @@ class DocsGenerator
 
   ##
   # Extract method definitions from file.
+  # Returns array of hashes with :name and :line_number
   #
   def extract_methods(content)
     methods = []
-    content.scan(/^\s*(def\s+(?:self\.)?([\w?!=]+)|def\s+self\.([\w?!=]+))/).each do |match|
-      method_name = match[1] || match[2]
-      methods << method_name if method_name
+    content.lines.each_with_index do |line, index|
+      if line =~ /^\s*def\s+(?:self\.)?([\w?!=]+)/
+        method_name = $1
+        methods << { name: method_name, line_number: index + 1 }
+      elsif line =~ /^\s*def\s+self\.([\w?!=]+)/
+        method_name = $1
+        methods << { name: method_name, line_number: index + 1 }
+      end
     end
-    methods.uniq
+    methods.uniq { |m| m[:name] }
   end
 
   ##
@@ -1253,11 +1276,18 @@ class DocsGenerator
     methods = component[:methods] || []
 
     # Avoid generating extremely large method lists (can slow/bug VitePress rendering)
-    methods = methods.sort
+    methods = methods.sort_by { |m| m.is_a?(Hash) ? m[:name] : m.to_s }
     methods_truncated = false
     if methods.length > MAX_METHODS_PER_COMPONENT
       methods = methods.first(MAX_METHODS_PER_COMPONENT)
       methods_truncated = true
+    end
+
+    # Get file-level coverage if available
+    file_coverage = nil
+    if @coverage_integration && component[:file_path]
+      file_path = component[:file_path].is_a?(Pathname) ? component[:file_path] : Pathname.new(component[:file_path])
+      file_coverage = @coverage_integration.coverage_for_file(file_path) if file_path.exist?
     end
 
     # Generate Rails API reference links
@@ -1270,6 +1300,7 @@ class DocsGenerator
 
       **Type:** #{component[:type].to_s.capitalize}#{'  '}
       **File:** `#{component[:relative_path]}`
+      #{file_coverage ? generate_file_coverage_badge(file_coverage) : ""}
       #{rails_api_links}
 
       #{generate_detailed_stats_section(class_name)}
@@ -1279,7 +1310,7 @@ class DocsGenerator
 
       ## Methods
 
-      #{generate_methods_doc(class_name, methods, examples)}
+      #{generate_methods_doc(class_name, methods, examples, component[:file_path])}
       #{methods_truncated ? "\n\n_Note: method list truncated to first 50 entries._" : ""}
 
       #{examples.any? ? "## Examples\n\nThe following examples are extracted from test files:\n\n#{examples.map { |ex| generate_example_markdown(ex) }.join("\n\n")}" : ""}
@@ -1389,11 +1420,11 @@ class DocsGenerator
   def extract_class_description(class_name)
     # Try to find the class file and extract its description
     file_path = Rails.root.join("app", "models", "#{class_name.underscore}.rb")
-    file_path = Rails.root.join("app", "services", "#{class_name.underscore}.rb") unless File.exist?(file_path)
-    file_path = Rails.root.join("app", "controllers", "#{class_name.underscore}_controller.rb") unless File.exist?(file_path)
+    file_path = Rails.root.join("app", "services", "#{class_name.underscore}.rb") unless file_path.exist?
+    file_path = Rails.root.join("app", "controllers", "#{class_name.underscore}_controller.rb") unless file_path.exist?
 
-    if File.exist?(file_path)
-      content = File.read(file_path)
+    if file_path.exist?
+      content = file_path.read
       if content =~ /^##\s*(.+)$/
         $1.strip
       else
@@ -1417,15 +1448,36 @@ class DocsGenerator
     MARKDOWN
   end
 
-  def generate_methods_doc(class_name, methods, examples)
+  def generate_methods_doc(class_name, methods, examples, file_path = nil)
     return "No methods documented." if methods.empty?
 
     lines = []
 
     methods.each do |method|
-      lines << "- `#{method}`"
+      method_name = method.is_a?(Hash) ? method[:name] : method.to_s
+      method_line = method.is_a?(Hash) ? method[:line_number] : nil
 
-      method_examples = examples.select { |ex| ex[:code].join.include?(method.to_s) }
+      lines << "- `#{method_name}`"
+
+      # Add method-level coverage badge if available
+      if @coverage_integration && file_path && method_line
+        file_path_obj = file_path.is_a?(Pathname) ? file_path : Pathname.new(file_path)
+        method_coverage = @coverage_integration.coverage_for_method(file_path_obj, method_name, method_line)
+        if method_coverage && method_coverage[:coverage_percentage]
+          coverage_pct = method_coverage[:coverage_percentage]
+          badge_type = coverage_pct >= 100 ? "tip" : coverage_pct >= 80 ? "info" : "warning"
+          lines << "  <Badge type=\"#{badge_type}\" text=\"Coverage: #{coverage_pct}%\" />"
+
+          # Show uncovered lines if any
+          if method_coverage[:uncovered_lines]&.any?
+            uncovered = method_coverage[:uncovered_lines].first(5).join(", ")
+            uncovered += "..." if method_coverage[:uncovered_lines].length > 5
+            lines << "  <small>Uncovered lines: #{uncovered}</small>"
+          end
+        end
+      end
+
+      method_examples = examples.select { |ex| ex[:code].join.include?(method_name) }
                                  .first(MAX_EXAMPLE_REFERENCES_PER_METHOD)
       next if method_examples.empty?
 
@@ -1736,10 +1788,10 @@ class DocsGenerator
 
     # Try to read SimpleCov JSON result if available
     coverage_json_path = Rails.root.join("coverage", ".resultset.json")
-    if File.exist?(coverage_json_path)
+    if coverage_json_path.exist?
       begin
         require "json"
-        coverage_data = JSON.parse(File.read(coverage_json_path))
+        coverage_data = JSON.parse(coverage_json_path.read)
 
         # SimpleCov stores data by command name, usually "RSpec"
         rspec_data = coverage_data["RSpec"] || coverage_data.values.first
@@ -1759,7 +1811,7 @@ class DocsGenerator
         end
 
         # Get last updated time
-        stats[:last_updated] = File.mtime(coverage_json_path).iso8601
+        stats[:last_updated] = coverage_json_path.mtime.iso8601
       rescue JSON::ParserError, StandardError => e
         # If parsing fails, return empty stats
         Rails.logger.warn("Could not parse coverage data: #{e.message}") if defined?(Rails.logger)
@@ -1813,6 +1865,25 @@ class DocsGenerator
   end
 
   ##
+  # Generate file-level coverage badge
+  #
+  def generate_file_coverage_badge(file_coverage)
+    return "" unless file_coverage && file_coverage[:coverage_percentage]
+
+    coverage = file_coverage[:coverage_percentage]
+    covered_lines = file_coverage[:covered_lines]&.count || 0
+    uncovered_lines = file_coverage[:uncovered_lines]&.count || 0
+    total_lines = covered_lines + uncovered_lines
+
+    badge_type = coverage >= 100 ? "tip" : coverage >= 90 ? "info" : "warning"
+
+    <<~MARKDOWN
+      <Badge type="#{badge_type}" text="File Coverage: #{coverage}%" />
+      <Badge type="info" text="#{covered_lines}/#{total_lines} lines" />
+    MARKDOWN
+  end
+
+  ##
   # Generate coverage and testing statistics badge/display for pages
   #
   def generate_coverage_stats_badge
@@ -1859,7 +1930,7 @@ class DocsGenerator
       {
         examples_count: examples.count,
         test_file: examples.first&.dig(:file),
-        last_tested: examples.map { |e| File.mtime(e[:file]) if File.exist?(e[:file]) }.compact.max&.iso8601
+        last_tested: examples.map { |e| Pathname.new(e[:file]).mtime if Pathname.new(e[:file]).exist? }.compact.max&.iso8601
       }
     else
       nil

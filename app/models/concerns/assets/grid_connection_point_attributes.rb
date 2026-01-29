@@ -1,39 +1,14 @@
+##
+# Concern providing GridConnectionPoint attribute accessors.
+#
+# Delegates to Asset::Type::Grid::Connection::Point::Attributes to avoid duplication.
+# This module is extended on Asset instances via Assets::TypeDispatch.
+#
 module Assets
   module GridConnectionPointAttributes
-    def connection_capacity
-      (attributes_data || {})["connectionCapacity"]
-    end
-
-    def active_power
-      (attributes_data || {})["activePower"]
-    end
-
-    def reactive_power
-      (attributes_data || {})["reactivePower"]
-    end
-
-    def voltage
-      (attributes_data || {})["voltage"]
-    end
-
-    def frequency
-      (attributes_data || {})["frequency"]
-    end
-
-    def energy_exported
-      (attributes_data || {})["energyExported"]
-    end
-
-    def energy_imported
-      (attributes_data || {})["energyImported"]
-    end
-
-    def connection_status
-      (attributes_data || {})["connectionStatus"]
-    end
-
-    def location
-      (attributes_data || {})["location"]
-    end
+    # Include Asset::Type::Grid::Connection::Point::Attributes to reuse its implementation
+    # This ensures DRY: single source of truth for GridConnectionPoint attribute methods
+    # When this module is extended on an instance, these methods become instance methods
+    include Asset::Type::Grid::Connection::Point::Attributes
   end
 end

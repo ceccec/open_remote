@@ -4,6 +4,9 @@
 
 **Type:** Models  
 **File:** `rule/references.rb`
+<Badge type="warning" text="File Coverage: 34.04%" />
+<Badge type="info" text="16/197 lines" />
+
 
 This model inherits from `ActiveRecord::Base`, providing database persistence, validations, associations, and callbacks. See [ActiveRecord::Base](https://api.rubyonrails.org/classes/ActiveRecord/Base.html) for the complete API.
 
@@ -48,16 +51,34 @@ This model inherits from `ActiveRecord::Base`, providing database persistence, v
 ## Methods
 
 - `asset_type_references`
+  <Badge type="warning" text="Coverage: 16.67%" />
+  <small>Uncovered lines: 165, 166, 167, 168, 169</small>
 - `by_asset_type_reference`
+  <Badge type="warning" text="Coverage: 14.29%" />
+  <small>Uncovered lines: 147, 148, 149, 150, 151...</small>
 - `extract_asset_type_references`
+  <Badge type="warning" text="Coverage: 5.56%" />
+  <small>Uncovered lines: 115, 116, 117, 118, 119...</small>
 - `grouped_by_enabled_status`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `reference_map`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `reference_path`
+  <Badge type="warning" text="Coverage: 33.33%" />
+  <small>Uncovered lines: 40, 41</small>
 - `referenced_asset_types`
+  <Badge type="warning" text="Coverage: 25.0%" />
+  <small>Uncovered lines: 87, 88, 89</small>
 - `referenced_assets`
+  <Badge type="warning" text="Coverage: 12.5%" />
+  <small>Uncovered lines: 68, 69, 70, 71, 72...</small>
 - `references_asset_type?`
+  <Badge type="warning" text="Coverage: 50.0%" />
+  <small>Uncovered lines: 103</small>
 - `related_executions`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `related_notifications`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
 
 

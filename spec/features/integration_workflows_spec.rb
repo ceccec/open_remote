@@ -364,9 +364,13 @@ RSpec.describe "End-to-End Integration Workflows", type: :feature do
       # Create rule based on analysis
       threshold = (monday_avg * 0.5).to_i # 50% below average
 
-      # Ensure we have an asset that matches the condition (below threshold)
-      array_with_low_power = park.children.first
-      array_with_low_power.update!(attributes_data: array_with_low_power.attributes_data.merge("powerOutput" => threshold - 1000))
+      # Create a child asset (solar array) that matches the condition (below threshold)
+      array_with_low_power = Asset.create!(
+        name: "Low Power Array",
+        parent: park,
+        asset_type: AssetType.find_or_create_by!(name: "SolarArray") { |at| at.display_name = "Solar Array" },
+        attributes_data: { "powerOutput" => threshold - 1000 }
+      )
 
       performance_rule = Rule.create!(
         name: "Performance Degradation Alert",

@@ -4,6 +4,9 @@
 
 **Type:** Services  
 **File:** `pseudo_clock.rb`
+<Badge type="warning" text="File Coverage: 44.44%" />
+<Badge type="info" text="8/54 lines" />
+
 
 
 ::: details 📊 Coverage & Testing Statistics
@@ -45,9 +48,16 @@
 ## Methods
 
 - `initialize`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `set_time`
+  <Badge type="warning" text="Coverage: 14.29%" />
+  <small>Uncovered lines: 26, 27, 28, 29, 30...</small>
 - `set_time_iso`
+  <Badge type="warning" text="Coverage: 50.0%" />
+  <small>Uncovered lines: 41</small>
 - `zone_offset_for`
+  <Badge type="warning" text="Coverage: 20.0%" />
+  <small>Uncovered lines: 48, 49, 50, 51</small>
 
 
 ## Examples

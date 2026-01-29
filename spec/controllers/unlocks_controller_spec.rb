@@ -82,7 +82,9 @@ RSpec.describe UnlocksController, type: :controller do
       end
 
       it "sends unlock instructions and redirects" do
-        expect(UserMailer).to receive(:unlock_instructions).with(user).and_return(double(deliver_later: true))
+        mail_double = double(deliver_later: true)
+        mailer_double = double(unlock_instructions: mail_double)
+        expect(UserMailer).to receive(:with).with(user: user).and_return(mailer_double)
         post :create, params: { user: { email: user.email } }
         expect(response).to redirect_to("/login")
         expect(flash[:notice]).to eq("Unlock instructions have been sent to your email.")

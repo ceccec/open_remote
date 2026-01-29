@@ -1,7 +1,7 @@
 ---
 title: InteractionDocumentation::ClassMethods
 description: Documents model interactions enabled by concerns.
-lastUpdated: 2026-01-28T21:47:06Z
+lastUpdated: 2026-01-29T01:42:54Z
 tags:
   - concern
   - api
@@ -30,9 +30,9 @@ Generates documentation showing how models interact through shared concerns.
 :::
 
 ::: info Test Examples
-Comprehensive test-driven examples are available in the [Examples section](/examples/).
+Comprehensive test-driven examples are available in the [Examples section](/docs/examples/).
 :::
 
 ---
 
-<Badge type="info" text="Navigation" /> [← Back to Index](/api/)
+<Badge type="info" text="Navigation" /> [← Back to Index](/docs/api/)

@@ -4,6 +4,9 @@
 
 **Type:** Models  
 **File:** `feature_generator.rb`
+<Badge type="warning" text="File Coverage: 15.56%" />
+<Badge type="info" text="14/181 lines" />
+
 
 This model inherits from `ActiveRecord::Base`, providing database persistence, validations, associations, and callbacks. See [ActiveRecord::Base](https://api.rubyonrails.org/classes/ActiveRecord/Base.html) for the complete API.
 
@@ -48,17 +51,38 @@ This model inherits from `ActiveRecord::Base`, providing database persistence, v
 ## Methods
 
 - `generate_association_test`
+  <Badge type="warning" text="Coverage: 10.0%" />
+  <small>Uncovered lines: 95, 96, 97, 98, 99...</small>
 - `generate_association_tests`
+  <Badge type="warning" text="Coverage: 14.29%" />
+  <small>Uncovered lines: 85, 86, 87, 88, 89...</small>
 - `generate_documentation`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `generate_feature_example`
+  <Badge type="warning" text="Coverage: 2.38%" />
+  <small>Uncovered lines: 138, 139, 140, 141, 142...</small>
 - `generate_feature_spec`
+  <Badge type="warning" text="Coverage: 7.14%" />
+  <small>Uncovered lines: 29, 30, 31, 32, 33...</small>
 - `generate_method_tests`
+  <Badge type="warning" text="Coverage: 8.33%" />
+  <small>Uncovered lines: 108, 109, 110, 111, 112...</small>
 - `generate_scope_tests`
+  <Badge type="warning" text="Coverage: 8.33%" />
+  <small>Uncovered lines: 123, 124, 125, 126, 127...</small>
 - `generate_test`
+  <Badge type="warning" text="Coverage: 6.67%" />
+  <small>Uncovered lines: 11, 12, 13, 14, 15...</small>
 - `generate_validation_test`
+  <Badge type="warning" text="Coverage: 6.25%" />
+  <small>Uncovered lines: 66, 67, 68, 69, 70...</small>
 - `generate_validation_tests`
+  <Badge type="warning" text="Coverage: 14.29%" />
+  <small>Uncovered lines: 56, 57, 58, 59, 60...</small>
 - `has_features?`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `initialize`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
 
 

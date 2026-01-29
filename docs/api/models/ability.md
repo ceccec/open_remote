@@ -4,6 +4,9 @@
 
 **Type:** Models  
 **File:** `ability/admin.rb`
+<Badge type="warning" text="File Coverage: 62.5%" />
+<Badge type="info" text="5/25 lines" />
+
 
 This model inherits from `ActiveRecord::Base`, providing database persistence, validations, associations, and callbacks. See [ActiveRecord::Base](https://api.rubyonrails.org/classes/ActiveRecord/Base.html) for the complete API.
 
@@ -54,6 +57,8 @@ This model inherits from `ActiveRecord::Base`, providing database persistence, v
 ## Methods
 
 - `define`
+  <Badge type="warning" text="Coverage: 20.0%" />
+  <small>Uncovered lines: 18, 19, 20, 21</small>
 
 
 ## Examples

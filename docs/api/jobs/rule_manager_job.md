@@ -4,6 +4,9 @@
 
 **Type:** Jobs  
 **File:** `rule_manager_job.rb`
+<Badge type="warning" text="File Coverage: 60.0%" />
+<Badge type="info" text="3/17 lines" />
+
 
 This job inherits from `ApplicationJob`, enabling asynchronous background processing. Jobs are enqueued and executed by Active Job adapters. See [ApplicationJob](https://api.rubyonrails.org/classes/ApplicationJob.html) for the complete API.
 **Rails Framework References:**
@@ -50,6 +53,8 @@ This job inherits from `ApplicationJob`, enabling asynchronous background proces
 ## Methods
 
 - `perform`
+  <Badge type="warning" text="Coverage: 50.0%" />
+  <small>Uncovered lines: 14</small>
 
 
 ## Examples

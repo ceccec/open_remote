@@ -1,7 +1,7 @@
 ---
 title: Rule::Execution
 description: Runtime behavior for executing a `Rule` against the asset graph.
-lastUpdated: 2026-01-28T21:47:06Z
+lastUpdated: 2026-01-29T01:42:54Z
 tags:
   - concern
   - api
@@ -43,17 +43,20 @@ This concern uses `ActiveSupport::Concern` providing modular behavior. See [Acti
 
 ## Instance Methods
 
-<Badge type="info" text="1 instance method" />
+<Badge type="info" text="4 instance methods" />
 
-::: details View all 1 instance method
+::: details View all 4 instance methods
 
 - `execute!` -> `void` - Execute the rule once, recording a `RuleExecution` row.
+- `schedule_condition?` -> `Boolean`
+- `attribute_value_condition?` -> `Boolean`
+- `attribute_changed_condition?` -> `Boolean`
 :::
 
 ::: info Test Examples
-Comprehensive test-driven examples are available in the [Examples section](/examples/).
+Comprehensive test-driven examples are available in the [Examples section](/docs/examples/).
 :::
 
 ---
 
-<Badge type="info" text="Navigation" /> [← Back to Index](/api/)
+<Badge type="info" text="Navigation" /> [← Back to Index](/docs/api/)

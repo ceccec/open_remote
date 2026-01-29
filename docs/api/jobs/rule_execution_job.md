@@ -4,6 +4,9 @@
 
 **Type:** Jobs  
 **File:** `rule_execution_job.rb`
+<Badge type="warning" text="File Coverage: 60.0%" />
+<Badge type="info" text="3/22 lines" />
+
 
 This job inherits from `ApplicationJob`, enabling asynchronous background processing. Jobs are enqueued and executed by Active Job adapters. See [ApplicationJob](https://api.rubyonrails.org/classes/ApplicationJob.html) for the complete API.
 **Rails Framework References:**
@@ -38,7 +41,7 @@ This job inherits from `ApplicationJob`, enabling asynchronous background proces
 
 - **Examples for this class**: 3
 - **Test file**: `spec/jobs/rule_execution_job_spec.rb`
-- **Last tested**: 2026-01-28 16:08:55
+- **Last tested**: 2026-01-29 03:31:04
 
 :::
 
@@ -50,6 +53,8 @@ This job inherits from `ApplicationJob`, enabling asynchronous background proces
 ## Methods
 
 - `perform`
+  <Badge type="warning" text="Coverage: 25.0%" />
+  <small>Uncovered lines: 17, 18, 19</small>
 
   **Examples:**
   - executes the rule
@@ -63,7 +68,7 @@ The following examples are extracted from test files:
 ### executes the rule
 
 ```ruby
-      expect { RuleExecutionJob.perform_now(rule.id) }.to change { RuleExecution.count }.by(1)
+      expect { RuleExecutionJob.perform_now(rule) }.to change { RuleExecution.count }.by(1)
 ```
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/jobs/rule_execution_job_spec.rb:14`_
@@ -81,7 +86,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/jobs/rule_execut
 ### raises when rule is missing
 
 ```ruby
-      expect { RuleExecutionJob.perform_now(99999) }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { RuleExecutionJob.perform_now(missing_rule) }.to raise_error(ActiveRecord::RecordNotFound, "Rule not found")
 ```
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/jobs/rule_execution_job_spec.rb:25`_

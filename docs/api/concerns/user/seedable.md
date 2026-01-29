@@ -4,6 +4,9 @@
 
 **Type:** Concerns  
 **File:** `user/seedable.rb`
+<Badge type="warning" text="File Coverage: 18.42%" />
+<Badge type="info" text="7/107 lines" />
+
 
 This concern uses `ActiveSupport::Concern` to provide shared behavior across multiple classes. Concerns encapsulate cross-cutting functionality and can define class methods, instance methods, and callbacks. See [ActiveSupport::Concern](https://api.rubyonrails.org/classes/ActiveSupport/Concern.html) for the complete API.
 
@@ -51,8 +54,13 @@ This concern uses `ActiveSupport::Concern` to provide shared behavior across mul
 ## Methods
 
 - `ensure_default_roles!`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `ensure_super_admin!`
+  <Badge type="warning" text="Coverage: 2.38%" />
+  <small>Uncovered lines: 63, 64, 65, 66, 67...</small>
 - `generate_secure_password`
+  <Badge type="warning" text="Coverage: 5.56%" />
+  <small>Uncovered lines: 31, 32, 33, 34, 35...</small>
 
 
 ## Examples

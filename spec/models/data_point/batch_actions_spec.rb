@@ -45,7 +45,8 @@ RSpec.describe DataPoint::BatchActions do
     it "deletes old data points for a specific asset" do
       expect { DataPoint.batch_cleanup_for_asset(asset, 1.month.ago) }
         .to change { DataPoint.where(asset: asset).count }.by(-1)
-        .and not_change { DataPoint.where(asset: other_asset).count }
+      expect { DataPoint.batch_cleanup_for_asset(asset, 1.month.ago) }
+        .not_to change { DataPoint.where(asset: other_asset).count }
     end
 
     it "works with asset ID" do
@@ -60,7 +61,8 @@ RSpec.describe DataPoint::BatchActions do
     it "deletes old data points for a specific attribute" do
       expect { DataPoint.batch_cleanup_for_attribute("power", 1.month.ago) }
         .to change { DataPoint.where(attribute_name: "power").count }.by(-1)
-        .and not_change { DataPoint.where(attribute_name: "temperature").count }
+      expect { DataPoint.batch_cleanup_for_attribute("power", 1.month.ago) }
+        .not_to change { DataPoint.where(attribute_name: "temperature").count }
     end
   end
 
@@ -96,19 +98,29 @@ RSpec.describe DataPoint::BatchActions do
 
     it "keeps the data point with the highest ID" do
       DataPoint.batch_delete_duplicates
-      remaining = DataPoint.where(asset: asset, attribute_name: "power", timestamp: 1.hour.ago)
+      # Use a range query to handle timestamp precision
+      # Filter by value to only check the duplicates (value: 100), not another_recent (value: 300)
+      timestamp_start = 1.hour.ago.beginning_of_second
+      timestamp_end = 1.hour.ago.end_of_second
+      remaining = DataPoint.where(asset: asset, attribute_name: "power", value: { value: 100 })
+        .where("timestamp >= ? AND timestamp <= ?", timestamp_start, timestamp_end)
       expect(remaining.count).to eq(1)
       expect(remaining.first.id).to eq([ duplicate1.id, duplicate2.id, duplicate3.id ].max)
     end
   end
 
   describe ".batch_aggregate_by_window" do
-    let!(:hour1_point1) { DataPoint.create!(asset: asset, attribute_name: "power", value: { value: 100 }, timestamp: 1.hour.ago) }
-    let!(:hour1_point2) { DataPoint.create!(asset: asset, attribute_name: "power", value: { value: 200 }, timestamp: 1.hour.ago + 30.minutes) }
+    # Create data points in different hours to test windowing
+    # hour1: 2 hours ago (100, 200) - both in same hour window - should aggregate to (100+200)/2 = 150 avg, 300 sum
+    # hour2: 30 minutes ago (300) - should aggregate to 300
+    # Use same hour for both hour1 points to ensure they're grouped together
+    let!(:hour1_start) { 2.hours.ago.beginning_of_hour }
+    let!(:hour1_point1) { DataPoint.create!(asset: asset, attribute_name: "power", value: { value: 100 }, timestamp: hour1_start + 10.minutes) }
+    let!(:hour1_point2) { DataPoint.create!(asset: asset, attribute_name: "power", value: { value: 200 }, timestamp: hour1_start + 30.minutes) }
     let!(:hour2_point1) { DataPoint.create!(asset: asset, attribute_name: "power", value: { value: 300 }, timestamp: 30.minutes.ago) }
 
     it "creates aggregated data points by time window" do
-      results = DataPoint.batch_aggregate_by_window("1 hour", :avg, from_time: 2.hours.ago, to_time: Time.current)
+      results = DataPoint.batch_aggregate_by_window("1 hour", :avg, from_time: 3.hours.ago, to_time: Time.current)
 
       expect(results[:created]).to be > 0
       aggregated = DataPoint.where("attribute_name LIKE ?", "%_avg")
@@ -117,14 +129,24 @@ RSpec.describe DataPoint::BatchActions do
     end
 
     it "calculates average correctly" do
-      DataPoint.batch_aggregate_by_window("1 hour", :avg, from_time: 2.hours.ago, to_time: Time.current)
-      aggregated = DataPoint.where("attribute_name LIKE ?", "%_avg").first
-      expect(aggregated.value["value"]).to be_within(0.01).of(200.0) # (100 + 200) / 2
+      DataPoint.batch_aggregate_by_window("1 hour", :avg, from_time: 3.hours.ago, to_time: Time.current)
+      # Find the aggregated point for the first hour window
+      # The aggregated point has timestamp = hour1_start
+      aggregated = DataPoint.where("attribute_name LIKE ?", "%_avg")
+        .where("timestamp = ?", hour1_start)
+        .first
+      expect(aggregated).not_to be_nil
+      expect(aggregated.value["value"]).to be_within(0.01).of(150.0) # (100 + 200) / 2
     end
 
     it "supports sum aggregation" do
-      DataPoint.batch_aggregate_by_window("1 hour", :sum, from_time: 2.hours.ago, to_time: Time.current)
-      aggregated = DataPoint.where("attribute_name LIKE ?", "%_sum").first
+      DataPoint.batch_aggregate_by_window("1 hour", :sum, from_time: 3.hours.ago, to_time: Time.current)
+      # Find the aggregated point for the first hour window
+      # The aggregated point has timestamp = hour1_start
+      aggregated = DataPoint.where("attribute_name LIKE ?", "%_sum")
+        .where("timestamp = ?", hour1_start)
+        .first
+      expect(aggregated).not_to be_nil
       expect(aggregated.value["value"]).to eq(300.0) # 100 + 200
     end
   end

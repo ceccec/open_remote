@@ -93,7 +93,7 @@ Documentation generators analyze:
 
 ```bash
 rake docs:generate_all
-```
+```ruby
 
 This generates:
 - README.md
@@ -112,7 +112,7 @@ rake docs:interactions    # Generate interactions
 rake docs:capabilities   # Generate capabilities
 rake docs:architecture    # Generate architecture
 rake docs:api_index       # Generate API index
-```
+```ruby
 
 ## Benefits
 
@@ -160,7 +160,7 @@ rake docs:generate_all
 
 All documentation is compiled together in `docs/`:
 
-```
+```ruby
 .
 ├── README.md                    # Main project README (auto-generated)
 ├── docs/
@@ -179,7 +179,7 @@ All documentation is compiled together in `docs/`:
 
 VitePress builds from `docs/` to `public/docs/`:
 
-```
+```ruby
 public/
 └── docs/                        # Built documentation (accessible at /docs/)
     ├── index.html
@@ -201,7 +201,7 @@ Documentation is automatically generated in CI:
 # .github/workflows/docs.yml
 - name: Generate Documentation
   run: bundle exec rake docs:generate_all
-```
+```ruby
 
 ## See Also
 

@@ -4,6 +4,9 @@
 
 **Type:** Concerns  
 **File:** `user/confirmable.rb`
+<Badge type="warning" text="File Coverage: 50.0%" />
+<Badge type="info" text="14/86 lines" />
+
 
 This concern uses `ActiveSupport::Concern` to provide shared behavior across multiple classes. Concerns encapsulate cross-cutting functionality and can define class methods, instance methods, and callbacks. See [ActiveSupport::Concern](https://api.rubyonrails.org/classes/ActiveSupport/Concern.html) for the complete API.
 **Rails Framework References:**
@@ -49,11 +52,15 @@ This concern uses `ActiveSupport::Concern` to provide shared behavior across mul
 ## Methods
 
 - `confirm!`
+  <Badge type="warning" text="Coverage: 16.67%" />
+  <small>Uncovered lines: 35, 36, 37, 38, 39</small>
 
   **Examples:**
   - is idempotent
 
 - `confirmation_period_valid?`
+  <Badge type="warning" text="Coverage: 33.33%" />
+  <small>Uncovered lines: 60, 61</small>
 
   **Examples:**
   - returns false when confirmation_sent_at is nil
@@ -61,6 +68,7 @@ This concern uses `ActiveSupport::Concern` to provide shared behavior across mul
   - returns false when sent more than 24 hours ago
 
 - `confirmed?`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
   **Examples:**
   - returns false when not confirmed
@@ -68,8 +76,13 @@ This concern uses `ActiveSupport::Concern` to provide shared behavior across mul
   - marks user as confirmed
 
 - `generate_confirmation_token`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `generate_confirmation_token!`
+  <Badge type="warning" text="Coverage: 20.0%" />
+  <small>Uncovered lines: 80, 81, 82, 83</small>
 - `send_confirmation_instructions`
+  <Badge type="warning" text="Coverage: 25.0%" />
+  <small>Uncovered lines: 48, 49, 50</small>
 
 
 ## Examples

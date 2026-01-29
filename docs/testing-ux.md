@@ -1,7 +1,7 @@
 ---
 title: Testing Experience
 description: Comprehensive guide to testing in OpenRemote Rails. Learn test-driven development, RSpec workflows, 69 test files, 514 examples, and how tests generate documentation automatically.
-lastUpdated: 2026-01-28T23:56:12Z
+lastUpdated: 2026-01-29T01:57:09Z
 head:
   - - meta
     - name: keywords

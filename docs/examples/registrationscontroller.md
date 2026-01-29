@@ -16,7 +16,6 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/regi
 ### creates user and sends confirmation instructions
 
 ```ruby
-        expect(UserMailer).to receive(:confirmation_instructions).and_return(double(deliver_later: true))
         expect(created_user).to be_present
         expect(response).to redirect_to("/login")
         expect(flash[:notice]).to eq("Registration successful! Please check your email to confirm your account.")
@@ -33,7 +32,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/regi
         expect(response).to have_http_status(:unprocessable_content)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:38`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:40`_
 
 
 ---
@@ -44,7 +43,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/regi
         expect(response).to have_http_status(:unprocessable_content)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:38`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:40`_
 
 
 ---
@@ -55,7 +54,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/regi
       expect { get :edit }.to raise_error(ActionController::MissingExactTemplate)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:69`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:71`_
 
 
 ---
@@ -69,7 +68,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/regi
         expect(flash[:notice]).to eq("Account updated successfully.")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:82`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:84`_
 
 
 ---
@@ -80,7 +79,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/regi
         expect {
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:99`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:101`_
 
 
 ---
@@ -93,7 +92,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/regi
         expect(response).to redirect_to("/")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:113`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:115`_
 
 
 ---

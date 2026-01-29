@@ -4,6 +4,9 @@
 
 **Type:** Concerns  
 **File:** `user/lockable.rb`
+<Badge type="warning" text="File Coverage: 42.86%" />
+<Badge type="info" text="15/108 lines" />
+
 
 This concern uses `ActiveSupport::Concern` to provide shared behavior across multiple classes. Concerns encapsulate cross-cutting functionality and can define class methods, instance methods, and callbacks. See [ActiveSupport::Concern](https://api.rubyonrails.org/classes/ActiveSupport/Concern.html) for the complete API.
 
@@ -51,6 +54,8 @@ This concern uses `ActiveSupport::Concern` to provide shared behavior across mul
 ## Methods
 
 - `access_locked?`
+  <Badge type="warning" text="Coverage: 33.33%" />
+  <small>Uncovered lines: 20, 21</small>
 
   **Examples:**
   - returns false when not locked
@@ -60,12 +65,26 @@ This concern uses `ActiveSupport::Concern` to provide shared behavior across mul
   - locks the account
 
 - `generate_unlock_token!`
+  <Badge type="warning" text="Coverage: 20.0%" />
+  <small>Uncovered lines: 102, 103, 104, 105</small>
 - `increment_failed_attempts!`
+  <Badge type="warning" text="Coverage: 11.11%" />
+  <small>Uncovered lines: 30, 31, 32, 33, 34...</small>
 - `lock_access!`
+  <Badge type="warning" text="Coverage: 25.0%" />
+  <small>Uncovered lines: 46, 47, 48</small>
 - `lock_expired?`
+  <Badge type="warning" text="Coverage: 25.0%" />
+  <small>Uncovered lines: 81, 82, 83</small>
 - `reset_failed_attempts!`
+  <Badge type="warning" text="Coverage: 50.0%" />
+  <small>Uncovered lines: 93</small>
 - `send_unlock_instructions`
+  <Badge type="warning" text="Coverage: 33.33%" />
+  <small>Uncovered lines: 69, 70</small>
 - `unlock_access!`
+  <Badge type="warning" text="Coverage: 20.0%" />
+  <small>Uncovered lines: 57, 58, 59, 60</small>
 
 
 ## Examples

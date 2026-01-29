@@ -23,13 +23,22 @@ require "rspec/rails"
 Dir[Rails.root.join("spec", "support", "**", "*.rb")].sort.each { |f| require f }
 
 RSpec.configure do |config|
+  # Ensure all tests use database transactions
+  # This wraps each test in a database transaction that rolls back after the test completes
+  # All tests (model, controller, feature, system) go through the database
   config.use_transactional_fixtures = true
+
+  # Ensure database connection is established before running tests
+  config.before(:suite) do
+    ActiveRecord::Base.connection
+  end
 
   config.infer_spec_type_from_file_location!
 
   config.filter_rails_from_backtrace!
 
   config.include FactoryBot::Syntax::Methods if defined?(FactoryBot)
+  config.include ActiveJob::TestHelper
 
   # Generate documentation after test suite completes
   config.after(:suite) do

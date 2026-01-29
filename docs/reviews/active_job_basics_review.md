@@ -118,7 +118,7 @@ default: &default
       threads: 3
       processes: <%= ENV.fetch("JOB_CONCURRENCY", 1) %>
       polling_interval: 0.1
-```
+```ruby
 
 ✅ **Strengths:**
 - Proper Solid Queue configuration
@@ -133,7 +133,7 @@ production:
     <<: *primary_production
     database: open_remote_production_queue
     migrations_paths: db/queue_migrate
-```
+```ruby
 
 ✅ **Strengths:**
 - Separate database for queue (production)
@@ -141,11 +141,11 @@ production:
 - Follows Rails 8 conventions
 
 #### Environment Configuration
-```ruby
+```
 # config/environments/production.rb
 config.active_job.queue_adapter = :solid_queue
 config.solid_queue.connects_to = { database: { writing: :queue } }
-```
+```ruby
 
 ✅ **Strengths:**
 - Properly configured for production
@@ -166,7 +166,7 @@ production:
     queue: default
     args: [ { older_than_days: 90 } ]
     schedule: at 2am every day
-```
+```ruby
 
 ✅ **Strengths:**
 - Proper recurring task configuration

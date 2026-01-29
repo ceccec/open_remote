@@ -5,6 +5,7 @@
 **Type:** Concerns  
 **File:** `admin/asset_admin.rb`
 
+
 This concern uses `ActiveSupport::Concern` to provide shared behavior across multiple classes. Concerns encapsulate cross-cutting functionality and can define class methods, instance methods, and callbacks. See [ActiveSupport::Concern](https://api.rubyonrails.org/classes/ActiveSupport/Concern.html) for the complete API.
 
 **Rails Framework References:**

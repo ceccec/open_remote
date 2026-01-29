@@ -97,7 +97,7 @@ production:
       writing: cable
   polling_interval: 0.1.seconds
   message_retention: 1.day
-```
+```ruby
 
 ✅ **Strengths:**
 - Uses `async` adapter for development (appropriate)
@@ -114,7 +114,7 @@ production:
     <<: *primary_production
     database: open_remote_production_cable
     migrations_paths: db/cable_migrate
-```
+```ruby
 
 ✅ **Strengths:**
 - Separate database for cable (production)
@@ -122,12 +122,12 @@ production:
 - Follows Rails 8 conventions
 
 #### Environment Configuration
-```ruby
+```
 # config/environments/development.rb
 # Action Cable configuration
 # Allow requests from localhost:3000 by default in development
 # config.action_cable.allowed_request_origins = ["http://localhost:3000"]
-```
+```ruby
 
 ✅ **Strengths:**
 - Comments explain default behavior
@@ -138,7 +138,7 @@ production:
 **Application Layout:**
 ```erb
 <%= action_cable_meta_tag %>
-```
+```ruby
 
 ✅ **Strengths:**
 - Includes Action Cable meta tag in layout
@@ -156,14 +156,14 @@ production:
 **Recommendation:**
 If you need real-time features, create custom channels:
 
-```ruby
+```
 # app/channels/notifications_channel.rb
 class NotificationsChannel < ApplicationCable::Channel
   def subscribed
     stream_for current_user
   end
 end
-```
+```ruby
 
 **Status:** ✅ **No Issues** - Channels not needed currently, but infrastructure is ready.
 
@@ -174,13 +174,13 @@ end
 **Recommendation:**
 Configure allowed origins for production:
 
-```ruby
+```
 # config/environments/production.rb
 config.action_cable.allowed_request_origins = [
   "https://example.com",
   %r{https://.*\.example\.com}
 ]
-```
+```ruby
 
 **Status:** ⚠️ **Enhancement Needed** - Should be configured for production.
 
@@ -191,10 +191,10 @@ config.action_cable.allowed_request_origins = [
 **Recommendation:**
 Configure worker pool size if needed:
 
-```ruby
+```
 # config/environments/production.rb
 config.action_cable.worker_pool_size = 4
-```
+```ruby
 
 **Status:** ✅ **No Issues** - Default is appropriate for most applications.
 
@@ -214,7 +214,7 @@ consumer.subscriptions.create("NotificationsChannel", {
     // Handle notification
   }
 })
-```
+```ruby
 
 **Status:** ✅ **No Issues** - Not needed until channels are implemented.
 

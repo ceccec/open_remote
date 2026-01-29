@@ -1,10 +1,23 @@
 ---
 title: RuleManager
-description: Service for managing rule scheduling and periodic execution.
-lastUpdated: 2026-01-28T21:47:06Z
+description: Service for managing rule scheduling and periodic execution., Reusable concern module, includes JSON::Ext::Generator::GeneratorMethods::Object
+lastUpdated: 2026-01-29T01:42:54Z
 tags:
   - concern
   - api
+head:
+  - - meta
+    - name: keywords
+      content: RuleManager, concern, rails, api, ruby, module, reusable, JSON::Ext::Generator::GeneratorMethods::Object, execute_due_rules, find_due_rules, rule_due?, next_execution_time, enqueue_rule_execution, parse_schedule, cron_pattern?, time_pattern?, interval_pattern?, parse_cron_schedule
+  - - meta
+    - property: og:title
+      content: RuleManager - OpenRemote Rails API
+  - - meta
+    - property: og:description
+      content: Service for managing rule scheduling and periodic execution., Reusable concern module, includes JSON::Ext::Generator::GeneratorMethods::Object
+  - - meta
+    - property: og:type
+      content: website
 ---
 
 # RuleManager <Badge type="warning" text="Concern" />
@@ -50,10 +63,30 @@ This service handles:
 - `matches_time_schedule`(schedule: String, time: Time, timezone: ActiveSupport::TimeZone) -> `Boolean` - Check if time matches a time schedule (HH:MM).
 :::
 
+::: details 📊 Coverage & Testing Statistics
+
+### Test Suite Statistics
+
+<Badge type="tip" text="69 test files" />
+
+- **Total Test Files**: 69
+
+**Tests by Type:**
+
+- **Models**: 32 test files
+- **Other**: 13 test files
+- **Controllers**: 7 test files
+- **Services**: 7 test files
+- **Concerns**: 6 test files
+- **Jobs**: 3 test files
+- **Mailers**: 1 test file
+
+:::
+
 ::: info Test Examples
-Comprehensive test-driven examples are available in the [Examples section](/examples/).
+Comprehensive test-driven examples are available in the [Examples section](/docs/examples/).
 :::
 
 ---
 
-<Badge type="info" text="Navigation" /> [← Back to Index](/api/)
+<Badge type="info" text="Navigation" /> [← Back to Index](/docs/api/)

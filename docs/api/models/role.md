@@ -4,6 +4,9 @@
 
 **Type:** Models  
 **File:** `role.rb`
+<Badge type="warning" text="File Coverage: 73.68%" />
+<Badge type="info" text="14/55 lines" />
+
 
 This model inherits from `ApplicationRecord`, providing database persistence, validations, associations, callbacks, query methods, and more. See [ApplicationRecord](https://api.rubyonrails.org/classes/ApplicationRecord.html) for the complete API.
 **Rails Framework References:**
@@ -69,7 +72,10 @@ These modules extend the class with additional behavior. Concerns use [ActiveSup
 ## Methods
 
 - `find_or_create_by_name`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `rails_admin_label`
+  <Badge type="warning" text="Coverage: 25.0%" />
+  <small>Uncovered lines: 50, 51, 52</small>
 
   **Examples:**
   - returns just the name for global roles

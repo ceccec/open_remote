@@ -13,7 +13,7 @@ All documentation is auto-generated in `docs/`:
 ```bash
 # Generate all documentation
 rake docs:generate_all
-```
+```ruby
 
 This creates:
 - `README.md` - Project overview
@@ -35,7 +35,7 @@ npm run docs:dev
 
 # Build for production (builds to public/docs/)
 npm run docs:build
-```
+```ruby
 
 ### 3. Access Documentation
 
@@ -55,7 +55,7 @@ npm run docs:build
 
 ### File Structure
 
-```
+```ruby
 .
 ├── docs/                        # Source documentation (compiled here)
 │   ├── README.md               # Documentation index
@@ -103,7 +103,7 @@ rake docs:vitepress_config
 
 # Build with VitePress
 npm run docs:build
-```
+```ruby
 
 ## CI/CD
 

@@ -4,6 +4,9 @@
 
 **Type:** Services  
 **File:** `rule_manager.rb`
+<Badge type="warning" text="File Coverage: 18.45%" />
+<Badge type="info" text="19/347 lines" />
+
 
 
 ::: details 📊 Coverage & Testing Statistics
@@ -33,7 +36,7 @@
 
 - **Examples for this class**: 38
 - **Test file**: `spec/services/rule_manager_spec.rb`
-- **Last tested**: 2026-01-28 23:47:32
+- **Last tested**: 2026-01-29 03:27:01
 
 :::
 
@@ -45,41 +48,72 @@
 ## Methods
 
 - `cron_pattern?`
+  <Badge type="warning" text="Coverage: 50.0%" />
+  <small>Uncovered lines: 124</small>
 
   **Examples:**
   - returns true for valid 5-part cron expressions
   - returns false for non-cron strings
 
 - `enqueue_rule_execution`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `execute_due_rules`
+  <Badge type="warning" text="Coverage: 33.33%" />
+  <small>Uncovered lines: 17, 18</small>
 - `find_due_rules`
+  <Badge type="warning" text="Coverage: 9.09%" />
+  <small>Uncovered lines: 32, 33, 34, 35, 36...</small>
 - `interval_pattern?`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
   **Examples:**
   - detects supported interval expressions
   - rejects unsupported strings
 
 - `matches_cron_schedule`
+  <Badge type="warning" text="Coverage: 4.17%" />
+  <small>Uncovered lines: 282, 283, 284, 285, 286...</small>
 - `matches_field`
+  <Badge type="warning" text="Coverage: 5.26%" />
+  <small>Uncovered lines: 315, 316, 317, 318, 319...</small>
 - `matches_schedule?`
+  <Badge type="warning" text="Coverage: 5.56%" />
+  <small>Uncovered lines: 254, 255, 256, 257, 258...</small>
 - `matches_time_schedule`
+  <Badge type="warning" text="Coverage: 50.0%" />
+  <small>Uncovered lines: 344</small>
 - `next_execution_time`
+  <Badge type="warning" text="Coverage: 12.5%" />
+  <small>Uncovered lines: 63, 64, 65, 66, 67...</small>
 
   **Examples:**
   - returns nil for rules without schedule
 
 - `parse_cron_schedule`
+  <Badge type="warning" text="Coverage: 7.14%" />
+  <small>Uncovered lines: 154, 155, 156, 157, 158...</small>
 - `parse_interval_schedule`
+  <Badge type="warning" text="Coverage: 4.55%" />
+  <small>Uncovered lines: 195, 196, 197, 198, 199...</small>
 - `parse_schedule`
+  <Badge type="warning" text="Coverage: 5.26%" />
+  <small>Uncovered lines: 97, 98, 99, 100, 101...</small>
 - `parse_specific_time`
+  <Badge type="warning" text="Coverage: 9.09%" />
+  <small>Uncovered lines: 233, 234, 235, 236, 237...</small>
 - `parse_time_schedule`
+  <Badge type="warning" text="Coverage: 14.29%" />
+  <small>Uncovered lines: 178, 179, 180, 181, 182...</small>
 - `rule_due?`
+  <Badge type="warning" text="Coverage: 25.0%" />
+  <small>Uncovered lines: 51, 52, 53</small>
 
   **Examples:**
   - returns false for rules without schedule
   - returns true for rules with wildcard schedule
 
 - `time_pattern?`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
   **Examples:**
   - detects HH:MM patterns

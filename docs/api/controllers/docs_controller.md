@@ -4,6 +4,9 @@
 
 **Type:** Controllers  
 **File:** `docs_controller.rb`
+<Badge type="warning" text="File Coverage: 23.08%" />
+<Badge type="info" text="3/36 lines" />
+
 
 This controller inherits from `ApplicationController`, handling HTTP requests, rendering, session management, strong parameters, filters, and more. See [ApplicationController](https://api.rubyonrails.org/classes/ApplicationController.html) for the complete API.
 **Rails Framework References:**
@@ -52,6 +55,8 @@ This controller inherits from `ApplicationController`, handling HTTP requests, r
 ## Methods
 
 - `index`
+  <Badge type="warning" text="Coverage: 4.76%" />
+  <small>Uncovered lines: 14, 15, 16, 17, 18...</small>
 
 
 ## Examples

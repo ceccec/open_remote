@@ -4,6 +4,9 @@
 
 **Type:** Models  
 **File:** `user.rb`
+<Badge type="warning" text="File Coverage: 75.68%" />
+<Badge type="info" text="28/106 lines" />
+
 
 This model inherits from `ApplicationRecord`, providing database persistence, validations, callbacks, query methods, and more. See [ApplicationRecord](https://api.rubyonrails.org/classes/ApplicationRecord.html) for the complete API.
 **Rails Framework References:**
@@ -66,21 +69,30 @@ These modules extend the class with additional behavior. Concerns use [ActiveSup
 ## Methods
 
 - `admin?`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
   **Examples:**
   - returns true when admin flag is true
   - returns true when user has admin role but flag is false
 
 - `find_by_confirmation_token`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `find_by_remember_token`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
   **Examples:**
   - returns nil when token is blank
 
 - `find_by_reset_password_token`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `find_by_unlock_token`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `make_admin!`
+  <Badge type="warning" text="Coverage: 50.0%" />
+  <small>Uncovered lines: 94</small>
 - `remove_admin!`
+  <Badge type="warning" text="Coverage: 50.0%" />
+  <small>Uncovered lines: 103</small>
 
 
 ## Examples

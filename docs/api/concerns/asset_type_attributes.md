@@ -96,7 +96,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_typ
       expect(asset.forecasted_generation).to eq(2500)
       expect(asset.performance_ratio).to eq(40)
       expect(asset.location).to eq("Parkland")
-      expect(asset.attributes_data["performanceRatio"]).to be_within(0.001).of(50.0)
+      expect(asset.attributes_data["performanceRatio"]).to be_within(0.001).of(0.5) # 500/1000 = 0.5
 ```
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_type_attributes_spec.rb:127`_
@@ -112,7 +112,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_typ
       expect(asset.forecasted_generation).to eq(2000)
       expect(asset.performance_ratio).to eq(30)
       expect(asset.location).to eq("Duplicated")
-      expect(asset.attributes_data["performanceRatio"]).to be_within(0.001).of(50.0)
+      expect(asset.attributes_data["performanceRatio"]).to be_within(0.001).of(0.5) # 400/800 = 0.5 (decimal ratio)
 ```
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/asset_type_attributes_spec.rb:157`_

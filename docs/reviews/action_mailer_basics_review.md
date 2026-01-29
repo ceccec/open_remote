@@ -78,7 +78,7 @@ end
 <p><%= link_to "Confirm my account", @confirmation_url %></p>
 <p>If you didn't create an account, please ignore this email.</p>
 <p>This link will expire in 24 hours.</p>
-```
+```ruby
 
 ✅ **Strengths:**
 - Clean, readable HTML structure
@@ -101,7 +101,7 @@ Please confirm your account by visiting the following URL:
 If you didn't create an account, please ignore this email.
 
 This link will expire in 24 hours.
-```
+```ruby
 
 ✅ **Strengths:**
 - Provides text version for all emails
@@ -130,7 +130,7 @@ This link will expire in 24 hours.
     <%= yield %>
   </body>
 </html>
-```
+```ruby
 
 ✅ **Strengths:**
 - Proper email HTML structure
@@ -219,16 +219,16 @@ Add inline CSS styles for better email client compatibility:
   .container { max-width: 600px; margin: 0 auto; padding: 20px; }
   .button { display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; }
 </style>
-```
+```ruby
 
 **Status:** ⚠️ **Optional Enhancement** - Current emails work but could be more visually appealing.
 
 ### 2. Email Configuration
 
 **Current Status:**
-```ruby
-config.action_mailer.default_url_options = { host: "example.com" }
 ```
+config.action_mailer.default_url_options = { host: "example.com" }
+```ruby
 
 **Recommendation:**
 - Update `host` to actual production domain

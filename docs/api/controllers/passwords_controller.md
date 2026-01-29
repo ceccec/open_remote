@@ -4,6 +4,9 @@
 
 **Type:** Controllers  
 **File:** `passwords_controller.rb`
+<Badge type="warning" text="File Coverage: 28.0%" />
+<Badge type="info" text="7/71 lines" />
+
 
 This controller inherits from `ApplicationController`, handling HTTP requests, rendering, session management, strong parameters, filters, and more. See [ApplicationController](https://api.rubyonrails.org/classes/ApplicationController.html) for the complete API.
 **Rails Framework References:**
@@ -40,7 +43,7 @@ This controller inherits from `ApplicationController`, handling HTTP requests, r
 
 - **Examples for this class**: 10
 - **Test file**: `spec/controllers/passwords_controller_spec.rb`
-- **Last tested**: 2026-01-28 22:12:25
+- **Last tested**: 2026-01-29 03:27:01
 
 :::
 
@@ -52,8 +55,13 @@ This controller inherits from `ApplicationController`, handling HTTP requests, r
 ## Methods
 
 - `create`
+  <Badge type="warning" text="Coverage: 11.11%" />
+  <small>Uncovered lines: 25, 26, 27, 28, 29...</small>
 - `edit`
+  <Badge type="warning" text="Coverage: 16.67%" />
+  <small>Uncovered lines: 41, 42, 43, 44, 45</small>
 - `new`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
   **Examples:**
   - redirects to new password path with alert
@@ -63,6 +71,8 @@ This controller inherits from `ApplicationController`, handling HTTP requests, r
   - redirects to new password path with alert
 
 - `update`
+  <Badge type="warning" text="Coverage: 6.25%" />
+  <small>Uncovered lines: 54, 55, 56, 57, 58...</small>
 
 
 ## Examples
@@ -81,7 +91,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
 ### sends reset password instructions and redirects
 
 ```ruby
-        expect(UserMailer).to receive(:reset_password_instructions).with(user).and_return(double(deliver_later: true))
+        expect(UserMailer).to receive(:with).with(user: user).and_return(mailer_double)
         expect(response).to redirect_to("/login")
         expect(flash[:notice]).to eq("Password reset instructions have been sent to your email.")
 ```
@@ -96,7 +106,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
         expect(flash[:notice]).to eq("If an account exists with that email, password reset instructions have been sent.")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:30`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:32`_
 
 
 ### returns success
@@ -105,7 +115,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
         expect(response).to have_http_status(:success)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:47`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:49`_
 
 
 ### redirects to new password path with alert
@@ -115,7 +125,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
         expect(flash[:alert]).to eq("Password reset token is invalid or has expired.")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:54`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:56`_
 
 
 ### redirects to new password path with alert
@@ -125,7 +135,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
         expect(flash[:alert]).to eq("Password reset token is invalid or has expired.")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:54`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:56`_
 
 
 ### resets password and redirects to login
@@ -137,7 +147,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
         expect(flash[:notice]).to eq("Password has been reset successfully.")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:86`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:88`_
 
 
 ### returns unprocessable content status
@@ -146,7 +156,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
         expect(response).to have_http_status(:unprocessable_content)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:110`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:112`_
 
 
 ### redirects to new password path with alert
@@ -156,7 +166,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
         expect(flash[:alert]).to eq("Password reset token is invalid or has expired.")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:54`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:56`_
 
 
 ### redirects to new password path with alert
@@ -166,7 +176,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
         expect(flash[:alert]).to eq("Password reset token is invalid or has expired.")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:54`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:56`_
 
 
 ## Source Code

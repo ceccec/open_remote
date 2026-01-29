@@ -40,7 +40,7 @@ class DataPoint < ApplicationRecord
   scope :for_asset, ->(asset) { where(asset: asset) }
   scope :for_attribute, ->(attr_name) { where(attribute_name: attr_name) }
   scope :recent, -> { order(timestamp: :desc) }
-  scope :in_time_range, ->(from, to) { where(timestamp: from..to) }
+  scope :in_time_range, ->(from, to) { where("timestamp >= ? AND timestamp <= ?", from, to) }
   scope :latest_for_attribute, ->(asset, attr_name) { for_asset(asset).for_attribute(attr_name).recent.limit(1) }
 
   # RailsAdmin object label

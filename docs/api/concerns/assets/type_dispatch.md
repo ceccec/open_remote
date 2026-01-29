@@ -1,7 +1,7 @@
 ---
 title: Assets::TypeDispatch
-description: API documentation for Assets::TypeDispatch
-lastUpdated: 2026-01-28T21:47:06Z
+description: Concern providing WeatherStation attribute accessors.
+lastUpdated: 2026-01-29T01:42:54Z
 tags:
   - concern
   - api
@@ -10,7 +10,10 @@ tags:
 
 # Assets::TypeDispatch <Badge type="warning" text="Concern" />
 
-API documentation for Assets::TypeDispatch
+Concern providing WeatherStation attribute accessors.
+
+Delegates to Asset::Type::Weather::Station::Attributes to avoid duplication.
+This module is extended on Asset instances via Assets::TypeDispatch.
 
 ::: info File Location
 **Source:** `app/models/concerns/assets/type_dispatch.rb`
@@ -27,9 +30,9 @@ This concern uses `ActiveSupport::Concern` to provide shared behavior across mul
 :::
 
 ::: info Test Examples
-Comprehensive test-driven examples are available in the [Examples section](/examples/).
+Comprehensive test-driven examples are available in the [Examples section](/docs/examples/).
 :::
 
 ---
 
-<Badge type="info" text="Navigation" /> [← Back to Index](/api/)
+<Badge type="info" text="Navigation" /> [← Back to Index](/docs/api/)

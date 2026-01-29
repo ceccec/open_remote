@@ -5,7 +5,7 @@ Test-driven examples for RuleExecutionJob functionality.
 ### executes the rule
 
 ```ruby
-      expect { RuleExecutionJob.perform_now(rule.id) }.to change { RuleExecution.count }.by(1)
+      expect { RuleExecutionJob.perform_now(rule) }.to change { RuleExecution.count }.by(1)
 ```
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/jobs/rule_execution_job_spec.rb:14`_
@@ -27,7 +27,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/jobs/rule_execut
 ### raises when rule is missing
 
 ```ruby
-      expect { RuleExecutionJob.perform_now(99999) }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { RuleExecutionJob.perform_now(missing_rule) }.to raise_error(ActiveRecord::RecordNotFound, "Rule not found")
 ```
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/jobs/rule_execution_job_spec.rb:25`_

@@ -4,6 +4,9 @@
 
 **Type:** Controllers  
 **File:** `registrations_controller.rb`
+<Badge type="warning" text="File Coverage: 43.48%" />
+<Badge type="info" text="10/74 lines" />
+
 
 This controller inherits from `ApplicationController`, handling HTTP requests, rendering, session management, strong parameters, filters, and more. See [ApplicationController](https://api.rubyonrails.org/classes/ApplicationController.html) for the complete API.
 **Rails Framework References:**
@@ -40,7 +43,7 @@ This controller inherits from `ApplicationController`, handling HTTP requests, r
 
 - **Examples for this class**: 8
 - **Test file**: `spec/controllers/registrations_controller_spec.rb`
-- **Last tested**: 2026-01-28 22:12:47
+- **Last tested**: 2026-01-29 03:27:01
 
 :::
 
@@ -52,28 +55,36 @@ This controller inherits from `ApplicationController`, handling HTTP requests, r
 ## Methods
 
 - `create`
+  <Badge type="warning" text="Coverage: 12.5%" />
+  <small>Uncovered lines: 25, 26, 27, 28, 29...</small>
 
   **Examples:**
   - creates user and sends confirmation instructions
 
 - `edit`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
   **Examples:**
   - requires authentication
 
 - `new`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
   **Examples:**
   - updates user and redirects
 
 - `update`
+  <Badge type="warning" text="Coverage: 14.29%" />
+  <small>Uncovered lines: 48, 49, 50, 51, 52...</small>
 
   **Examples:**
   - updates user and redirects
   - updates email only
 
 - `user_params`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `user_update_params`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
 
 ## Examples
@@ -92,7 +103,6 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/regi
 ### creates user and sends confirmation instructions
 
 ```ruby
-        expect(UserMailer).to receive(:confirmation_instructions).and_return(double(deliver_later: true))
         expect(created_user).to be_present
         expect(response).to redirect_to("/login")
         expect(flash[:notice]).to eq("Registration successful! Please check your email to confirm your account.")
@@ -107,7 +117,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/regi
         expect(response).to have_http_status(:unprocessable_content)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:38`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:40`_
 
 
 ### returns unprocessable content status
@@ -116,7 +126,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/regi
         expect(response).to have_http_status(:unprocessable_content)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:38`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:40`_
 
 
 ### requires authentication
@@ -125,7 +135,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/regi
       expect { get :edit }.to raise_error(ActionController::MissingExactTemplate)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:69`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:71`_
 
 
 ### updates user and redirects
@@ -137,7 +147,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/regi
         expect(flash[:notice]).to eq("Account updated successfully.")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:82`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:84`_
 
 
 ### raises error due to missing template
@@ -146,7 +156,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/regi
         expect {
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:99`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:101`_
 
 
 ### updates email only
@@ -157,7 +167,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/regi
         expect(response).to redirect_to("/")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:113`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/registrations_controller_spec.rb:115`_
 
 
 ## Source Code

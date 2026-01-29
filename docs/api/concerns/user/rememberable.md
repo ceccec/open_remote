@@ -4,6 +4,9 @@
 
 **Type:** Concerns  
 **File:** `user/rememberable.rb`
+<Badge type="warning" text="File Coverage: 38.89%" />
+<Badge type="info" text="7/53 lines" />
+
 
 This concern uses `ActiveSupport::Concern` to provide shared behavior across multiple classes. Concerns encapsulate cross-cutting functionality and can define class methods, instance methods, and callbacks. See [ActiveSupport::Concern](https://api.rubyonrails.org/classes/ActiveSupport/Concern.html) for the complete API.
 
@@ -51,9 +54,17 @@ This concern uses `ActiveSupport::Concern` to provide shared behavior across mul
 ## Methods
 
 - `forget_me!`
+  <Badge type="warning" text="Coverage: 25.0%" />
+  <small>Uncovered lines: 23, 24, 25</small>
 - `generate_remember_token!`
+  <Badge type="warning" text="Coverage: 20.0%" />
+  <small>Uncovered lines: 47, 48, 49, 50</small>
 - `remember_me!`
+  <Badge type="warning" text="Coverage: 33.33%" />
+  <small>Uncovered lines: 13, 14</small>
 - `remember_token_valid?`
+  <Badge type="warning" text="Coverage: 25.0%" />
+  <small>Uncovered lines: 34, 35, 36</small>
 
   **Examples:**
   - returns true

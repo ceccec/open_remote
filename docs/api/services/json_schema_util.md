@@ -4,6 +4,9 @@
 
 **Type:** Services  
 **File:** `json_schema_util.rb`
+<Badge type="warning" text="File Coverage: 15.38%" />
+<Badge type="info" text="4/76 lines" />
+
 
 
 ::: details 📊 Coverage & Testing Statistics
@@ -45,7 +48,11 @@
 ## Methods
 
 - `build_property_schema`
+  <Badge type="warning" text="Coverage: 4.0%" />
+  <small>Uncovered lines: 50, 51, 52, 53, 54...</small>
 - `build_schema`
+  <Badge type="warning" text="Coverage: 5.26%" />
+  <small>Uncovered lines: 23, 24, 25, 26, 27...</small>
 
 
 ## Examples

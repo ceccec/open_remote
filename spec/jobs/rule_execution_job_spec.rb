@@ -12,18 +12,20 @@ RSpec.describe RuleExecutionJob, type: :job do
 
   describe "#perform" do
     it "executes the rule" do
-      expect { RuleExecutionJob.perform_now(rule.id) }.to change { RuleExecution.count }.by(1)
+      expect { RuleExecutionJob.perform_now(rule) }.to change { RuleExecution.count }.by(1)
     end
 
     it "does not execute disabled rules" do
       rule.update!(enabled: false)
-      RuleExecutionJob.perform_now(rule.id)
+      RuleExecutionJob.perform_now(rule)
       execution = rule.rule_executions.last
       expect(execution.status).to eq("skipped")
     end
 
     it "raises when rule is missing" do
-      expect { RuleExecutionJob.perform_now(99999) }.to raise_error(ActiveRecord::RecordNotFound)
+      # Create a non-persisted rule to simulate a missing rule
+      missing_rule = Rule.new(id: 99999)
+      expect { RuleExecutionJob.perform_now(missing_rule) }.to raise_error(ActiveRecord::RecordNotFound, "Rule not found")
     end
   end
 end

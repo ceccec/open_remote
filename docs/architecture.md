@@ -376,7 +376,7 @@ Tests can be generated from feature declarations:
 
 ```bash
 rake features:generate_tests
-```
+```ruby
 
 ## Documentation Architecture
 
@@ -391,6 +391,6 @@ Generate all documentation:
 
 ```bash
 rake docs:generate_all
-```
+```ruby
 
 **Last Updated**: 2026-01-28 21:26:28

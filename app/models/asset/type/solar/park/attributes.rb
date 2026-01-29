@@ -77,14 +77,14 @@ class Asset
           # Calculate and update the performance ratio based on current power output.
           #
           # Performance ratio is calculated as: total_power_output / total_capacity
-          # Returns a decimal value between 0.0 and 1.0 (not a percentage).
+          # Returns a decimal value between 0.0 and 1.0 (e.g., 0.75 for 75%).
           #
           # @return [void]
           # @raise [ActiveRecord::RecordInvalid] if save fails
           def update_performance_ratio!
             return unless total_capacity.to_f.positive?
 
-            # Calculate performance ratio as a decimal (0.0 to 1.0), not percentage
+            # Calculate performance ratio as a decimal (e.g., 0.75 for 75%)
             ratio = total_power_output.to_f / total_capacity.to_f
             self.attributes_data ||= {}
             attributes_data["performanceRatio"] = ratio

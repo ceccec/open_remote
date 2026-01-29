@@ -4,6 +4,9 @@
 
 **Type:** Services  
 **File:** `lock_by_key.rb`
+<Badge type="warning" text="File Coverage: 40.91%" />
+<Badge type="info" text="9/55 lines" />
+
 
 
 ::: details 📊 Coverage & Testing Statistics
@@ -45,12 +48,15 @@
 ## Methods
 
 - `initialize`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `lock`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
   **Examples:**
   - handles unlock on non-existent key gracefully
 
 - `unlock`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
   **Examples:**
   - handles unlock on non-existent key gracefully

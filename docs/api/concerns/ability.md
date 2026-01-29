@@ -1,10 +1,23 @@
 ---
 title: Ability
-description: Main Ability class for CanCanCan authorization.
-lastUpdated: 2026-01-28T21:47:06Z
+description: Main Ability class for CanCanCan authorization., Reusable concern module, includes CanCan::Ability, CanCan::Ability::StrongParameterSupport, CanCan::Unauthori...
+lastUpdated: 2026-01-29T01:42:54Z
 tags:
   - concern
   - api
+head:
+  - - meta
+    - name: keywords
+      content: Ability, concern, rails, api, ruby, module, reusable, CanCan::Ability, CanCan::Ability::StrongParameterSupport, CanCan::UnauthorizedMessageResolver, CanCan::Ability::Actions, CanCan::Ability::Rules, JSON::Ext::Generator::GeneratorMethods::Object, initialize
+  - - meta
+    - property: og:title
+      content: Ability - OpenRemote Rails API
+  - - meta
+    - property: og:description
+      content: Main Ability class for CanCanCan authorization., Reusable concern module, includes CanCan::Ability, CanCan::Ability::StrongParameterSupport, CanCan::Unauthori...
+  - - meta
+    - property: og:type
+      content: website
 ---
 
 # Ability <Badge type="warning" text="Concern" />
@@ -63,10 +76,30 @@ ability.can?(:manage, User) # => false
 ```
 :::
 
+::: details 📊 Coverage & Testing Statistics
+
+### Test Suite Statistics
+
+<Badge type="tip" text="69 test files" />
+
+- **Total Test Files**: 69
+
+**Tests by Type:**
+
+- **Models**: 32 test files
+- **Other**: 13 test files
+- **Controllers**: 7 test files
+- **Services**: 7 test files
+- **Concerns**: 6 test files
+- **Jobs**: 3 test files
+- **Mailers**: 1 test file
+
+:::
+
 ::: info Test Examples
-Comprehensive test-driven examples are available in the [Examples section](/examples/).
+Comprehensive test-driven examples are available in the [Examples section](/docs/examples/).
 :::
 
 ---
 
-<Badge type="info" text="Navigation" /> [← Back to Index](/api/)
+<Badge type="info" text="Navigation" /> [← Back to Index](/docs/api/)

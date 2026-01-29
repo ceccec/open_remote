@@ -4,6 +4,9 @@
 
 **Type:** Services  
 **File:** `asset_processing_service.rb`
+<Badge type="warning" text="File Coverage: 20.0%" />
+<Badge type="info" text="6/124 lines" />
+
 
 
 ::: details 📊 Coverage & Testing Statistics
@@ -33,7 +36,7 @@
 
 - **Examples for this class**: 7
 - **Test file**: `spec/services/asset_processing_service_spec.rb`
-- **Last tested**: 2026-01-28 19:02:04
+- **Last tested**: 2026-01-29 03:29:54
 
 :::
 
@@ -45,10 +48,20 @@
 ## Methods
 
 - `process_attribute_update`
+  <Badge type="warning" text="Coverage: 5.56%" />
+  <small>Uncovered lines: 25, 26, 27, 28, 29...</small>
 - `process_attribute_updates`
+  <Badge type="warning" text="Coverage: 20.0%" />
+  <small>Uncovered lines: 53, 54, 55, 56</small>
 - `process_outdated_attributes`
+  <Badge type="warning" text="Coverage: 5.0%" />
+  <small>Uncovered lines: 103, 104, 105, 106, 107...</small>
 - `rule_should_trigger?`
+  <Badge type="warning" text="Coverage: 33.33%" />
+  <small>Uncovered lines: 90, 91</small>
 - `trigger_attribute_change_rules`
+  <Badge type="warning" text="Coverage: 9.09%" />
+  <small>Uncovered lines: 68, 69, 70, 71, 72...</small>
 
 
 ## Examples

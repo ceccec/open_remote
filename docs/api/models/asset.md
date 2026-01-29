@@ -4,6 +4,9 @@
 
 **Type:** Models  
 **File:** `asset/querying.rb`
+<Badge type="warning" text="File Coverage: 42.86%" />
+<Badge type="info" text="9/101 lines" />
+
 
 This model inherits from `ApplicationRecord`, providing database persistence, validations, associations, scopes, callbacks, query methods, and more. See [ApplicationRecord](https://api.rubyonrails.org/classes/ApplicationRecord.html) for the complete API.
 **Rails Framework References:**
@@ -57,22 +60,29 @@ This model inherits from `ApplicationRecord`, providing database persistence, va
 ## Methods
 
 - `of_type`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
   **Examples:**
   - finds assets of specific type
 
 - `solar_array_power_outputs`
+  <Badge type="warning" text="Coverage: 5.0%" />
+  <small>Uncovered lines: 57, 58, 59, 60, 61...</small>
 - `solar_arrays`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
   **Examples:**
   - finds solar arrays
 
 - `solar_parks`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
   **Examples:**
   - finds solar parks
 
 - `with_numeric_attribute_greater_than`
+  <Badge type="warning" text="Coverage: 14.29%" />
+  <small>Uncovered lines: 91, 92, 93, 94, 95...</small>
 
 
 ## Examples

@@ -4,6 +4,9 @@
 
 **Type:** Controllers  
 **File:** `sessions_controller.rb`
+<Badge type="warning" text="File Coverage: 37.5%" />
+<Badge type="info" text="6/46 lines" />
+
 
 This controller inherits from `ApplicationController`, handling HTTP requests, rendering, session management, strong parameters, filters, and more. See [ApplicationController](https://api.rubyonrails.org/classes/ApplicationController.html) for the complete API.
 **Rails Framework References:**
@@ -52,8 +55,13 @@ This controller inherits from `ApplicationController`, handling HTTP requests, r
 ## Methods
 
 - `create`
+  <Badge type="warning" text="Coverage: 8.33%" />
+  <small>Uncovered lines: 24, 25, 26, 27, 28...</small>
 - `destroy`
+  <Badge type="warning" text="Coverage: 50.0%" />
+  <small>Uncovered lines: 43</small>
 - `new`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
 
 ## Examples

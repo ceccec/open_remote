@@ -4,6 +4,9 @@
 
 **Type:** Concerns  
 **File:** `batch_actions.rb`
+<Badge type="warning" text="File Coverage: 22.03%" />
+<Badge type="info" text="13/182 lines" />
+
 
 This concern uses `ActiveSupport::Concern` to provide shared behavior across multiple classes. Concerns encapsulate cross-cutting functionality and can define class methods, instance methods, and callbacks. See [ActiveSupport::Concern](https://api.rubyonrails.org/classes/ActiveSupport/Concern.html) for the complete API.
 **Rails Framework References:**
@@ -49,7 +52,11 @@ This concern uses `ActiveSupport::Concern` to provide shared behavior across mul
 ## Methods
 
 - `batch_acknowledge`
+  <Badge type="warning" text="Coverage: 16.67%" />
+  <small>Uncovered lines: 122, 123, 124, 125, 126</small>
 - `batch_assign_parent`
+  <Badge type="warning" text="Coverage: 16.67%" />
+  <small>Uncovered lines: 142, 143, 144, 145, 146</small>
 
   **Examples:**
   - assigns multiple assets to a parent
@@ -57,6 +64,8 @@ This concern uses `ActiveSupport::Concern` to provide shared behavior across mul
   - returns the number of records updated
 
 - `batch_delete`
+  <Badge type="warning" text="Coverage: 25.0%" />
+  <small>Uncovered lines: 106, 107, 108</small>
 
   **Examples:**
   - deletes multiple records by ID
@@ -64,6 +73,8 @@ This concern uses `ActiveSupport::Concern` to provide shared behavior across mul
   - returns the number of records deleted
 
 - `batch_disable`
+  <Badge type="warning" text="Coverage: 16.67%" />
+  <small>Uncovered lines: 56, 57, 58, 59, 60</small>
 
   **Examples:**
   - disables multiple rules by ID
@@ -71,6 +82,8 @@ This concern uses `ActiveSupport::Concern` to provide shared behavior across mul
   - returns the number of records updated
 
 - `batch_enable`
+  <Badge type="warning" text="Coverage: 16.67%" />
+  <small>Uncovered lines: 37, 38, 39, 40, 41</small>
 
   **Examples:**
   - enables multiple rules by ID
@@ -79,7 +92,11 @@ This concern uses `ActiveSupport::Concern` to provide shared behavior across mul
   - returns the number of records updated
 
 - `batch_execute`
+  <Badge type="warning" text="Coverage: 5.88%" />
+  <small>Uncovered lines: 163, 164, 165, 166, 167...</small>
 - `batch_update`
+  <Badge type="warning" text="Coverage: 5.88%" />
+  <small>Uncovered lines: 76, 77, 78, 79, 80...</small>
 
   **Examples:**
   - updates multiple records with attributes

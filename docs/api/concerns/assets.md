@@ -1,9 +1,12 @@
 # Assets
 
-API documentation for Assets
+# Concern providing EnergyMeter attribute accessors.
 
 **Type:** Concerns  
 **File:** `assets/energy_meter_attributes.rb`
+<Badge type="tip" text="File Coverage: 100.0%" />
+<Badge type="info" text="3/14 lines" />
+
 
 This concern uses `ActiveSupport::Concern` to provide shared behavior across multiple classes. Concerns encapsulate cross-cutting functionality and can define class methods, instance methods, and callbacks. See [ActiveSupport::Concern](https://api.rubyonrails.org/classes/ActiveSupport/Concern.html) for the complete API.
 
@@ -40,19 +43,17 @@ This concern uses `ActiveSupport::Concern` to provide shared behavior across mul
 
 
 
+## Included Modules
+
+These modules extend the class with additional behavior. Concerns use [ActiveSupport::Concern](https://api.rubyonrails.org/classes/ActiveSupport/Concern.html) for modular functionality.
+
+- `Asset::Type::Energy::Meter::Attributes` - Provides additional functionality
+
 
 
 ## Methods
 
-- `active_power`
-- `apparent_power`
-- `current`
-- `energy_export`
-- `energy_import`
-- `frequency`
-- `power_factor`
-- `reactive_power`
-- `voltage`
+No methods documented.
 
 
 

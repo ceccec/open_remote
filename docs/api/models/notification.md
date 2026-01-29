@@ -4,6 +4,9 @@ API documentation for Notification
 
 **Type:** Models  
 **File:** `notification.rb`
+<Badge type="warning" text="File Coverage: 78.38%" />
+<Badge type="info" text="29/70 lines" />
+
 
 This model inherits from `ApplicationRecord`, providing database persistence, validations, associations, scopes, callbacks, query methods, and more. See [ApplicationRecord](https://api.rubyonrails.org/classes/ApplicationRecord.html) for the complete API.
 **Rails Framework References:**
@@ -71,9 +74,14 @@ These modules extend the class with additional behavior. Concerns use [ActiveSup
 ## Methods
 
 - `acknowledge!`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `acknowledged?`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `rails_admin_label`
+  <Badge type="warning" text="Coverage: 20.0%" />
+  <small>Uncovered lines: 39, 40, 41, 42</small>
 - `severity?`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
 
 ## Examples

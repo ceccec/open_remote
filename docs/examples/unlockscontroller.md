@@ -67,7 +67,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlo
 ### sends unlock instructions and redirects
 
 ```ruby
-        expect(UserMailer).to receive(:unlock_instructions).with(user).and_return(double(deliver_later: true))
+        expect(UserMailer).to receive(:with).with(user: user).and_return(mailer_double)
         expect(response).to redirect_to("/login")
         expect(flash[:notice]).to eq("Unlock instructions have been sent to your email.")
 ```
@@ -84,7 +84,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlo
         expect(flash[:notice]).to eq("If an account exists and is locked, unlock instructions have been sent.")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlocks_controller_spec.rb:93`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlocks_controller_spec.rb:95`_
 
 
 ---
@@ -96,7 +96,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlo
         expect(flash[:notice]).to eq("If an account exists and is locked, unlock instructions have been sent.")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlocks_controller_spec.rb:101`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlocks_controller_spec.rb:103`_
 
 
 ---

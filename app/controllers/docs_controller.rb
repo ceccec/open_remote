@@ -21,9 +21,15 @@ class DocsController < ApplicationController
 
     # Use conditional GET for efficient caching
     file_mtime = File.mtime(index_path)
-    if stale?(last_modified: file_mtime, public: true, etag: file_mtime.to_i)
-      # Set cache headers for static content
-      response.headers["Cache-Control"] = "public, max-age=3600" if Rails.env.production?
+
+    if Rails.env.production?
+      # In production, use stale? with public caching
+      if stale?(last_modified: file_mtime, public: true, etag: file_mtime.to_i)
+        response.headers["Cache-Control"] = "public, max-age=3600"
+        render file: index_path, layout: false, content_type: "text/html"
+      end
+    else
+      # In non-production, render directly without cache headers
       render file: index_path, layout: false, content_type: "text/html"
     end
   end

@@ -1,7 +1,7 @@
 ---
 title: Asset::Type::Grid::Connection
-description: API documentation for Asset::Type::Grid::Connection
-lastUpdated: 2026-01-28T21:47:06Z
+description: Attribute accessors for GridConnectionPoint asset type.
+lastUpdated: 2026-01-29T01:42:54Z
 tags:
   - concern
   - api
@@ -10,7 +10,22 @@ tags:
 
 # Asset::Type::Grid::Connection <Badge type="warning" text="Concern" />
 
-API documentation for Asset::Type::Grid::Connection
+Attribute accessors for GridConnectionPoint asset type.
+#
+# Provides convenient accessor methods for GridConnectionPoint-specific attributes
+# stored in the attributes_data JSONB column. These methods are automatically
+# available on Asset instances when asset_type.name == "GridConnectionPoint" via
+# the Type::Dispatch concern.
+#
+# @example Accessing GridConnectionPoint attributes
+#   gcp = Asset.find_by(name: "Grid Connection Point 1")
+#   gcp.connection_capacity # => value from attributes_data["connectionCapacity"]
+#   gcp.active_power        # => value from attributes_data["activePower"]
+#   gcp.energy_exported     # => value from attributes_data["energyExported"]
+#
+class Asset
+  module Type
+    module Grid
 
 ::: info File Location
 **Source:** `app/models/asset/type/grid/connection/point/attributes.rb`
@@ -20,9 +35,9 @@ API documentation for Asset::Type::Grid::Connection
 :::
 
 ::: info Test Examples
-Comprehensive test-driven examples are available in the [Examples section](/examples/).
+Comprehensive test-driven examples are available in the [Examples section](/docs/examples/).
 :::
 
 ---
 
-<Badge type="info" text="Navigation" /> [← Back to Index](/api/)
+<Badge type="info" text="Navigation" /> [← Back to Index](/docs/api/)

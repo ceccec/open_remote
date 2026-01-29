@@ -67,7 +67,7 @@ default: &default
 production:
   database: cache
   <<: *default
-```
+```ruby
 ⚠️ **Recommendation**: Uncomment and configure `max_age` based on your retention policies.
 
 **File**: `config/database.yml`
@@ -77,7 +77,7 @@ production:
     <<: *primary_production
     database: open_remote_production_cache
     migrations_paths: db/cache_migrate
-```
+```ruby
 ✅ **Status**: Properly configured with separate cache database
 
 ### 2. Conditional GET Support
@@ -126,12 +126,12 @@ end
     <%= render partial: "assets/asset", locals: { asset: asset } %>
   <% end %>
 <% end %>
-```
+```ruby
 
 Or with collection caching:
 ```erb
 <%= render partial: "assets/asset", collection: @assets, cached: true %>
-```
+```ruby
 
 ### 4. Low-Level Caching
 
@@ -288,7 +288,7 @@ end
 ```erb
 <!-- app/views/assets/index.html.erb -->
 <%= render partial: "assets/asset", collection: @assets, cached: true %>
-```
+```ruby
 
 ## Conclusion
 

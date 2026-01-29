@@ -4,6 +4,9 @@
 
 **Type:** Models  
 **File:** `test_generator.rb`
+<Badge type="warning" text="File Coverage: 13.11%" />
+<Badge type="info" text="8/104 lines" />
+
 
 This model inherits from `ActiveRecord::Base`, providing database persistence, validations, associations, and callbacks. See [ActiveRecord::Base](https://api.rubyonrails.org/classes/ActiveRecord/Base.html) for the complete API.
 
@@ -48,11 +51,22 @@ This model inherits from `ActiveRecord::Base`, providing database persistence, v
 ## Methods
 
 - `generate`
+  <Badge type="warning" text="Coverage: 6.67%" />
+  <small>Uncovered lines: 12, 13, 14, 15, 16...</small>
 - `generate_associations`
+  <Badge type="warning" text="Coverage: 5.88%" />
+  <small>Uncovered lines: 60, 61, 62, 63, 64...</small>
 - `generate_methods`
+  <Badge type="warning" text="Coverage: 10.0%" />
+  <small>Uncovered lines: 80, 81, 82, 83, 84...</small>
 - `generate_scopes`
+  <Badge type="warning" text="Coverage: 10.0%" />
+  <small>Uncovered lines: 93, 94, 95, 96, 97...</small>
 - `generate_validations`
+  <Badge type="warning" text="Coverage: 4.0%" />
+  <small>Uncovered lines: 32, 33, 34, 35, 36...</small>
 - `initialize`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
 
 

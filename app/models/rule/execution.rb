@@ -60,11 +60,29 @@ module Rule::Execution
   private
 
   ##
+  # Get target assets relation and validate that targets exist.
+  #
+  # This is a DRY helper method used by rule handlers to avoid duplication
+  # of the "get targets, check exists" pattern.
+  #
+  # @return [ActiveRecord::Relation<Asset>, nil] target assets relation, or nil if no targets exist
+  def validated_target_assets
+      assets_relation = target_assets
+      return nil unless assets_relation.exists?
+
+      assets_relation
+  end
+
+  ##
   # Execute all configured actions without any asset filtering.
   #
   # @return [void]
   def handle_scheduled_rule
-      assets = target_assets.to_a
+      assets_relation = validated_target_assets
+      # For scheduled rules, allow execution even with no targets
+      # Actions that require assets will simply have empty arrays
+      assets = assets_relation ? assets_relation.to_a : []
+
       Array(then_config).each do |action|
         apply_action!(action, assets)
       end
@@ -76,11 +94,11 @@ module Rule::Execution
   #
   # @return [void]
   def handle_attribute_value_rule
-      assets = target_assets
-      return log_execution("skipped", reason: "no_targets") if assets.empty?
+      assets_relation = validated_target_assets
+      return log_execution("skipped", reason: "no_targets") unless assets_relation
 
-      if condition_met?(assets)
-        perform_actions!(assets)
+      if condition_met?(assets_relation)
+        perform_actions!(assets_relation.to_a)
         log_execution("success")
       else
         log_execution("skipped", reason: "condition_not_met")
@@ -92,10 +110,10 @@ module Rule::Execution
   #
   # @return [void]
   def handle_attribute_changed_rule
-      assets = target_assets
-      return log_execution("skipped", reason: "no_targets") if assets.empty?
+      assets_relation = validated_target_assets
+      return log_execution("skipped", reason: "no_targets") unless assets_relation
 
-      perform_actions!(assets)
+      perform_actions!(assets_relation.to_a)
       log_execution("success")
   end
 
@@ -103,53 +121,101 @@ module Rule::Execution
   # Determine whether the rule's attribute-value condition is met for
   # any of the candidate assets.
   #
-  # @param assets [Enumerable<Asset>] candidate assets
+  # Uses Asset scopes (aligned with RailsAdmin search options) to build queries.
+  #
+  # @param assets [ActiveRecord::Relation<Asset>] candidate assets relation
   # @return [Boolean] true when at least one asset satisfies the comparison
   def condition_met?(assets)
       return true unless attribute_value_condition?
 
       operator = when_config["operator"]
       threshold = when_config["value"]
-      attribute_name = when_config["attribute"]
+      # Support both "attribute" and "attributeName" keys
+      attribute_name = when_config["attribute"] || when_config["attributeName"]
 
-      assets.any? do |asset|
+      # Build query using Asset scopes (aligned with RailsAdmin search options)
+      relation = build_asset_query(assets)
+
+      # Check if any asset matches the condition
+      # Note: JSONB attribute comparison requires loading records
+      relation.any? do |asset|
         value = (asset.attributes_data || {})[attribute_name]
         compare_values(value, operator, threshold)
       end
   end
 
   ##
+  # Select target assets for the current rule execution.
+  #
+  # Uses Asset scopes and ActiveRecord queries (aligned with RailsAdmin search options)
+  # to determine which assets should be considered for rule execution.
+  #
+  # Supports filtering by:
+  # - assetId: specific asset ID
+  # - assetType: asset type name (uses Asset.of_type scope)
+  #
+  # @return [ActiveRecord::Relation<Asset>] candidate assets relation
+  def target_assets
+      apply_asset_filters(Asset.all)
+  end
+
+  ##
+  # Build asset query from rule configuration and provided assets.
+  #
+  # Combines provided assets relation with rule-specific filters using Asset scopes.
+  #
+  # @param assets [ActiveRecord::Relation<Asset>, Array<Asset>] base assets relation or array
+  # @return [ActiveRecord::Relation<Asset>] filtered assets relation
+  def build_asset_query(assets)
+      relation = assets.is_a?(ActiveRecord::Relation) ? assets : Asset.where(id: assets.map(&:id))
+      apply_asset_filters(relation)
+  end
+
+  ##
+  # Apply rule configuration filters to an asset relation.
+  #
+  # Uses Asset scopes (aligned with RailsAdmin search options) to filter assets.
+  #
+  # @param relation [ActiveRecord::Relation<Asset>] base assets relation
+  # @return [ActiveRecord::Relation<Asset>] filtered assets relation
+  def apply_asset_filters(relation)
+      return relation unless when_config
+
+      # Apply assetId filter if specified (uses where scope like RailsAdmin)
+      if when_config["assetId"]
+        relation = relation.where(id: when_config["assetId"])
+      end
+
+      # Apply assetType filter if specified (uses of_type scope from Assets::Querying)
+      type_name = when_config["assetType"] || when_config["asset_type"]
+      if type_name
+        relation = relation.of_type(type_name)
+      end
+
+      relation
+  end
+
+  ##
   # Compare a raw attribute value to the configured threshold.
   #
   # @param value [Object] raw attribute value
-  # @param operator [String] comparison operator (`"less than"`, `"greater than"`, `"equals"`)
+  # @param operator [String] comparison operator (`"less than"`, `"greater than"`, `"equals"`, `"<"`, `">"`, etc.)
   # @param threshold [Object] threshold value from configuration
   # @return [Boolean] result of the comparison
   def compare_values(value, operator, threshold)
       # Handle nil values - return false for all comparisons
       return false if value.nil?
 
-      case operator
-      when "less than"
+      case operator.to_s.downcase
+      when "less than", "<", "lt"
         value.to_f < threshold.to_f
-      when "greater than"
+      when "greater than", ">", "gt"
         value.to_f > threshold.to_f
-      when "equals"
+      when "equals", "=", "==", "eq"
         value == threshold
       else
         false
       end
-  end
-
-  ##
-  # Select target assets for the current rule execution.
-  #
-  # NOTE: In this initial implementation we consider all assets as candidates;
-  # rule-specific filtering is expressed in `condition_met?` and actions.
-  #
-  # @return [ActiveRecord::Relation<Asset>] candidate assets
-  def target_assets
-      Asset.all
   end
 
   ##
@@ -167,12 +233,13 @@ module Rule::Execution
   # Dispatch a single action hash to the appropriate handler.
   #
   # @param action [Hash] action configuration from `then_config`
-  # @param assets [Enumerable<Asset>] assets to operate on
+  # @param assets [Array<Asset>] assets to operate on
   # @return [void]
   def apply_action!(action, assets = [])
       case action["action"]
       when "Calculate performance ratio"
-        assets.select { |a| a.asset_type.name == "SolarPark" }.each(&:update_performance_ratio!)
+        # Use Asset scope instead of in-memory filtering
+        Asset.where(id: assets.map(&:id)).solar_parks.each(&:update_performance_ratio!)
       when "Update attribute"
         update_attribute_action(action, assets)
       when "Send notification"
@@ -214,16 +281,7 @@ module Rule::Execution
   def send_notification_action(action, assets)
       message_template = action["message"] || "Notification triggered"
       severity = action["severity"] || "info"
-
-      assets.each do |asset|
-        Notification.create!(
-          asset: asset,
-          rule: self,
-          severity: severity,
-          message: interpolate_message(message_template, asset),
-          sent_at: Time.current
-        )
-      end
+      create_notifications_for_assets(assets, message_template, severity)
   end
 
   ##
@@ -234,12 +292,25 @@ module Rule::Execution
   # @return [void]
   def log_event_action(action, assets)
       message_template = action["message"] || "Event logged"
+      create_notifications_for_assets(assets, message_template, "info")
+  end
 
+  ##
+  # Create notifications for multiple assets with a shared message template and severity.
+  #
+  # This is a DRY helper method used by send_notification_action, log_event_action,
+  # and compare_assets_for_deviation to avoid duplication.
+  #
+  # @param assets [Enumerable<Asset>] assets to create notifications for
+  # @param message_template [String] message template with interpolation placeholders
+  # @param severity [String] notification severity (e.g., "info", "warning", "error")
+  # @return [void]
+  def create_notifications_for_assets(assets, message_template, severity)
       assets.each do |asset|
         Notification.create!(
           asset: asset,
           rule: self,
-          severity: "info",
+          severity: severity,
           message: interpolate_message(message_template, asset),
           sent_at: Time.current
         )
@@ -277,12 +348,10 @@ module Rule::Execution
 
         asset = Asset.find(asset_id)
         if action_on_dev == "Send notification"
-          Notification.create!(
-            asset: asset,
-            rule: self,
-            severity: "warning",
-            message: interpolate_message(message_template || "Performance deviation detected", asset),
-            sent_at: Time.current
+          create_notifications_for_assets(
+            [ asset ],
+            message_template || "Performance deviation detected",
+            "warning"
           )
         end
       end

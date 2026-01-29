@@ -4,6 +4,9 @@
 
 **Type:** Controllers  
 **File:** `unlocks_controller.rb`
+<Badge type="warning" text="File Coverage: 33.33%" />
+<Badge type="info" text="6/51 lines" />
+
 
 This controller inherits from `ApplicationController`, handling HTTP requests, rendering, session management, strong parameters, filters, and more. See [ApplicationController](https://api.rubyonrails.org/classes/ApplicationController.html) for the complete API.
 **Rails Framework References:**
@@ -40,7 +43,7 @@ This controller inherits from `ApplicationController`, handling HTTP requests, r
 
 - **Examples for this class**: 8
 - **Test file**: `spec/controllers/unlocks_controller_spec.rb`
-- **Last tested**: 2026-01-28 22:12:48
+- **Last tested**: 2026-01-29 03:27:01
 
 :::
 
@@ -52,7 +55,10 @@ This controller inherits from `ApplicationController`, handling HTTP requests, r
 ## Methods
 
 - `create`
+  <Badge type="warning" text="Coverage: 11.11%" />
+  <small>Uncovered lines: 41, 42, 43, 44, 45...</small>
 - `new`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
   **Examples:**
   - redirects to new unlock path with alert
@@ -60,6 +66,8 @@ This controller inherits from `ApplicationController`, handling HTTP requests, r
   - redirects to new unlock path with alert
 
 - `show`
+  <Badge type="warning" text="Coverage: 11.11%" />
+  <small>Uncovered lines: 16, 17, 18, 19, 20...</small>
 
 
 ## Examples
@@ -121,7 +129,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlo
 ### sends unlock instructions and redirects
 
 ```ruby
-        expect(UserMailer).to receive(:unlock_instructions).with(user).and_return(double(deliver_later: true))
+        expect(UserMailer).to receive(:with).with(user: user).and_return(mailer_double)
         expect(response).to redirect_to("/login")
         expect(flash[:notice]).to eq("Unlock instructions have been sent to your email.")
 ```
@@ -136,7 +144,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlo
         expect(flash[:notice]).to eq("If an account exists and is locked, unlock instructions have been sent.")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlocks_controller_spec.rb:93`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlocks_controller_spec.rb:95`_
 
 
 ### redirects without revealing email existence
@@ -146,7 +154,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlo
         expect(flash[:notice]).to eq("If an account exists and is locked, unlock instructions have been sent.")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlocks_controller_spec.rb:101`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/unlocks_controller_spec.rb:103`_
 
 
 ## Source Code

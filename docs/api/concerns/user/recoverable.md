@@ -4,6 +4,9 @@
 
 **Type:** Concerns  
 **File:** `user/recoverable.rb`
+<Badge type="warning" text="File Coverage: 33.33%" />
+<Badge type="info" text="8/71 lines" />
+
 
 This concern uses `ActiveSupport::Concern` to provide shared behavior across multiple classes. Concerns encapsulate cross-cutting functionality and can define class methods, instance methods, and callbacks. See [ActiveSupport::Concern](https://api.rubyonrails.org/classes/ActiveSupport/Concern.html) for the complete API.
 
@@ -51,7 +54,11 @@ This concern uses `ActiveSupport::Concern` to provide shared behavior across mul
 ## Methods
 
 - `generate_reset_password_token!`
+  <Badge type="warning" text="Coverage: 20.0%" />
+  <small>Uncovered lines: 65, 66, 67, 68</small>
 - `reset_password`
+  <Badge type="warning" text="Coverage: 9.09%" />
+  <small>Uncovered lines: 34, 35, 36, 37, 38...</small>
 
   **Examples:**
   - generates reset token and sends email
@@ -61,6 +68,8 @@ This concern uses `ActiveSupport::Concern` to provide shared behavior across mul
   - returns true when token is valid and not expired
 
 - `reset_password_period_valid?`
+  <Badge type="warning" text="Coverage: 25.0%" />
+  <small>Uncovered lines: 52, 53, 54</small>
 
   **Examples:**
   - returns true when token is valid and not expired
@@ -70,6 +79,8 @@ This concern uses `ActiveSupport::Concern` to provide shared behavior across mul
   - returns true when token is within 6 hours
 
 - `send_reset_password_instructions`
+  <Badge type="warning" text="Coverage: 25.0%" />
+  <small>Uncovered lines: 13, 14, 15</small>
 
 
 ## Examples

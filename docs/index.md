@@ -1,7 +1,7 @@
 ---
 title: OpenRemote Rails API Documentation
 description: OpenRemote Rails API documentation with 50 components (22 models, 6 controllers, 7 services, 4 jobs, 11 concerns) and 514 test-driven examples. Auto-generated from code structure.
-lastUpdated: 2026-01-28T23:56:11Z
+lastUpdated: 2026-01-29T01:57:08Z
 head:
   - - meta
     - name: keywords

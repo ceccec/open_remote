@@ -4,6 +4,9 @@
 
 **Type:** Models  
 **File:** `data_point/analytics.rb`
+<Badge type="warning" text="File Coverage: 64.71%" />
+<Badge type="info" text="22/140 lines" />
+
 
 This model inherits from `ActiveRecord::Base`, providing database persistence, validations, associations, and callbacks. See [ActiveRecord::Base](https://api.rubyonrails.org/classes/ActiveRecord/Base.html) for the complete API.
 
@@ -48,10 +51,20 @@ This model inherits from `ActiveRecord::Base`, providing database persistence, v
 ## Methods
 
 - `average_for`
+  <Badge type="warning" text="Coverage: 29.41%" />
+  <small>Uncovered lines: 53, 55, 56, 57, 59...</small>
 - `create_continuous_aggregate`
+  <Badge type="warning" text="Coverage: 20.0%" />
+  <small>Uncovered lines: 131, 132, 133, 134</small>
 - `max_for`
+  <Badge type="warning" text="Coverage: 29.41%" />
+  <small>Uncovered lines: 78, 80, 81, 82, 84...</small>
 - `min_for`
+  <Badge type="warning" text="Coverage: 5.88%" />
+  <small>Uncovered lines: 102, 103, 104, 105, 106...</small>
 - `sum_for`
+  <Badge type="warning" text="Coverage: 5.88%" />
+  <small>Uncovered lines: 27, 28, 29, 30, 31...</small>
 
 
 

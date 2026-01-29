@@ -4,6 +4,9 @@
 
 **Type:** Controllers  
 **File:** `confirmations_controller.rb`
+<Badge type="warning" text="File Coverage: 30.0%" />
+<Badge type="info" text="6/55 lines" />
+
 
 This controller inherits from `ApplicationController`, handling HTTP requests, rendering, session management, strong parameters, filters, and more. See [ApplicationController](https://api.rubyonrails.org/classes/ApplicationController.html) for the complete API.
 **Rails Framework References:**
@@ -40,7 +43,7 @@ This controller inherits from `ApplicationController`, handling HTTP requests, r
 
 - **Examples for this class**: 8
 - **Test file**: `spec/controllers/confirmations_controller_spec.rb`
-- **Last tested**: 2026-01-28 22:12:18
+- **Last tested**: 2026-01-29 03:27:01
 
 :::
 
@@ -52,7 +55,10 @@ This controller inherits from `ApplicationController`, handling HTTP requests, r
 ## Methods
 
 - `create`
+  <Badge type="warning" text="Coverage: 7.69%" />
+  <small>Uncovered lines: 41, 42, 43, 44, 45...</small>
 - `new`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
   **Examples:**
   - redirects to new confirmation path with alert
@@ -60,6 +66,8 @@ This controller inherits from `ApplicationController`, handling HTTP requests, r
   - redirects to new confirmation path with alert
 
 - `show`
+  <Badge type="warning" text="Coverage: 11.11%" />
+  <small>Uncovered lines: 16, 17, 18, 19, 20...</small>
 
 
 ## Examples
@@ -120,7 +128,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/conf
 ### sends confirmation instructions and redirects
 
 ```ruby
-        expect(UserMailer).to receive(:confirmation_instructions).with(user).and_return(double(deliver_later: true))
+        expect(UserMailer).to receive(:with).with(user: user).and_return(mailer_double)
         expect(response).to redirect_to("/login")
         expect(flash[:notice]).to eq("Confirmation instructions have been sent to your email.")
 ```
@@ -135,7 +143,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/conf
         expect(flash[:notice]).to eq("Email already confirmed. You can log in.")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/confirmations_controller_spec.rb:96`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/confirmations_controller_spec.rb:98`_
 
 
 ### redirects to login without revealing email existence
@@ -145,7 +153,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/conf
         expect(flash[:notice]).to eq("If an account exists with that email, confirmation instructions have been sent.")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/confirmations_controller_spec.rb:104`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/confirmations_controller_spec.rb:106`_
 
 
 ## Source Code

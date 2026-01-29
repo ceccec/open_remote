@@ -1,43 +1,14 @@
+##
+# Concern providing Inverter attribute accessors.
+#
+# Delegates to Asset::Type::Inverter::Attributes to avoid duplication.
+# This module is extended on Asset instances via Assets::TypeDispatch.
+#
 module Assets
   module InverterAttributes
-    def inverter_capacity
-      (attributes_data || {})["inverterCapacity"]
-    end
-
-    def ac_power_output
-      (attributes_data || {})["acPowerOutput"]
-    end
-
-    def dc_power_input
-      (attributes_data || {})["dcPowerInput"]
-    end
-
-    def ac_voltage
-      (attributes_data || {})["acVoltage"]
-    end
-
-    def ac_frequency
-      (attributes_data || {})["acFrequency"]
-    end
-
-    def efficiency
-      (attributes_data || {})["efficiency"]
-    end
-
-    def temperature
-      (attributes_data || {})["temperature"]
-    end
-
-    def uptime
-      (attributes_data || {})["uptime"]
-    end
-
-    def status
-      (attributes_data || {})["status"]
-    end
-
-    def alarm_status
-      (attributes_data || {})["alarmStatus"]
-    end
+    # Include Asset::Type::Inverter::Attributes to reuse its implementation
+    # This ensures DRY: single source of truth for Inverter attribute methods
+    # When this module is extended on an instance, these methods become instance methods
+    include Asset::Type::Inverter::Attributes
   end
 end

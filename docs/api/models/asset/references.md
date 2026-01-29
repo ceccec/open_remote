@@ -4,6 +4,9 @@
 
 **Type:** Models  
 **File:** `asset/references.rb`
+<Badge type="warning" text="File Coverage: 30.65%" />
+<Badge type="info" text="19/258 lines" />
+
 
 This model inherits from `ActiveRecord::Base`, providing database persistence, validations, associations, and callbacks. See [ActiveRecord::Base](https://api.rubyonrails.org/classes/ActiveRecord/Base.html) for the complete API.
 
@@ -48,20 +51,44 @@ This model inherits from `ActiveRecord::Base`, providing database persistence, v
 ## Methods
 
 - `all_ancestors`
+  <Badge type="warning" text="Coverage: 14.29%" />
+  <small>Uncovered lines: 148, 149, 150, 151, 152...</small>
 - `all_descendants`
+  <Badge type="warning" text="Coverage: 16.67%" />
+  <small>Uncovered lines: 131, 132, 133, 134, 135</small>
 - `asset_type_reference`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `asset_type_references`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `by_asset_type_reference`
+  <Badge type="warning" text="Coverage: 10.0%" />
+  <small>Uncovered lines: 185, 186, 187, 188, 189...</small>
 - `by_parent_reference`
+  <Badge type="warning" text="Coverage: 10.0%" />
+  <small>Uncovered lines: 208, 209, 210, 211, 212...</small>
 - `grouped_by_parent_reference`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `potentially_relevant_rules`
+  <Badge type="warning" text="Coverage: 16.67%" />
+  <small>Uncovered lines: 88, 89, 90, 91, 92</small>
 - `reference_chain`
+  <Badge type="warning" text="Coverage: 14.29%" />
+  <small>Uncovered lines: 58, 59, 60, 61, 62...</small>
 - `reference_map`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `reference_path`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `references_parent?`
+  <Badge type="warning" text="Coverage: 50.0%" />
+  <small>Uncovered lines: 118</small>
 - `related_data_points`
+  <Badge type="warning" text="Coverage: 33.33%" />
+  <small>Uncovered lines: 28, 29</small>
 - `related_notifications`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `root_reference`
+  <Badge type="warning" text="Coverage: 20.0%" />
+  <small>Uncovered lines: 166, 167, 168, 169</small>
 
 
 

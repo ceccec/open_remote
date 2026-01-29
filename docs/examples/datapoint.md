@@ -48,6 +48,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_poin
 
 ```ruby
       expect { DataPoint.batch_cleanup_for_asset(asset, 1.month.ago) }
+      expect { DataPoint.batch_cleanup_for_asset(asset, 1.month.ago) }
 ```
 
 _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:45`_
@@ -61,7 +62,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_poin
       expect { DataPoint.batch_cleanup_for_asset(asset.id, 1.month.ago) }
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:51`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:52`_
 
 
 ---
@@ -70,9 +71,10 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_poin
 
 ```ruby
       expect { DataPoint.batch_cleanup_for_attribute("power", 1.month.ago) }
+      expect { DataPoint.batch_cleanup_for_attribute("power", 1.month.ago) }
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:60`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:61`_
 
 
 ---
@@ -81,7 +83,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_poin
 
 
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:68`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:70`_
 
 
 ---
@@ -93,7 +95,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_poin
       expect(results[:errors].first[:error]).to eq("Test error")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:78`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:80`_
 
 
 ---
@@ -104,7 +106,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_poin
       expect { DataPoint.batch_delete_duplicates }
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:92`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:94`_
 
 
 ---
@@ -116,7 +118,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_poin
       expect(remaining.first.id).to eq([ duplicate1.id, duplicate2.id, duplicate3.id ].max)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:97`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:99`_
 
 
 ---
@@ -129,7 +131,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_poin
       expect(aggregated.first.value["aggregated"]).to be true
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:110`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:122`_
 
 
 ---
@@ -137,10 +139,11 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_poin
 ### calculates average correctly
 
 ```ruby
-      expect(aggregated.value["value"]).to be_within(0.01).of(200.0) # (100 + 200) / 2
+      expect(aggregated).not_to be_nil
+      expect(aggregated.value["value"]).to be_within(0.01).of(150.0) # (100 + 200) / 2
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:119`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:131`_
 
 
 ---
@@ -148,10 +151,11 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_poin
 ### supports sum aggregation
 
 ```ruby
+      expect(aggregated).not_to be_nil
       expect(aggregated.value["value"]).to eq(300.0) # 100 + 200
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:125`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/models/data_point/batch_actions_spec.rb:142`_
 
 
 ---

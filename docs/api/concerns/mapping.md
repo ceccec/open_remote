@@ -4,6 +4,9 @@
 
 **Type:** Concerns  
 **File:** `mapping/attribute_normalization.rb`
+<Badge type="warning" text="File Coverage: 54.55%" />
+<Badge type="info" text="6/60 lines" />
+
 
 This concern uses `ActiveSupport::Concern` to provide shared behavior across multiple classes. Concerns encapsulate cross-cutting functionality and can define class methods, instance methods, and callbacks. See [ActiveSupport::Concern](https://api.rubyonrails.org/classes/ActiveSupport/Concern.html) for the complete API.
 
@@ -45,7 +48,11 @@ This concern uses `ActiveSupport::Concern` to provide shared behavior across mul
 ## Methods
 
 - `denormalize_to_openremote_attributes`
+  <Badge type="warning" text="Coverage: 33.33%" />
+  <small>Uncovered lines: 54, 55</small>
 - `normalize_openremote_attributes`
+  <Badge type="warning" text="Coverage: 20.0%" />
+  <small>Uncovered lines: 35, 36, 37, 38</small>
 
 
 

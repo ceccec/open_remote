@@ -16,7 +16,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
 ### sends reset password instructions and redirects
 
 ```ruby
-        expect(UserMailer).to receive(:reset_password_instructions).with(user).and_return(double(deliver_later: true))
+        expect(UserMailer).to receive(:with).with(user: user).and_return(mailer_double)
         expect(response).to redirect_to("/login")
         expect(flash[:notice]).to eq("Password reset instructions have been sent to your email.")
 ```
@@ -33,7 +33,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
         expect(flash[:notice]).to eq("If an account exists with that email, password reset instructions have been sent.")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:30`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:32`_
 
 
 ---
@@ -44,7 +44,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
         expect(response).to have_http_status(:success)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:47`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:49`_
 
 
 ---
@@ -56,7 +56,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
         expect(flash[:alert]).to eq("Password reset token is invalid or has expired.")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:54`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:56`_
 
 
 ---
@@ -68,7 +68,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
         expect(flash[:alert]).to eq("Password reset token is invalid or has expired.")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:54`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:56`_
 
 
 ---
@@ -82,7 +82,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
         expect(flash[:notice]).to eq("Password has been reset successfully.")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:86`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:88`_
 
 
 ---
@@ -93,7 +93,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
         expect(response).to have_http_status(:unprocessable_content)
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:110`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:112`_
 
 
 ---
@@ -105,7 +105,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
         expect(flash[:alert]).to eq("Password reset token is invalid or has expired.")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:54`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:56`_
 
 
 ---
@@ -117,7 +117,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/pass
         expect(flash[:alert]).to eq("Password reset token is invalid or has expired.")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:54`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/passwords_controller_spec.rb:56`_
 
 
 ---

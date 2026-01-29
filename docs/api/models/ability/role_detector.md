@@ -4,6 +4,9 @@
 
 **Type:** Models  
 **File:** `ability/role_detector.rb`
+<Badge type="warning" text="File Coverage: 28.57%" />
+<Badge type="info" text="2/26 lines" />
+
 
 This model inherits from `ActiveRecord::Base`, providing database persistence, validations, associations, and callbacks. See [ActiveRecord::Base](https://api.rubyonrails.org/classes/ActiveRecord/Base.html) for the complete API.
 
@@ -48,6 +51,8 @@ This model inherits from `ActiveRecord::Base`, providing database persistence, v
 ## Methods
 
 - `role_for`
+  <Badge type="warning" text="Coverage: 7.69%" />
+  <small>Uncovered lines: 12, 13, 14, 15, 16...</small>
 
 
 

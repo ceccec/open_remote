@@ -66,7 +66,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/conf
 ### sends confirmation instructions and redirects
 
 ```ruby
-        expect(UserMailer).to receive(:confirmation_instructions).with(user).and_return(double(deliver_later: true))
+        expect(UserMailer).to receive(:with).with(user: user).and_return(mailer_double)
         expect(response).to redirect_to("/login")
         expect(flash[:notice]).to eq("Confirmation instructions have been sent to your email.")
 ```
@@ -83,7 +83,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/conf
         expect(flash[:notice]).to eq("Email already confirmed. You can log in.")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/confirmations_controller_spec.rb:96`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/confirmations_controller_spec.rb:98`_
 
 
 ---
@@ -95,7 +95,7 @@ _Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/conf
         expect(flash[:notice]).to eq("If an account exists with that email, confirmation instructions have been sent.")
 ```
 
-_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/confirmations_controller_spec.rb:104`_
+_Source: `/Users/ceci/github/ceccec/openremote/open_remote/spec/controllers/confirmations_controller_spec.rb:106`_
 
 
 ---

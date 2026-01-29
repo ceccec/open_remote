@@ -4,6 +4,9 @@
 
 **Type:** Services  
 **File:** `asset_datapoint_service.rb`
+<Badge type="warning" text="File Coverage: 29.03%" />
+<Badge type="info" text="9/128 lines" />
+
 
 
 ::: details 📊 Coverage & Testing Statistics
@@ -45,17 +48,33 @@
 ## Methods
 
 - `cleanup_old_datapoints`
+  <Badge type="warning" text="Coverage: 50.0%" />
+  <small>Uncovered lines: 88</small>
 - `get_datapoints`
+  <Badge type="warning" text="Coverage: 33.33%" />
+  <small>Uncovered lines: 52, 53</small>
 - `get_latest_datapoint`
+  <Badge type="warning" text="Coverage: 33.33%" />
+  <small>Uncovered lines: 64, 65</small>
 - `get_latest_datapoints`
+  <Badge type="warning" text="Coverage: 20.0%" />
+  <small>Uncovered lines: 75, 76, 77, 78</small>
 - `record_all_attributes_for_type`
+  <Badge type="warning" text="Coverage: 7.14%" />
+  <small>Uncovered lines: 113, 114, 115, 116, 117...</small>
 - `record_current_attributes`
+  <Badge type="warning" text="Coverage: 33.33%" />
+  <small>Uncovered lines: 101, 102</small>
 
   **Examples:**
   - returns empty array for asset without attributes
 
 - `record_datapoint`
+  <Badge type="warning" text="Coverage: 12.5%" />
+  <small>Uncovered lines: 18, 19, 20, 21, 22...</small>
 - `record_datapoints`
+  <Badge type="warning" text="Coverage: 20.0%" />
+  <small>Uncovered lines: 36, 37, 38, 39</small>
 
 
 ## Examples

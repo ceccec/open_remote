@@ -81,7 +81,9 @@ RSpec.describe ConfirmationsController, type: :controller do
       end
 
       it "sends confirmation instructions and redirects" do
-        expect(UserMailer).to receive(:confirmation_instructions).with(user).and_return(double(deliver_later: true))
+        mail_double = double(deliver_later: true)
+        mailer_double = double(confirmation_instructions: mail_double)
+        expect(UserMailer).to receive(:with).with(user: user).and_return(mailer_double)
         post :create, params: { user: { email: user.email } }
         expect(response).to redirect_to("/login")
         expect(flash[:notice]).to eq("Confirmation instructions have been sent to your email.")

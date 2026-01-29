@@ -1,39 +1,14 @@
+##
+# Concern providing WeatherStation attribute accessors.
+#
+# Delegates to Asset::Type::Weather::Station::Attributes to avoid duplication.
+# This module is extended on Asset instances via Assets::TypeDispatch.
+#
 module Assets
   module WeatherStationAttributes
-    def temperature
-      (attributes_data || {})["temperature"]
-    end
-
-    def humidity
-      (attributes_data || {})["humidity"]
-    end
-
-    def pressure
-      (attributes_data || {})["pressure"]
-    end
-
-    def wind_speed
-      (attributes_data || {})["windSpeed"]
-    end
-
-    def wind_direction
-      (attributes_data || {})["windDirection"]
-    end
-
-    def solar_irradiance
-      (attributes_data || {})["solarIrradiance"]
-    end
-
-    def cloud_cover
-      (attributes_data || {})["cloudCover"]
-    end
-
-    def visibility
-      (attributes_data || {})["visibility"]
-    end
-
-    def location
-      (attributes_data || {})["location"]
-    end
+    # Include Asset::Type::Weather::Station::Attributes to reuse its implementation
+    # This ensures DRY: single source of truth for WeatherStation attribute methods
+    # When this module is extended on an instance, these methods become instance methods
+    include Asset::Type::Weather::Station::Attributes
   end
 end

@@ -4,6 +4,9 @@
 
 **Type:** Concerns  
 **File:** `interaction_documentation.rb`
+<Badge type="warning" text="File Coverage: 10.0%" />
+<Badge type="info" text="4/77 lines" />
+
 
 This concern uses `ActiveSupport::Concern` to provide shared behavior across multiple classes. Concerns encapsulate cross-cutting functionality and can define class methods, instance methods, and callbacks. See [ActiveSupport::Concern](https://api.rubyonrails.org/classes/ActiveSupport/Concern.html) for the complete API.
 
@@ -45,6 +48,8 @@ This concern uses `ActiveSupport::Concern` to provide shared behavior across mul
 ## Methods
 
 - `generate_interaction_docs`
+  <Badge type="warning" text="Coverage: 1.67%" />
+  <small>Uncovered lines: 15, 16, 17, 18, 19...</small>
 
 
 

@@ -1,43 +1,14 @@
+##
+# Concern providing SolarArray attribute accessors.
+#
+# Delegates to Asset::Type::Solar::Array::Attributes to avoid duplication.
+# This module is extended on Asset instances via Assets::TypeDispatch.
+#
 module Assets
   module SolarArrayAttributes
-    def array_capacity
-      (attributes_data || {})["arrayCapacity"]
-    end
-
-    def power_output
-      (attributes_data || {})["powerOutput"]
-    end
-
-    def dc_voltage
-      (attributes_data || {})["voltage"]
-    end
-
-    def dc_current
-      (attributes_data || {})["current"]
-    end
-
-    def panel_count
-      (attributes_data || {})["panelCount"]
-    end
-
-    def panel_orientation
-      (attributes_data || {})["panelOrientation"]
-    end
-
-    def panel_tilt
-      (attributes_data || {})["panelTilt"]
-    end
-
-    def temperature
-      (attributes_data || {})["temperature"]
-    end
-
-    def status
-      (attributes_data || {})["status"]
-    end
-
-    def location
-      (attributes_data || {})["location"]
-    end
+    # Include Asset::Type::Solar::Array::Attributes to reuse its implementation
+    # This ensures DRY: single source of truth for SolarArray attribute methods
+    # When this module is extended on an instance, these methods become instance methods
+    include Asset::Type::Solar::Array::Attributes
   end
 end

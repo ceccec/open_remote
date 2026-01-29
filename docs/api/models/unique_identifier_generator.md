@@ -4,6 +4,9 @@ API documentation for UniqueIdentifierGenerator
 
 **Type:** Models  
 **File:** `unique_identifier_generator.rb`
+<Badge type="warning" text="File Coverage: 36.84%" />
+<Badge type="info" text="7/36 lines" />
+
 
 This model inherits from `ActiveRecord::Base`, providing database persistence, validations, associations, and callbacks. See [ActiveRecord::Base](https://api.rubyonrails.org/classes/ActiveRecord/Base.html) for the complete API.
 
@@ -54,7 +57,11 @@ This model inherits from `ActiveRecord::Base`, providing database persistence, v
 ## Methods
 
 - `base62_encode`
+  <Badge type="warning" text="Coverage: 9.09%" />
+  <small>Uncovered lines: 23, 24, 25, 26, 27...</small>
 - `generate_id`
+  <Badge type="warning" text="Coverage: 12.5%" />
+  <small>Uncovered lines: 10, 11, 12, 13, 14...</small>
 
 
 ## Examples

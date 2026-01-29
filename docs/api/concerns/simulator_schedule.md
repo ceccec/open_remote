@@ -1,10 +1,23 @@
 ---
 title: SimulatorSchedule
-description: Ruby port of the parts of OpenRemote's SimulatorProtocol.Schedule
-lastUpdated: 2026-01-28T21:47:06Z
+description: Ruby port of the parts of OpenRemote's `SimulatorProtocol.Schedule` that are, Reusable concern module, includes JSON::Ext::Generator::GeneratorMethods::Object
+lastUpdated: 2026-01-29T01:42:54Z
 tags:
   - concern
   - api
+head:
+  - - meta
+    - name: keywords
+      content: SimulatorSchedule, concern, rails, api, ruby, module, reusable, JSON::Ext::Generator::GeneratorMethods::Object, start, end_time, freq, by_hour, by_minute, until_time, count, current, upcoming, initialize
+  - - meta
+    - property: og:title
+      content: SimulatorSchedule - OpenRemote Rails API
+  - - meta
+    - property: og:description
+      content: Ruby port of the parts of OpenRemote's `SimulatorProtocol.Schedule` that are, Reusable concern module, includes JSON::Ext::Generator::GeneratorMethods::Object
+  - - meta
+    - property: og:type
+      content: website
 ---
 
 # SimulatorSchedule <Badge type="warning" text="Concern" />
@@ -55,10 +68,30 @@ Supports simple RFC5545-style RRULEs with:
 - `is_after_schedule_end`
 :::
 
+::: details 📊 Coverage & Testing Statistics
+
+### Test Suite Statistics
+
+<Badge type="tip" text="69 test files" />
+
+- **Total Test Files**: 69
+
+**Tests by Type:**
+
+- **Models**: 32 test files
+- **Other**: 13 test files
+- **Controllers**: 7 test files
+- **Services**: 7 test files
+- **Concerns**: 6 test files
+- **Jobs**: 3 test files
+- **Mailers**: 1 test file
+
+:::
+
 ::: info Test Examples
-Comprehensive test-driven examples are available in the [Examples section](/examples/).
+Comprehensive test-driven examples are available in the [Examples section](/docs/examples/).
 :::
 
 ---
 
-<Badge type="info" text="Navigation" /> [← Back to Index](/api/)
+<Badge type="info" text="Navigation" /> [← Back to Index](/docs/api/)

@@ -4,6 +4,9 @@
 
 **Type:** Concerns  
 **File:** `concern_features.rb`
+<Badge type="warning" text="File Coverage: 82.76%" />
+<Badge type="info" text="24/104 lines" />
+
 
 This concern uses `ActiveSupport::Concern` to provide shared behavior across multiple classes. Concerns encapsulate cross-cutting functionality and can define class methods, instance methods, and callbacks. See [ActiveSupport::Concern](https://api.rubyonrails.org/classes/ActiveSupport/Concern.html) for the complete API.
 
@@ -45,11 +48,20 @@ This concern uses `ActiveSupport::Concern` to provide shared behavior across mul
 ## Methods
 
 - `base`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `concern_feature`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `enables_interaction`
+  <Badge type="warning" text="Coverage: 50.0%" />
+  <small>Uncovered lines: 47, 48, 49</small>
 - `extended`
+  <Badge type="warning" text="Coverage: 50.0%" />
+  <small>Uncovered lines: 10, 12, 13, 14, 16</small>
 - `interactions_for_model`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `rails_api_info`
+  <Badge type="warning" text="Coverage: 29.73%" />
+  <small>Uncovered lines: 61, 62, 63, 64, 66...</small>
 
 
 

@@ -4,6 +4,9 @@
 
 **Type:** Models  
 **File:** `asset_type.rb`
+<Badge type="warning" text="File Coverage: 82.35%" />
+<Badge type="info" text="14/55 lines" />
+
 
 This model inherits from `ApplicationRecord`, providing database persistence, validations, associations, scopes, callbacks, query methods, and more. See [ApplicationRecord](https://api.rubyonrails.org/classes/ApplicationRecord.html) for the complete API.
 **Rails Framework References:**
@@ -69,8 +72,11 @@ These modules extend the class with additional behavior. Concerns use [ActiveSup
 ## Methods
 
 - `assets_count`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `has_assets?`
+  <Badge type="tip" text="Coverage: 100.0%" />
 - `rails_admin_label`
+  <Badge type="tip" text="Coverage: 100.0%" />
 
   **Examples:**
   - returns display_name when present

@@ -5,6 +5,7 @@
 **Type:** Jobs  
 **File:** `application_job.rb`
 
+
 This job inherits from `ActiveJob::Base`, enabling asynchronous background processing. Jobs are enqueued and executed by Active Job adapters. See [ActiveJob::Base](https://api.rubyonrails.org/classes/ActiveJob/Base.html) for the complete API.
 **Rails Framework References:**
 - **Base Class**: [ActiveJob::Base](https://api.rubyonrails.org/classes/ActiveJob/Base.html) - Job enqueueing, callbacks, and execution

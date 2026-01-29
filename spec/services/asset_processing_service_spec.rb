@@ -47,7 +47,7 @@ RSpec.describe AssetProcessingService do
 
       expect do
         AssetProcessingService.process_attribute_update(asset, "totalPowerOutput", 800)
-      end.to have_enqueued_job(RuleExecutionJob).with(rule.id)
+      end.to have_enqueued_job(RuleExecutionJob).with(rule)
     end
   end
 

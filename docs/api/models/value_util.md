@@ -4,6 +4,9 @@ API documentation for ValueUtil
 
 **Type:** Models  
 **File:** `value_util.rb`
+<Badge type="warning" text="File Coverage: 35.71%" />
+<Badge type="info" text="5/27 lines" />
+
 
 This model inherits from `ActiveRecord::Base`, providing database persistence, validations, associations, and callbacks. See [ActiveRecord::Base](https://api.rubyonrails.org/classes/ActiveRecord/Base.html) for the complete API.
 
@@ -48,8 +51,14 @@ This model inherits from `ActiveRecord::Base`, providing database persistence, v
 ## Methods
 
 - `validate_array_of_array_of_positive_integers`
+  <Badge type="warning" text="Coverage: 16.67%" />
+  <small>Uncovered lines: 20, 21, 22, 23, 24</small>
 - `validate_array_of_positive_integers`
+  <Badge type="warning" text="Coverage: 25.0%" />
+  <small>Uncovered lines: 12, 13, 14</small>
 - `validate_positive_integer`
+  <Badge type="warning" text="Coverage: 50.0%" />
+  <small>Uncovered lines: 6</small>
 
 
 
