@@ -37,7 +37,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "jbuilder", "~> 2.0"
   spec.add_dependency "solid_cache", "~> 1.0"
   spec.add_dependency "solid_queue", "~> 1.0"
-  spec.add_dependency "solid_cable", "~> 1.0"
+  spec.add_dependency "solid_cable", ">= 1", "< 4"
   spec.add_dependency "bootsnap", "~> 1.16", ">= 1.16.0"
   spec.add_dependency "vite_rails", "~> 3.0"
   spec.add_dependency "rails_admin", "~> 3.3"
