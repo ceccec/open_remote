@@ -54,6 +54,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "simplecov", "~> 0.22"
   spec.add_development_dependency "debug", "~> 1.0"
   spec.add_development_dependency "bundler-audit", "~> 0.9"
-  spec.add_development_dependency "brakeman", "~> 7.0"
+  spec.add_development_dependency "brakeman", "~> 8.0"
   spec.add_development_dependency "rubocop-rails-omakase", "~> 1.0"
 end
