@@ -66,7 +66,7 @@ group :test do
   gem "simplecov", "~> 0.22", require: false
 end
 
-gem "vite_rails", "~> 3.0"
+gem "vite_rails", "~> 3.10"
 gem "rails_admin", "~> 3.3"
 gem "cancancan", "~> 3.0"
 gem "paper_trail", "~> 17.0"
