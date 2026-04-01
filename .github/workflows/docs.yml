@@ -188,7 +188,7 @@ jobs:
           fi
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Verify artifact before upload
         working-directory: docs
